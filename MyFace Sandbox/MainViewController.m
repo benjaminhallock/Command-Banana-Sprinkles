@@ -84,10 +84,14 @@
 
 - (void)checkForWinner
 {
-    if([self didWin])
+    if([self didWin]) {
         self.winnerLabel.text = @"Winner!";
-    else
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+else {
         self.winnerLabel.text = @"";
+    self.view.backgroundColor = [UIColor grayColor];
+    }
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
