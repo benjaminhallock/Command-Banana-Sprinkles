@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -36,8 +36,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duj-YQ-zai">
-                                                    <rect key="frame" x="0.0" y="-5" width="320" height="410"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwF-AU-kwB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -45,7 +45,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="imageView" destination="duj-YQ-zai" id="Msx-5n-Wcd"/>
+                                            <outlet property="imageView" destination="qwF-AU-kwB" id="xoo-Z0-tgt"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -74,8 +74,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvY-4h-xVJ">
-                                                    <rect key="frame" x="0.0" y="-203" width="320" height="410"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLW-5b-E2g">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -83,7 +83,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="imageView" destination="mvY-4h-xVJ" id="yed-tk-02C"/>
+                                            <outlet property="imageView" destination="FLW-5b-E2g" id="yHU-g3-zjX"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -112,8 +112,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="522-CZ-Dj6">
-                                                    <rect key="frame" x="0.0" y="-276" width="320" height="412"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o0R-bi-n3a">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -121,7 +121,7 @@
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="imageView" destination="522-CZ-Dj6" id="NSp-sV-E3w"/>
+                                            <outlet property="imageView" destination="o0R-bi-n3a" id="bZg-tN-cDh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
