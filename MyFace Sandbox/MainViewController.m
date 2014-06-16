@@ -45,9 +45,18 @@
 - (void)loadSampleData
 {
     self.splitPhotoArray = [NSMutableArray array];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]];
+
+    NSDictionary *photoItem;
+    photoItem= @{@"title": @"Buster", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]};
+    [self.splitPhotoArray addObject:photoItem];
+    photoItem = @{@"title": @"Fido", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]};
+    [self.splitPhotoArray addObject:photoItem];
+    photoItem = @{@"title": @"Max", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]};
+    [self.splitPhotoArray addObject:photoItem];
+
+//    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]];
+//    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]];
+//    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]];
 
 }
 
@@ -155,24 +164,25 @@ else {
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView
                    cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *photo = [self.splitPhotoArray objectAtIndex:indexPath.row];
+    NSDictionary *photoItem = [self.splitPhotoArray objectAtIndex:indexPath.row];
+    NSArray *photos = [photoItem objectForKey:@"photos"];
 
     if (collectionView == self.topCollectionView)
     {
         TopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:0];
+        cell.imageView.image = [photos objectAtIndex:0];
         return cell;
     }
     else if (collectionView == self.middleCollectionView)
     {
         MiddleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MiddleCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:1];
+        cell.imageView.image = [photos objectAtIndex:1];
         return cell;
     }
     else
     {
         BottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:2];
+        cell.imageView.image = [photos objectAtIndex:2];
         return cell;
     }
 }
