@@ -14,12 +14,16 @@
 #import "BottomCollectionView.h"
 #import "BottomCollectionViewCell.h"
 
+#define IMAGE_WIDTH 320
+#define IMAGE_HEIGHT 410
+
 @interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *winnerLabel;
-@property NSArray *splitPhotoArray;
+@property NSMutableArray *splitPhotoArray;
+
 
 @end
 
@@ -36,13 +40,47 @@
 
 - (void)loadSampleData
 {
-    UIImage *image0 = [UIImage imageNamed:@"dog_PNG156"];
-    UIImage *image1 = [UIImage imageNamed:@"dog_PNG2442"];
-    UIImage *image2 = [UIImage imageNamed:@"dog_PNG2444"];
-    self.splitPhotoArray = @[ @[image0, image0, image0],
-                              @[image1, image1, image1],
-                              @[image2, image2, image2],
-                             ];
+    self.splitPhotoArray = [NSMutableArray array];
+    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]];
+    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]];
+    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]];
+
+}
+
+- (NSArray *)slicePhotos:(UIImage *)masterImage
+{
+    CGRect cropRect;
+    CGImageRef imageRef;
+
+    // first, resize image to fit height
+    float vfactor = (masterImage.size.height / IMAGE_HEIGHT);
+
+    // Divide the size by the greater of the vertical or horizontal shrinkage factor
+    float newWidth = masterImage.size.width / vfactor;
+    float newHeight = masterImage.size.height / vfactor;
+
+    CGSize scaleSize = CGSizeMake(newWidth, newHeight);
+    UIGraphicsBeginImageContextWithOptions(scaleSize, NO, 0.0);
+    [masterImage drawInRect:CGRectMake(0, 0, scaleSize.width, scaleSize.height)];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    // crop for the top image
+    cropRect = CGRectMake(0, 0, newWidth * 2, 400);
+    imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], cropRect);
+    UIImage *image0 = [UIImage imageWithCGImage:imageRef];
+
+    // crop for the middle image
+    cropRect = CGRectMake(0, 400, newWidth * 2, 150);
+    imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], cropRect);
+    UIImage *image1 = [UIImage imageWithCGImage:imageRef];
+
+    // crop for the bottom image
+    cropRect = CGRectMake(0, 550, newWidth * 2, 270);
+    imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], cropRect);
+    UIImage *image2 = [UIImage imageWithCGImage:imageRef];
+
+    return [NSArray arrayWithObjects:image0, image1, image2, nil];
 }
 
 - (void)dupliateFirstAndLastElements
