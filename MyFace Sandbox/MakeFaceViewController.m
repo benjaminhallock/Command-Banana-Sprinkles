@@ -58,7 +58,7 @@
     CGImageRef cr = CGImageCreateWithImageInRect([self.makeFaceImageView.image CGImage], visibleRect);
     UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
     UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil);
-//    CGImageRelease(cr);
+    CGImageRelease(cr);
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -67,11 +67,11 @@
     // A photo was taken/selected!
     UIImage *imageTaken = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    //    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
-    //    {
-    //        // Save the image!
-    //        UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
-    //    }
+        if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
+        {
+            // Save the image!
+            UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
+        }
     //
     //    //You can take the metadata here => info [UIImagePickerControllerMediaMetadata];
     //    UIImage* imageCropped = [info objectForKey:UIImagePickerControllerEditedImage];
