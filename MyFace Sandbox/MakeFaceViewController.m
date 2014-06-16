@@ -21,11 +21,11 @@
 {
     [super viewDidLoad];
     self.imagePicker = [[UIImagePickerController alloc] init];
-    self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
     self.imagePicker.delegate = self;
     self.makeFaceScrollView.delegate = self;
-    self.makeFaceScrollView.maximumZoomScale = 30;
-    self.makeFaceScrollView.minimumZoomScale = 5;
+    self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
+    self.makeFaceScrollView.maximumZoomScale = 25;
+    self.makeFaceScrollView.minimumZoomScale = 0;
     self.imagePicker.allowsEditing = NO;
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -47,18 +47,25 @@
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
-- (IBAction)onUploadPhotoPressed:(id)sender
+
+-(UIImage *)capture:(UIImageView *)targetview
 {
-    float scale = 1.0f/self.makeFaceScrollView.zoomScale;
+    int scale = 1.0/self.makeFaceScrollView.zoomScale;
     CGRect visibleRect;
     visibleRect.origin.x = self.makeFaceScrollView.contentOffset.x * scale;
     visibleRect.origin.y = self.makeFaceScrollView.contentOffset.y * scale;
     visibleRect.size.width = self.makeFaceScrollView.bounds.size.width * scale;
     visibleRect.size.height = self.makeFaceScrollView.bounds.size.height * scale;
-    CGImageRef cr = CGImageCreateWithImageInRect([self.makeFaceImageView.image CGImage], visibleRect);
-    UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
+
+    CGImageRef cr = CGImageCreateWithImageInRect([targetview.image CGImage], visibleRect);
+    UIImage *cropped = [[UIImage alloc] initWithCGImage:cr];
     UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil);
-    CGImageRelease(cr);
+    return cropped;
+}
+
+- (IBAction)onUploadPhotoPressed:(id)sender
+{
+    self.makeFaceImageView.image = [self capture:self.makeFaceImageView];
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -70,7 +77,7 @@
         if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
         {
             // Save the image!
-            UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
+//            UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
         }
     //
     //    //You can take the metadata here => info [UIImagePickerControllerMediaMetadata];
