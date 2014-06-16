@@ -9,41 +9,76 @@
 #import "MakeFaceViewController.h"
 
 @interface MakeFaceViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
 
 @end
 
 @implementation MakeFaceViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.delegate = self;
+    self.imagePicker.allowsEditing = YES;
+
+    [self.imagePicker.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"template"]]];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onTakePhotoPressed:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self presentViewController:self.imagePicker
+                       animated:YES
+                     completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+- (IBAction)onUploadPhotoPressed:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self presentViewController:self.imagePicker
+                       animated:YES
+                     completion:nil];
 }
-*/
+
+
+#pragma mark - Image Picker Controller delegate methods
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    // A photo was taken/selected!
+    UIImage *imageTaken = [info objectForKey:UIImagePickerControllerEditedImage];
+
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
+        // Save the image!
+        UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
+    }
+
+    //You can take the metadata here => info [UIImagePickerControllerMediaMetadata];
+    UIImage* imageCropped;
+
+    CGFloat side = MIN(imageTaken.size.width, imageTaken.size.height);
+    CGFloat x = imageTaken.size.width / 2 - side / 2;
+    CGFloat y = imageTaken.size.height / 2 - side / 2;
+
+    CGRect cropRect = CGRectMake(x,y,320, 410);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([imageTaken CGImage], cropRect);
+    imageCropped = [UIImage imageWithCGImage:imageRef scale:imageCropped.scale orientation:imageTaken.imageOrientation];
+    CGImageRelease(imageRef);
+
+    self.makeFaceImageView.image = imageCropped;
+
+    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

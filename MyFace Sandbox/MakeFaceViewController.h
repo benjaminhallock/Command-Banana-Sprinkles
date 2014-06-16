@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MakeFaceViewController : UIViewController
+@interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
+UINavigationControllerDelegate>
+
+@property UIImagePickerController *imagePicker;
+
 
 @end
