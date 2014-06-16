@@ -135,18 +135,7 @@
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
 				AE08F4A7194B552100E2A260 /* MainViewController.m */,
-				AE08F4C6194B55AB00E2A260 /* TopCollectionView.h */,
-				AE08F4C7194B55AB00E2A260 /* TopCollectionView.m */,
-				AE08F4CF194B560C00E2A260 /* TopCollectionViewCell.h */,
-				AE08F4D0194B560C00E2A260 /* TopCollectionViewCell.m */,
-				AE08F4C9194B55C500E2A260 /* MiddleCollectionView.h */,
-				AE08F4CA194B55C500E2A260 /* MiddleCollectionView.m */,
-				AE08F4D2194B562500E2A260 /* MiddleCollectionViewCell.h */,
-				AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */,
-				AE08F4CC194B55DA00E2A260 /* BottomCollectionView.h */,
-				AE08F4CD194B55DA00E2A260 /* BottomCollectionView.m */,
-				AE08F4D5194B563C00E2A260 /* BottomCollectionViewCell.h */,
-				AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */,
+				C2A958BD194F45E100944955 /* Custom Class Collection myFace */,
 				AE08F4A9194B552100E2A260 /* Images.xcassets */,
 				AE08F498194B552100E2A260 /* Supporting Files */,
 			);
@@ -182,6 +171,25 @@
 				AE08F4B9194B552100E2A260 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C2A958BD194F45E100944955 /* Custom Class Collection myFace */ = {
+			isa = PBXGroup;
+			children = (
+				AE08F4C6194B55AB00E2A260 /* TopCollectionView.h */,
+				AE08F4C7194B55AB00E2A260 /* TopCollectionView.m */,
+				AE08F4CF194B560C00E2A260 /* TopCollectionViewCell.h */,
+				AE08F4D0194B560C00E2A260 /* TopCollectionViewCell.m */,
+				AE08F4C9194B55C500E2A260 /* MiddleCollectionView.h */,
+				AE08F4CA194B55C500E2A260 /* MiddleCollectionView.m */,
+				AE08F4D2194B562500E2A260 /* MiddleCollectionViewCell.h */,
+				AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */,
+				AE08F4CC194B55DA00E2A260 /* BottomCollectionView.h */,
+				AE08F4CD194B55DA00E2A260 /* BottomCollectionView.m */,
+				AE08F4D5194B563C00E2A260 /* BottomCollectionViewCell.h */,
+				AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */,
+			);
+			name = "Custom Class Collection myFace";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
