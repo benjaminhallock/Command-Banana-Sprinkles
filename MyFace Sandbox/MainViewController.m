@@ -99,21 +99,17 @@
 - (void)randomizeViews
 {
     NSUInteger index;
-    do  // randomize at least once
-    {
-        // topCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.topCollectionView toIndex:index animated:YES];
+    // topCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.topCollectionView toIndex:index animated:YES];
 
-        // MiddleCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.middleCollectionView toIndex:index animated:YES];
+    // MiddleCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.middleCollectionView toIndex:index animated:YES];
 
-        // BottomCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
-
-    } while ([self didWin]);    // if a random winner, randomize again
+    // BottomCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
 }
 
 - (BOOL)didWin
@@ -141,6 +137,7 @@ else {
     if (motion == UIEventSubtypeMotionShake)
     {
         [self randomizeViews];
+        [self checkForWinner];
     }
 }
 
