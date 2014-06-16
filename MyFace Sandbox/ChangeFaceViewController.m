@@ -10,14 +10,23 @@
 #import "ChangeFaceCustomCell.h"
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@property NSArray *splitPhotoArray;
 
 @end
 
 @implementation ChangeFaceViewController
 
+-(void)viewDidLoad {
+    UIImage *image0 = [UIImage imageNamed:@"dog_PNG156"];
+    UIImage *image1 = [UIImage imageNamed:@"dog_PNG2442"];
+    UIImage *image2 = [UIImage imageNamed:@"dog_PNG2444"];
+    self.splitPhotoArray = [NSArray new];
+    self.splitPhotoArray = @[image0, image1, image2];
+}
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.image.image = nil;
+    cell.imageView.image = [UIImage imageNamed:@"dog_PNG156"];
     return cell;
 }
 
