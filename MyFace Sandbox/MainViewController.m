@@ -24,7 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *winnerLabel;
 @property NSMutableArray *splitPhotoArray;
 
-
 @end
 
 @implementation MainViewController
@@ -38,10 +37,9 @@
     [self becomeFirstResponder];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [self.topCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-        [self.middleCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-        [self.bottomCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self randomizeViews];
 }
 
 - (void)loadSampleData
@@ -101,21 +99,17 @@
 - (void)randomizeViews
 {
     NSUInteger index;
-    do  // randomize at least once
-    {
-        // topCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.topCollectionView toIndex:index];
+    // topCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.topCollectionView toIndex:index animated:YES];
 
-        // MiddleCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.middleCollectionView toIndex:index];
+    // MiddleCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.middleCollectionView toIndex:index animated:YES];
 
-        // BottomCollectionView
-        index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-        [self scrollView:self.bottomCollectionView toIndex:index];
-
-    } while ([self didWin]);    // if a random winner, randomize again
+    // BottomCollectionView
+    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
 }
 
 - (BOOL)didWin
@@ -142,7 +136,7 @@ else {
 {
     if (motion == UIEventSubtypeMotionShake)
     {
-//        [self randomizeViews];
+        [self randomizeViews];
         [self checkForWinner];
     }
 }
@@ -209,23 +203,23 @@ else {
 
     if (scrollView == self.topCollectionView)
     {
-        [self scrollView:self.topCollectionView toIndex:index];
+        [self scrollView:self.topCollectionView toIndex:index animated:NO];
     }
     else if (scrollView == self.middleCollectionView)
     {
-        [self scrollView:self.middleCollectionView toIndex:index];
+        [self scrollView:self.middleCollectionView toIndex:index animated:NO];
     }
     else
     {
-        [self scrollView:self.bottomCollectionView toIndex:index];
+        [self scrollView:self.bottomCollectionView toIndex:index animated:NO];
     }
     [self checkForWinner];
 }
 
-- (void)scrollView:(UICollectionView *)collectionView toIndex:(NSInteger)index
+- (void)scrollView:(UICollectionView *)collectionView toIndex:(NSInteger)index animated:(BOOL)animated
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-    [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:animated];
 }
 
 @end
