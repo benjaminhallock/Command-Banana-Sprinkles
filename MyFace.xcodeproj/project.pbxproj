@@ -27,6 +27,7 @@
 		AE08F4D1194B560C00E2A260 /* TopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D0194B560C00E2A260 /* TopCollectionViewCell.m */; };
 		AE08F4D4194B562500E2A260 /* MiddleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */; };
 		AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */; };
+		C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958BF194F46D200944955 /* ChangeFaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiddleCollectionViewCell.m; sourceTree = "<group>"; };
 		AE08F4D5194B563C00E2A260 /* BottomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomCollectionViewCell.h; sourceTree = "<group>"; };
 		AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomCollectionViewCell.m; sourceTree = "<group>"; };
+		C2A958BE194F46D200944955 /* ChangeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceViewController.h; sourceTree = "<group>"; };
+		C2A958BF194F46D200944955 /* ChangeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
+				C2A958BE194F46D200944955 /* ChangeFaceViewController.h */,
+				C2A958BF194F46D200944955 /* ChangeFaceViewController.m */,
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
 				AE08F4A7194B552100E2A260 /* MainViewController.m */,
 				C2A958BD194F45E100944955 /* Custom Class Collection myFace */,
@@ -293,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE08F4C8194B55AB00E2A260 /* TopCollectionView.m in Sources */,
+				C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */,
 				AE08F4CB194B55C500E2A260 /* MiddleCollectionView.m in Sources */,
 				AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */,
 				AE08F4A8194B552100E2A260 /* MainViewController.m in Sources */,
