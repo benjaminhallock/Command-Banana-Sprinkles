@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BottomCollectionViewCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
