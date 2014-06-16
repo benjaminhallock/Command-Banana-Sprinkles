@@ -11,7 +11,6 @@
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-
 @end
 
 @implementation ChangeFaceViewController
