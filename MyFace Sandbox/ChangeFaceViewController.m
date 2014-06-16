@@ -19,7 +19,6 @@
     return cell;
 }
 
-
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 50;
 }
