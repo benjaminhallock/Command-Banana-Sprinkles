@@ -36,19 +36,13 @@
 
 - (void)loadSampleData
 {
-    self.splitPhotoArray = @[ @[@"pig", @"pig", @"pig"],
-                              @[@"cow", @"cow", @"cow"],
-                              @[@"chicken", @"chicken", @"chicken"],
-                              @[@"horse", @"horse", @"horse"],
-                              @[@"unicorn", @"unicorn", @"unicorn"],
-                              @[@"giraffe", @"giraffe", @"giraffe"],
-                              @[@"lion", @"lion", @"lion"],
-                              @[@"tiger", @"tiger", @"tiger"],
-                              @[@"zebra", @"zebra", @"zebra"],
-                              @[@"donkey", @"donkey", @"donkey"],
-                              @[@"bear", @"bear", @"bear"],
-                              @[@"squirrel", @"squirrel", @"squirrel"],
-                            ];
+    UIImage *image0 = [UIImage imageNamed:@"dog_PNG156"];
+    UIImage *image1 = [UIImage imageNamed:@"dog_PNG2442"];
+    UIImage *image2 = [UIImage imageNamed:@"dog_PNG2444"];
+    self.splitPhotoArray = @[ @[image0, image0, image0],
+                              @[image1, image1, image1],
+                              @[image2, image2, image2],
+                             ];
 }
 
 - (void)dupliateFirstAndLastElements
@@ -124,19 +118,19 @@
     if (collectionView == self.topCollectionView)
     {
         TopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopCellID" forIndexPath:indexPath];
-        cell.label.text = [photo objectAtIndex:0];
+        cell.imageView.image = [photo objectAtIndex:0];
         return cell;
     }
     else if (collectionView == self.middleCollectionView)
     {
         MiddleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MiddleCellID" forIndexPath:indexPath];
-        cell.label.text = [photo objectAtIndex:1];
+        cell.imageView.image = [photo objectAtIndex:1];
         return cell;
     }
     else
     {
         BottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCellID" forIndexPath:indexPath];
-        cell.label.text = [photo objectAtIndex:2];
+        cell.imageView.image = [photo objectAtIndex:2];
         return cell;
     }
 }

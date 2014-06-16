@@ -27,6 +27,7 @@
 		AE08F4D1194B560C00E2A260 /* TopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D0194B560C00E2A260 /* TopCollectionViewCell.m */; };
 		AE08F4D4194B562500E2A260 /* MiddleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */; };
 		AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */; };
+		AEE46AA8194F57FA00B1B793 /* MakeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */; };
 		C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */; };
 		C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958BF194F46D200944955 /* ChangeFaceViewController.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,8 @@
 		AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiddleCollectionViewCell.m; sourceTree = "<group>"; };
 		AE08F4D5194B563C00E2A260 /* BottomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomCollectionViewCell.h; sourceTree = "<group>"; };
 		AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomCollectionViewCell.m; sourceTree = "<group>"; };
+		AEE46AA6194F57FA00B1B793 /* MakeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeFaceViewController.h; sourceTree = "<group>"; };
+		AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeFaceViewController.m; sourceTree = "<group>"; };
 		C246621B194F567D00BBA57B /* ChangeFaceCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceCustomCell.h; sourceTree = "<group>"; };
 		C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceCustomCell.m; sourceTree = "<group>"; };
 		C2A958BE194F46D200944955 /* ChangeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceViewController.h; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
+				AEE46AA6194F57FA00B1B793 /* MakeFaceViewController.h */,
+				AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */,
 				C246621B194F567D00BBA57B /* ChangeFaceCustomCell.h */,
 				C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */,
 				C2A958BE194F46D200944955 /* ChangeFaceViewController.h */,
@@ -302,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEE46AA8194F57FA00B1B793 /* MakeFaceViewController.m in Sources */,
 				AE08F4C8194B55AB00E2A260 /* TopCollectionView.m in Sources */,
 				C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */,
 				AE08F4CB194B55C500E2A260 /* MiddleCollectionView.m in Sources */,

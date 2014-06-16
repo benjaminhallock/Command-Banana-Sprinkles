@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -36,25 +36,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsy-Gn-Ior">
-                                                    <rect key="frame" x="20" y="72" width="280" height="80"/>
-                                                    <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duj-YQ-zai">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="Wsy-Gn-Ior" firstAttribute="top" secondItem="UKu-0N-Cp4" secondAttribute="top" constant="72" id="Fb8-vW-dhm"/>
-                                            <constraint firstItem="Wsy-Gn-Ior" firstAttribute="leading" secondItem="UKu-0N-Cp4" secondAttribute="leading" constant="20" id="QAq-1C-bKu"/>
-                                            <constraint firstAttribute="bottom" secondItem="Wsy-Gn-Ior" secondAttribute="bottom" constant="48" id="bQl-DM-B69"/>
-                                            <constraint firstAttribute="trailing" secondItem="Wsy-Gn-Ior" secondAttribute="trailing" constant="20" id="lux-Y7-NiL"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="label" destination="Wsy-Gn-Ior" id="jeg-0x-Cmn"/>
+                                            <outlet property="imageView" destination="duj-YQ-zai" id="Msx-5n-Wcd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -83,24 +74,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0F-rM-Xei">
-                                                    <rect key="frame" x="20" y="18" width="280" height="40"/>
-                                                    <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvY-4h-xVJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="N0F-rM-Xei" secondAttribute="bottom" constant="17" id="QRq-G6-84M"/>
-                                            <constraint firstAttribute="trailing" secondItem="N0F-rM-Xei" secondAttribute="trailing" constant="20" id="SeA-b1-KDQ"/>
-                                            <constraint firstItem="N0F-rM-Xei" firstAttribute="leading" secondItem="ORl-wD-Mvu" secondAttribute="leading" constant="20" id="aPw-4V-seE"/>
-                                            <constraint firstItem="N0F-rM-Xei" firstAttribute="top" secondItem="ORl-wD-Mvu" secondAttribute="top" constant="18" id="cAR-Q8-gdI"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="label" destination="N0F-rM-Xei" id="0wn-Ou-fgm"/>
+                                            <outlet property="imageView" destination="mvY-4h-xVJ" id="yed-tk-02C"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -129,24 +112,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sj0-Nc-XaT">
-                                                    <rect key="frame" x="20" y="28" width="280" height="80"/>
-                                                    <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="522-CZ-Dj6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="Sj0-Nc-XaT" firstAttribute="leading" secondItem="YuD-l8-eDT" secondAttribute="leading" constant="20" id="TgC-Pi-35t"/>
-                                            <constraint firstAttribute="trailing" secondItem="Sj0-Nc-XaT" secondAttribute="trailing" constant="20" id="YFF-9S-ZDh"/>
-                                            <constraint firstAttribute="bottom" secondItem="Sj0-Nc-XaT" secondAttribute="bottom" constant="27" id="e7K-dv-grq"/>
-                                            <constraint firstItem="Sj0-Nc-XaT" firstAttribute="top" secondItem="YuD-l8-eDT" secondAttribute="top" constant="28" id="wQX-ey-yQS"/>
-                                        </constraints>
                                         <connections>
-                                            <outlet property="label" destination="Sj0-Nc-XaT" id="jfq-aa-s2S"/>
+                                            <outlet property="imageView" destination="522-CZ-Dj6" id="NSp-sV-E3w"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
