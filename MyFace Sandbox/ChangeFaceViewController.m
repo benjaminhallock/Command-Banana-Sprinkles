@@ -7,19 +7,31 @@
 //
 
 #import "ChangeFaceViewController.h"
+#import "ChangeFaceCustomCell.h"
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
 
 @end
 
 @implementation ChangeFaceViewController
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.image.image = nil;
     return cell;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 50;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ChangeFaceCustomCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    if ([cell.label.text isEqualToString:@"✪"]) {
+        cell.label.text = @"";
+    } else {
+    cell.label.text = @"✪";
+    }
 }
 @end
