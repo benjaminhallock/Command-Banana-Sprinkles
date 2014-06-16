@@ -306,6 +306,7 @@
 				AE08F4C8194B55AB00E2A260 /* TopCollectionView.m in Sources */,
 				C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */,
 				AE08F4CB194B55C500E2A260 /* MiddleCollectionView.m in Sources */,
+				C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */,
 				AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */,
 				AE08F4A8194B552100E2A260 /* MainViewController.m in Sources */,
 				AE08F4D4194B562500E2A260 /* MiddleCollectionViewCell.m in Sources */,
