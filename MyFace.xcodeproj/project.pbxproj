@@ -255,7 +255,7 @@
 				ORGANIZATIONNAME = "Mobile Makers Academy";
 				TargetAttributes = {
 					AE08F48D194B552000E2A260 = {
-						DevelopmentTeam = BWWRUGX9KF;
+						DevelopmentTeam = 4L9TT33S47;
 					};
 					AE08F4AE194B552100E2A260 = {
 						TestTargetID = AE08F48D194B552000E2A260;
@@ -448,6 +448,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace-Prefix.pch";
 				INFOPLIST_FILE = "MyFace Sandbox/MyFace-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = MyFace;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -464,6 +465,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace-Prefix.pch";
 				INFOPLIST_FILE = "MyFace Sandbox/MyFace-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = MyFace;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
