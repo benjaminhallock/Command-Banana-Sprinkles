@@ -194,7 +194,7 @@
         <!--Make Face View Controller - makeFace-->
         <scene sceneID="2xF-f5-iXm">
             <objects>
-                <viewController id="kq0-4q-pBN" customClass="makeFaceViewController" sceneMemberID="viewController">
+                <viewController id="kq0-4q-pBN" customClass="MakeFaceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P1d-dJ-w5z"/>
                         <viewControllerLayoutGuide type="bottom" id="6yI-tO-3Kg"/>

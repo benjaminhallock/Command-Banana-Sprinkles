@@ -28,7 +28,7 @@
 		AE08F4D4194B562500E2A260 /* MiddleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */; };
 		AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */; };
 		C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958BF194F46D200944955 /* ChangeFaceViewController.m */; };
-		C2A958C3194F520F00944955 /* makeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958C2194F520F00944955 /* makeFaceViewController.m */; };
+		C2A958C3194F520F00944955 /* MakeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958C2194F520F00944955 /* MakeFaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +75,8 @@
 		AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomCollectionViewCell.m; sourceTree = "<group>"; };
 		C2A958BE194F46D200944955 /* ChangeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceViewController.h; sourceTree = "<group>"; };
 		C2A958BF194F46D200944955 /* ChangeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceViewController.m; sourceTree = "<group>"; };
-		C2A958C1194F520F00944955 /* makeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = makeFaceViewController.h; sourceTree = "<group>"; };
-		C2A958C2194F520F00944955 /* makeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = makeFaceViewController.m; sourceTree = "<group>"; };
+		C2A958C1194F520F00944955 /* MakeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeFaceViewController.h; sourceTree = "<group>"; };
+		C2A958C2194F520F00944955 /* MakeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeFaceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +139,8 @@
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
-				C2A958C1194F520F00944955 /* makeFaceViewController.h */,
-				C2A958C2194F520F00944955 /* makeFaceViewController.m */,
+				C2A958C1194F520F00944955 /* MakeFaceViewController.h */,
+				C2A958C2194F520F00944955 /* MakeFaceViewController.m */,
 				C2A958BE194F46D200944955 /* ChangeFaceViewController.h */,
 				C2A958BF194F46D200944955 /* ChangeFaceViewController.m */,
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
@@ -303,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE08F4C8194B55AB00E2A260 /* TopCollectionView.m in Sources */,
-				C2A958C3194F520F00944955 /* makeFaceViewController.m in Sources */,
+				C2A958C3194F520F00944955 /* MakeFaceViewController.m in Sources */,
 				C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */,
 				AE08F4CB194B55C500E2A260 /* MiddleCollectionView.m in Sources */,
 				AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */,
