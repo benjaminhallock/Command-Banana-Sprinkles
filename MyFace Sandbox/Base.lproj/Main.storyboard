@@ -250,7 +250,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outlet property="image" destination="h8x-0B-dvk" id="ZNk-k9-ugy"/>
+                                            <outlet property="imageView" destination="h8x-0B-dvk" id="4HO-kx-8tP"/>
                                             <outlet property="label" destination="0mS-wZ-xIc" id="2vM-2q-urS"/>
                                         </connections>
                                     </collectionViewCell>

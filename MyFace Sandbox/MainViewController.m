@@ -34,6 +34,12 @@
     [self becomeFirstResponder];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [self.topCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [self.middleCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [self.bottomCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:3 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+}
+
 - (void)loadSampleData
 {
     UIImage *image0 = [UIImage imageNamed:@"dog_PNG156"];
@@ -98,7 +104,7 @@ else {
 {
     if (motion == UIEventSubtypeMotionShake)
     {
-        [self randomizeViews];
+//        [self randomizeViews];
         [self checkForWinner];
     }
 }
