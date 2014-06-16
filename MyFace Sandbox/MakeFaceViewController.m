@@ -10,6 +10,7 @@
 
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
 
 @end
 
@@ -20,10 +21,13 @@
 {
     [super viewDidLoad];
     self.imagePicker = [[UIImagePickerController alloc] init];
+    self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
     self.imagePicker.delegate = self;
-    self.imagePicker.allowsEditing = YES;
+    self.makeFaceScrollView.delegate = self;
+    self.makeFaceScrollView.maximumZoomScale = 30;
+    self.makeFaceScrollView.minimumZoomScale = 1;
+    self.imagePicker.allowsEditing = NO;
 
-    [self.imagePicker.view addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"template"]]];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -32,6 +36,11 @@
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.makeFaceImageView;
 }
 
 - (IBAction)onTakePhotoPressed:(id)sender
@@ -55,7 +64,7 @@
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // A photo was taken/selected!
-    UIImage *imageTaken = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *imageTaken = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
     {
@@ -64,7 +73,7 @@
     }
 
     //You can take the metadata here => info [UIImagePickerControllerMediaMetadata];
-    UIImage* imageCropped;
+    UIImage* imageCropped = [info objectForKey:UIImagePickerControllerEditedImage];
 
     CGFloat side = MIN(imageTaken.size.width, imageTaken.size.height);
     CGFloat x = imageTaken.size.width / 2 - side / 2;
@@ -72,10 +81,10 @@
 
     CGRect cropRect = CGRectMake(x,y,320, 410);
     CGImageRef imageRef = CGImageCreateWithImageInRect([imageTaken CGImage], cropRect);
-    imageCropped = [UIImage imageWithCGImage:imageRef scale:imageCropped.scale orientation:imageTaken.imageOrientation];
+    UIImage *scaledOriginal = [UIImage imageWithCGImage:imageRef scale:imageCropped.scale orientation:imageTaken.imageOrientation];
     CGImageRelease(imageRef);
 
-    self.makeFaceImageView.image = imageCropped;
+    self.makeFaceImageView.image = imageTaken;
 
     [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }

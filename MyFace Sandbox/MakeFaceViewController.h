@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
-UINavigationControllerDelegate>
+UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @property UIImagePickerController *imagePicker;
 
