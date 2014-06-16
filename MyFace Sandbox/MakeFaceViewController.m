@@ -50,15 +50,31 @@
                      completion:nil];
 }
 
-
+-(UIImage*)captureFullScreen:(UIImageView *) targetView
+{
+    float scale = 1.0f/self.makeFaceScrollView.zoomScale;
+    CGRect visibleRect;
+    visibleRect.origin.x = self.makeFaceScrollView.contentOffset.x * scale;
+    visibleRect.origin.y = self.makeFaceScrollView.contentOffset.y * scale;
+    visibleRect.size.width = self.makeFaceScrollView.bounds.size.width * scale;
+    visibleRect.size.height = self.makeFaceScrollView.bounds.size.height * scale;
+        CGImageRef cr = CGImageCreateWithImageInRect([targetView.image CGImage], visibleRect);
+        UIImage* cropped = [[UIImage alloc] initWithCGImage:cr];
+    UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil);
+        CGImageRelease(cr);
+        return cropped;
+    self.makeFaceImageView.image = nil;
+}
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
-    [self presentViewController:self.imagePicker
-                       animated:YES
-                     completion:nil];
+    if (self.makeFaceImageView.image == nil) {
+[self presentViewController:self.imagePicker animated:YES completion:nil];
+    } else {
+    [self captureFullScreen:self.makeFaceImageView];
+        self.makeFaceImageView.image = nil;
+    }
 }
-
 
 #pragma mark - Image Picker Controller delegate methods
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
