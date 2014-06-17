@@ -10,7 +10,6 @@
 
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewFace;
 @property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
 @property DemoImageEditor *imageEditor;
 @property(nonatomic,strong) ALAssetsLibrary *library;
@@ -20,7 +19,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.imageViewFace.hidden = YES;
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
     //    self.makeFaceScrollView.delegate = self; // In storyboard
@@ -28,6 +26,7 @@
     self.makeFaceScrollView.maximumZoomScale = 25;
     self.makeFaceScrollView.minimumZoomScale = 0;
     self.imagePicker.allowsEditing = NO;
+
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -71,14 +70,12 @@
 
 - (IBAction)onTakePhotoPressed:(UIButton *)sender {
     [self presentViewController:self.imagePicker animated:YES completion:nil];
-    self.imageViewFace.hidden = NO;
 }
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
     //Save to core data;
     self.makeFaceImageView.image = nil;
-    self.imageViewFace.hidden = YES;
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender {
