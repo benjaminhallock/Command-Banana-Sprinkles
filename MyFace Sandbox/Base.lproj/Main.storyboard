@@ -232,9 +232,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
-                                <rect key="frame" x="10" y="479" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
+                                <rect key="frame" x="10" y="390" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SD1-M4-K8O"/>
+                                    <constraint firstAttribute="width" constant="300" id="XZ4-fj-j2X"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -243,7 +247,9 @@
                         <constraints>
                             <constraint firstItem="SMH-i9-Y5U" firstAttribute="top" secondItem="I61-og-Xyp" secondAttribute="top" constant="-1" id="0Dr-HL-PmY"/>
                             <constraint firstAttribute="trailing" secondItem="hF0-W8-8Of" secondAttribute="trailing" id="Uvg-ss-fCh"/>
+                            <constraint firstItem="gOd-XF-gvj" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" constant="10" id="Ybc-C0-fWc"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="i6V-Um-Tsh"/>
+                            <constraint firstItem="6yI-tO-3Kg" firstAttribute="top" secondItem="gOd-XF-gvj" secondAttribute="bottom" constant="99" id="xLW-AB-5o4"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="makeFace" image="camera-white44" id="SRi-W1-UUB"/>
