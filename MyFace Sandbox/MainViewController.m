@@ -32,6 +32,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [UIView animateWithDuration:3.0 animations:^{
+        self.nameLabel.alpha = 0;
+        self.nameLabel.alpha = 1;
+    }];
+    [UIView animateWithDuration:1.0 animations:^{
+        self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
+        self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
+    }];
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                     target:self
+                                   selector:@selector(randomizeViews)
+                                   userInfo:nil
+                                    repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f
+                                     target:self
+                                   selector:@selector(randomizeViews)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
