@@ -78,7 +78,7 @@
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Don" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample7"]]};
         [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Jennifer" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample8"]]};
+        photoItem = @{@"name":@"Tim" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample8"]]};
         [self.splitPhotoArray addObject:photoItem];
     }
 
