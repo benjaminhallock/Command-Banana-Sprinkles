@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "sample8.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "dog_PNG2444.png"
+      "scale" : "2x"
     }
   ],
   "info" : {
