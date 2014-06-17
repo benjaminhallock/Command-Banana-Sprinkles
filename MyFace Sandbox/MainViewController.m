@@ -38,7 +38,7 @@
 {
     [self load];
     [self dupliateFirstAndLastElements];
-    [self randomizeViews];
+//   [self randomizeViews];
 }
 
 -(void)load {
@@ -116,9 +116,11 @@
 - (void)randomizeViews
 {
     // topCollectionView
-    NSUInteger index = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
-    NSUInteger index1 = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
-    NSUInteger index2 = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
+    NSUInteger index = arc4random_uniform(self.splitPhotoArray.count);
+    NSUInteger index1 = arc4random_uniform(self.splitPhotoArray.count);
+    NSUInteger index2 = arc4random_uniform(self.splitPhotoArray.count);
+    NSLog(@"%@ %@ %@", index, index1, index2);
+
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
     [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
     [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
@@ -184,12 +186,13 @@
                    cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *photoItem = [self.splitPhotoArray objectAtIndex:indexPath.row];
-    NSArray *photos = [photoItem objectForKey:@"photos"];
+    NSArray *photos = [NSArray new];
+    photos = [photoItem objectForKey:@"photos"];
 
     if (collectionView == self.topCollectionView)
     {
         TopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photos objectAtIndex:0];
+        cell.imageView.image = photos.firstObject;
         return cell;
     }
     else if (collectionView == self.middleCollectionView)
@@ -201,7 +204,7 @@
     else
     {
         BottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photos objectAtIndex:2];
+        cell.imageView.image = photos.lastObject;
         return cell;
     }
 }
