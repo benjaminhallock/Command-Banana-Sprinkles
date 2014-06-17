@@ -54,10 +54,36 @@
     [self.fetchedResultsController performFetch:nil];
 
     self.splitPhotoArray = [NSMutableArray array];
-    for (Photos *face in self.fetchedResultsController.fetchedObjects) {
-        NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
+
+    if (self.fetchedResultsController.fetchedObjects.count > 0)
+    {
+        for (Photos *face in self.fetchedResultsController.fetchedObjects)
+        {
+            NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
+            [self.splitPhotoArray addObject:photoItem];
+        }
+    }
+    else
+    {
+        NSDictionary *photoItem;
+        photoItem = @{@"name":@"Frank" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample1.png"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tom" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample2"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Brian" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample3"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Sally" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample4"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Ben" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample5"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Max" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample6"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Don" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample7"]]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tim" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample8"]]};
         [self.splitPhotoArray addObject:photoItem];
     }
+
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
@@ -121,8 +147,6 @@
     NSUInteger index = arc4random_uniform(self.splitPhotoArray.count);
     NSUInteger index1 = arc4random_uniform(self.splitPhotoArray.count);
     NSUInteger index2 = arc4random_uniform(self.splitPhotoArray.count);
-    NSLog(@"%@ %@ %@", index, index1, index2);
-
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
     [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
     [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
