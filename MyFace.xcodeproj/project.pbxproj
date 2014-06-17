@@ -296,7 +296,7 @@
 				ORGANIZATIONNAME = "Mobile Makers Academy";
 				TargetAttributes = {
 					AE08F48D194B552000E2A260 = {
-						DevelopmentTeam = 4L9TT33S47;
+						DevelopmentTeam = BWWRUGX9KF;
 					};
 					AE08F4AE194B552100E2A260 = {
 						TestTargetID = AE08F48D194B552000E2A260;
