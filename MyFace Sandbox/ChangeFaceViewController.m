@@ -8,38 +8,68 @@
 
 #import "ChangeFaceViewController.h"
 #import "ChangeFaceCustomCell.h"
+#import "Photos.h"
+#import "AppDelegate.h"
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-@property NSArray *splitPhotoArray;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+//@property NSArray *splitPhotoArray;
 @end
 
 @implementation ChangeFaceViewController
 
 -(void)viewDidLoad {
-    UIImage *image0 = [UIImage imageNamed:@"dog_PNG156"];
-    UIImage *image1 = [UIImage imageNamed:@"dog_PNG2442"];
-    UIImage *image2 = [UIImage imageNamed:@"dog_PNG2444"];
-    self.splitPhotoArray = [NSArray new];
-    self.splitPhotoArray = @[image0, image1, image2];
+
+    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
+    [self load];
+}
+
+-(void)load {
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    //    NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@passenger ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
+
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
+    [self.fetchedResultsController performFetch:nil];
+    [self.collectionView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self load];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.imageView.image = [self.splitPhotoArray objectAtIndex:arc4random_uniform(3)];
+    cell.imageView.image = [UIImage imageWithData:hero.image];
+    
+    if ([hero.selected  isEqual: @YES]) {
+        cell.label.text = @"✪";
+    } else {
+        cell.label.text = @"";
+    }
     return cell;
 }
 
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return arc4random_uniform(20);
+    return [self.fetchedResultsController.sections.firstObject numberOfObjects];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
     ChangeFaceCustomCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    if ([cell.label.text isEqualToString:@"✪"]) {
+    if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"";
+        hero.selected  =@NO;
     } else {
-    cell.label.text = @"✪";
+        cell.label.text = @"✪";
+        hero.selected = @YES;
     }
+    [self.managedObjectContext save:nil];
 }
 @end

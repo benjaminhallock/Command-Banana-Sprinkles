@@ -315,6 +315,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="changeFace" image="template-1" id="jO5-OG-yjx"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Bhb-iA-dHG" id="O1S-ee-YB4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlw-eh-rnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

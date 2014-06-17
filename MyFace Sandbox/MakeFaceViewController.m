@@ -7,7 +7,8 @@
 //
 
 #import "MakeFaceViewController.h"
-
+#import "Photos.h"
+#import "AppDelegate.h"
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
 @property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
@@ -18,6 +19,8 @@
 @implementation MakeFaceViewController
 - (void)viewDidLoad
 {
+    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
     [super viewDidLoad];
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
@@ -78,6 +81,14 @@
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
+    UIImage *image = self.makeFaceImageView.image;
+
+    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+    [newManagedObject setValue:UIImagePNGRepresentation(image) forKey:@"image"];
+    [newManagedObject setValue:@"picture" forKey:@"name"];
+    [newManagedObject setValue:@NO forKey:@"selected"];
+    [self.managedObjectContext save:nil];
+
     //Save to core data;
     [UIView  animateWithDuration:1.0 animations:^{
         self.makeFaceImageView.alpha = 1;
@@ -85,6 +96,8 @@
         self.makeFaceImageView.alpha = 0;
         self.makeFaceImageView.alpha = 1;
     }];
+
+
 
 }
 

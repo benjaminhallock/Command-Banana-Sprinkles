@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "DemoImageEditor.h"
+#import <CoreData/CoreData.h>
 
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, UIScrollViewDelegate>
+UINavigationControllerDelegate, UIScrollViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property UIImagePickerController *imagePicker;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

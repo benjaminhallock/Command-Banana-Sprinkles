@@ -13,6 +13,7 @@
 #import "MiddleCollectionViewCell.h"
 #import "BottomCollectionView.h"
 #import "BottomCollectionViewCell.h"
+#import "AppDelegate.h"
 
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
@@ -23,27 +24,44 @@
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property NSMutableArray *splitPhotoArray;
-
+@property NSArray *arrayFetched;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad
 {
+    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [super viewDidLoad];
     [self loadSampleData];
     [self dupliateFirstAndLastElements];
 }
 
+-(void)load {
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    //    NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@passenger ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
+
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
+    [self.fetchedResultsController performFetch:nil];
+    self.arrayFetched = self.fetchedResultsController.fetchedObjects;
+    //reload all collection views.
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [self randomizeViews];
+    [self load];
 }
 
 - (void)loadSampleData
 {
-    self.splitPhotoArray = [NSMutableArray array];
+    for (NSManagedObject *face in self.arrayFetched) {
+        [self.splitPhotoArray addObject:face];
+    }
 
+    self.splitPhotoArray = [NSMutableArray array];
     NSDictionary *photoItem;
     photoItem= @{@"name": @"Buster", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]};
     [self.splitPhotoArray addObject:photoItem];
