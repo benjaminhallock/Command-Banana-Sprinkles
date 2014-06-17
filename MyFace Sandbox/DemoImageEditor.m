@@ -13,8 +13,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {
-        self.cropRect = CGRectMake(0,0,320,320);
-        self.minimumScale = 0.2;
+        self.cropRect = CGRectMake(0,0,320,410);
+        self.cropSize =CGSizeMake(320, 410);
+        [self reset:YES];
+        self.minimumScale = 1;
         self.maximumScale = 10;
     }
     return self;
