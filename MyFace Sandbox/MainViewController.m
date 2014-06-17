@@ -38,7 +38,7 @@
 {
     [self load];
     [self dupliateFirstAndLastElements];
-//   [self randomizeViews];
+    [self randomizeViews];
 }
 
 -(void)load {
