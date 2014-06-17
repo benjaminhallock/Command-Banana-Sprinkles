@@ -134,8 +134,8 @@
                                 <rect key="frame" x="20" y="435" width="280" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="jfk-XZ-PI2"/>
-                                    <constraint firstAttribute="width" constant="280" id="qSa-XC-Toc"/>
+                                    <constraint firstAttribute="width" constant="280" id="Ou5-dH-OIo"/>
+                                    <constraint firstAttribute="height" constant="62" id="yXN-Ep-ayR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Medium" family="Heiti TC" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -146,13 +146,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="0Rj-fI-OFV" secondAttribute="trailing" constant="20" id="4XP-4Y-8GM"/>
                             <constraint firstItem="tKg-VD-e01" firstAttribute="top" secondItem="Pcu-Oo-9y3" secondAttribute="bottom" constant="2" id="7al-jp-30p"/>
                             <constraint firstItem="Pcu-Oo-9y3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="8QK-El-PLE"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="0Rj-fI-OFV" secondAttribute="bottom" constant="22" id="G6h-Up-soG"/>
                             <constraint firstItem="Pcu-Oo-9y3" firstAttribute="top" secondItem="QEL-Dy-gaf" secondAttribute="bottom" constant="2" id="UeQ-dk-2Uw"/>
                             <constraint firstItem="QEL-Dy-gaf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="XYo-dj-oX8"/>
+                            <constraint firstItem="0Rj-fI-OFV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="YUs-Sw-gJR"/>
+                            <constraint firstAttribute="bottom" secondItem="0Rj-fI-OFV" secondAttribute="bottom" constant="71" id="aRJ-oR-whl"/>
                             <constraint firstItem="QEL-Dy-gaf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dxy-EY-F12"/>
+                            <constraint firstAttribute="trailing" secondItem="0Rj-fI-OFV" secondAttribute="trailing" constant="20" id="gLW-wB-HcZ"/>
                             <constraint firstItem="tKg-VD-e01" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="yb8-az-RSh"/>
                         </constraints>
                     </view>

@@ -30,8 +30,7 @@
     self.makeFaceScrollView.maximumZoomScale = 25;
     self.makeFaceScrollView.minimumZoomScale = 0;
     self.imagePicker.allowsEditing = NO;
-
-
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -118,6 +117,7 @@
                 self.textField.alpha = 0;
         self.makeFaceImageView.alpha = 1;
                 self.textField.alpha = 1;
+        [self.textField resignFirstResponder];
     }];
 
     }
