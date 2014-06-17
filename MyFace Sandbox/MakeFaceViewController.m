@@ -10,19 +10,20 @@
 
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewFace;
 @property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
-
+@property DemoImageEditor *imageEditor;
+@property(nonatomic,strong) ALAssetsLibrary *library;
 @end
 
 @implementation MakeFaceViewController
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageViewFace.hidden = YES;
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
-    self.makeFaceScrollView.delegate = self;
+    //    self.makeFaceScrollView.delegate = self; // In storyboard
     self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
     self.makeFaceScrollView.maximumZoomScale = 25;
     self.makeFaceScrollView.minimumZoomScale = 0;
@@ -36,6 +37,30 @@
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    self.imageEditor = [storyboard instantiateViewControllerWithIdentifier:@"DemoImageEditor"];
+    self.imageEditor.checkBounds = YES;
+    self.imageEditor.rotateEnabled = YES;
+    self.library = library;
+
+    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
+        if(!canceled) {
+            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
+
+                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
+                                  completionBlock:^(NSURL *assetURL, NSError *error){
+                                      if (error) {
+                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
+                                                                                          message:[error localizedDescription]
+                                                                                         delegate:nil
+                                                                                cancelButtonTitle:@"Ok"
+                                                                                otherButtonTitles: nil];
+                                          [alert show];
+                                      }
+                                  }];
+            }
+    };
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -43,42 +68,30 @@
     return self.makeFaceImageView;
 }
 
-- (IBAction)onTakePhotoPressed:(id)sender {
+- (IBAction)onTakePhotoPressed:(UIButton *)sender {
     [self presentViewController:self.imagePicker animated:YES completion:nil];
-}
-
-
--(UIImage *)capture:(UIImageView *)targetview
-{
-    int scale = 1.0/self.makeFaceScrollView.zoomScale;
-    CGRect visibleRect;
-    visibleRect.origin.x = self.makeFaceScrollView.contentOffset.x * scale;
-    visibleRect.origin.y = self.makeFaceScrollView.contentOffset.y * scale;
-    visibleRect.size.width = self.makeFaceScrollView.bounds.size.width * scale;
-    visibleRect.size.height = self.makeFaceScrollView.bounds.size.height * scale;
-
-    CGImageRef cr = CGImageCreateWithImageInRect([targetview.image CGImage], visibleRect);
-    UIImage *cropped = [[UIImage alloc] initWithCGImage:cr];
-    UIImageWriteToSavedPhotosAlbum(cropped, nil, nil, nil);
-    return cropped;
+    self.imageViewFace.hidden = NO;
 }
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
-    self.makeFaceImageView.image = [self capture:self.makeFaceImageView];
+    //Save to core data;
+    self.makeFaceImageView.image = nil;
+    self.imageViewFace.hidden = YES;
 }
+
 
 #pragma mark - Image Picker Controller delegate methods
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    // A photo was taken/selected!
-    UIImage *imageTaken = [info objectForKey:UIImagePickerControllerOriginalImage];
-
-        if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
-        {
-            // Save the image!
-//            UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
-        }
+//    // A photo was taken/selected!
+//    UIImage *imageTaken = [info objectForKey:UIImagePickerControllerOriginalImage];
+//
+//    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
+//    {
+//        // Save the image!
+//        UIImageWriteToSavedPhotosAlbum(imageTaken, nil, nil, nil);
+//    }
     //
     //    //You can take the metadata here => info [UIImagePickerControllerMediaMetadata];
     //    UIImage* imageCropped = [info objectForKey:UIImagePickerControllerEditedImage];
@@ -92,9 +105,25 @@
     //    UIImage *scaledOriginal = [UIImage imageWithCGImage:imageRef scale:imageCropped.scale orientation:imageTaken.imageOrientation];
     //    CGImageRelease(imageRef);
 
-    self.makeFaceImageView.image = imageTaken;
+    UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
 
-    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+    [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+        UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+
+        self.imageEditor.sourceImage = image;
+        self.imageEditor.previewImage = preview;
+        [self.imageEditor reset:NO];
+
+        [picker presentViewController:self.imageEditor animated:YES completion:nil];
+//        [picker pushViewController:self.imageEditor animated:YES];
+        [picker setNavigationBarHidden:YES animated:NO];
+
+    } failureBlock:^(NSError *error) {
+        NSLog(@"Failed to get asset from library");
+    }];
+
+//    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 

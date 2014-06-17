@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "DemoImageEditor.h"
 
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @property UIImagePickerController *imagePicker;
-
 
 @end
