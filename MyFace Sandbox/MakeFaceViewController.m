@@ -81,6 +81,8 @@
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
+    if (self.makeFaceImageView.image != nil) {
+
     UIImage *image = self.makeFaceImageView.image;
 
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
@@ -97,8 +99,7 @@
         self.makeFaceImageView.alpha = 1;
     }];
 
-
-
+    }
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender {
