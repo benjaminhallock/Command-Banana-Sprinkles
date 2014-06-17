@@ -420,7 +420,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="template" width="320" height="410"/>
+        <image name="template" width="1308" height="1626"/>
         <image name="template-1" width="65" height="83"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
