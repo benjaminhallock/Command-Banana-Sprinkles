@@ -338,6 +338,27 @@
                                     <outlet property="delegate" destination="0Po-mQ-Kxv" id="Dad-6k-48R"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKX-m7-oLu">
+                                <rect key="frame" x="6" y="462" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="gallerybutton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gch-qb-QP0">
+                                <rect key="frame" x="109" y="462" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="myfacebutton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G20-bB-RcN">
+                                <rect key="frame" x="212" y="462" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="camerabutton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -441,7 +462,10 @@
     </scenes>
     <resources>
         <image name="camera-white44" width="44" height="44"/>
+        <image name="camerabutton" width="104" height="52"/>
+        <image name="gallerybutton" width="104" height="52"/>
         <image name="manyface44" width="40" height="33"/>
+        <image name="myfacebutton" width="104" height="52"/>
         <image name="template" width="1308" height="1626"/>
         <image name="whiteface44" width="30" height="38"/>
     </resources>
