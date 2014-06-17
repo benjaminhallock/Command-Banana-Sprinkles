@@ -105,7 +105,7 @@
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
     [newManagedObject setValue:UIImagePNGRepresentation(image) forKey:@"image"];
     [newManagedObject setValue:self.textField.text forKey:@"name"];
-    [newManagedObject setValue:@NO forKey:@"selected"];
+    [newManagedObject setValue:@YES forKey:@"selected"];
     [self.managedObjectContext save:nil];
 
     //Save to core data;

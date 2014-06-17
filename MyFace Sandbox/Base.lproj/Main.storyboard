@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QEL-Dy-gaf" customClass="TopCollectionView">
-                                <rect key="frame" x="0.0" y="18" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="IMG-sd-GQZ"/>
                                     <constraint firstAttribute="width" constant="320" id="hHr-kL-mqm"/>
@@ -55,7 +55,7 @@
                                 </connections>
                             </collectionView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pcu-Oo-9y3" customClass="MiddleCollectionView">
-                                <rect key="frame" x="0.0" y="220" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="202" width="320" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="6gq-xE-3vB"/>
                                     <constraint firstAttribute="width" constant="320" id="yNS-45-dir"/>
@@ -93,7 +93,7 @@
                                 </connections>
                             </collectionView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tKg-VD-e01" customClass="BottomCollectionView">
-                                <rect key="frame" x="0.0" y="297" width="320" height="135"/>
+                                <rect key="frame" x="0.0" y="279" width="320" height="135"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="rbw-LD-6fY"/>
                                     <constraint firstAttribute="height" constant="135" id="vNm-o5-xGR"/>
@@ -130,11 +130,11 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="zIH-X8-Nh6"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
-                                <rect key="frame" x="20" y="432" width="280" height="62"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Match my Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
+                                <rect key="frame" x="20" y="440" width="280" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -143,7 +143,7 @@
                             <constraint firstItem="tKg-VD-e01" firstAttribute="top" secondItem="Pcu-Oo-9y3" secondAttribute="bottom" constant="2" id="7al-jp-30p"/>
                             <constraint firstItem="Pcu-Oo-9y3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="8QK-El-PLE"/>
                             <constraint firstItem="Pcu-Oo-9y3" firstAttribute="top" secondItem="QEL-Dy-gaf" secondAttribute="bottom" constant="2" id="UeQ-dk-2Uw"/>
-                            <constraint firstItem="QEL-Dy-gaf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="18" id="XYo-dj-oX8"/>
+                            <constraint firstItem="QEL-Dy-gaf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="XYo-dj-oX8"/>
                             <constraint firstItem="QEL-Dy-gaf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dxy-EY-F12"/>
                             <constraint firstItem="tKg-VD-e01" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="yb8-az-RSh"/>
                         </constraints>

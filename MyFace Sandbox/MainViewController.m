@@ -19,7 +19,7 @@
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
-@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UITabBarControllerDelegate, UITabBarDelegate>
+@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UITabBarControllerDelegate>
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
@@ -32,21 +32,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.delegate = self;
-}
-
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    if (item == self.tabBarItem) {
-        [self randomizeViews];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
 
-    if (self.fetchedResultsController.fetchedObjects.count < 0) {
+    if (self.splitPhotoArray.count > 2) {
         [self dupliateFirstAndLastElements];
+        [self randomizeViews];
+        self.tabBarController.delegate = self;
+    }
+}
+
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    if (viewController == self) {
         [self randomizeViews];
     }
 }
@@ -63,7 +63,7 @@
 
     self.splitPhotoArray = [NSMutableArray array];
 
-    if (self.fetchedResultsController.fetchedObjects.count > 0)
+    if (self.fetchedResultsController.fetchedObjects.count > 2)
     {
         for (Photos *face in self.fetchedResultsController.fetchedObjects)
         {
@@ -165,15 +165,24 @@
 {
     if([self didWin])
     {
-        self.view.backgroundColor = [UIColor whiteColor];
         NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
         NSString *name = [photo objectForKey:@"name"];
         self.nameLabel.text = name;
+        [UIView animateWithDuration:1.0f animations:^{
+            self.nameLabel.alpha = 0;
+            self.nameLabel.alpha = 1;
+            self.view.backgroundColor = [UIColor blackColor];
+        }];
     }
     else
     {
-        self.view.backgroundColor = [UIColor grayColor];
-        self.nameLabel.text = @"";
+
+        [UIView animateWithDuration:1.0f animations:^{
+            self.nameLabel.alpha = 1;
+            self.nameLabel.alpha = 0;
+            self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:135/255.0f blue:168/255.0f alpha:1.0f];
+        }];
+
     }
 }
 
