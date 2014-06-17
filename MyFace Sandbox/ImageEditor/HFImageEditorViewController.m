@@ -6,7 +6,6 @@ typedef struct {
     CGPoint tl,tr,bl,br;
 } Rectangle;
 
-
 static const CGFloat kMaxUIImageSize = 1024;
 static const CGFloat kPreviewImageSize = 120;
 static const CGFloat kDefaultCropWidth = 320;

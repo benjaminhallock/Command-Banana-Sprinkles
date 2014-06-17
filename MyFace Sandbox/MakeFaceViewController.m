@@ -51,12 +51,15 @@
                                       orientation:(ALAssetOrientation)editedImage.imageOrientation
                                   completionBlock:^(NSURL *assetURL, NSError *error){
                                       if (error) {
+
                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
                                                                                           message:[error localizedDescription]
                                                                                          delegate:nil
                                                                                 cancelButtonTitle:@"Ok"
                                                                                 otherButtonTitles: nil];
                                           [alert show];
+                                      } else {
+                                          self.makeFaceImageView.image = editedImage;
                                       }
                                   }];
             }
