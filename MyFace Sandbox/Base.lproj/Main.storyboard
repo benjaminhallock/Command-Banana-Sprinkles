@@ -148,7 +148,7 @@
                             <constraint firstItem="tKg-VD-e01" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="yb8-az-RSh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="myFace" image="template-1" id="asc-hv-7hJ"/>
+                    <tabBarItem key="tabBarItem" title="myFace" image="whiteface44" id="asc-hv-7hJ"/>
                     <connections>
                         <outlet property="bottomCollectionView" destination="tKg-VD-e01" id="fJ3-rc-EPK"/>
                         <outlet property="middleCollectionView" destination="Pcu-Oo-9y3" id="6pT-bt-fz8"/>
@@ -241,7 +241,7 @@
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="b3Z-wk-xfP"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="makeFace" image="template-1" id="SRi-W1-UUB"/>
+                    <tabBarItem key="tabBarItem" title="makeFace" image="camera-white44" id="SRi-W1-UUB"/>
                     <connections>
                         <outlet property="makeFaceImageView" destination="0T5-lF-WPP" id="3H3-Bj-W9w"/>
                         <outlet property="makeFaceScrollView" destination="hF0-W8-8Of" id="Gq2-2I-buI"/>
@@ -320,7 +320,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="changeFace" image="template-1" id="jO5-OG-yjx"/>
+                    <tabBarItem key="tabBarItem" title="changeFace" image="manyface44" id="jO5-OG-yjx"/>
                     <connections>
                         <outlet property="collectionView" destination="Bhb-iA-dHG" id="O1S-ee-YB4"/>
                     </connections>
@@ -420,8 +420,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera-white44" width="44" height="44"/>
+        <image name="manyface44" width="40" height="33"/>
         <image name="template" width="1308" height="1626"/>
-        <image name="template-1" width="65" height="83"/>
+        <image name="whiteface44" width="30" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
