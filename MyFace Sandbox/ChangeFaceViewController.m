@@ -64,7 +64,7 @@
     [self.fetchedResultsController performFetch:nil];
     if (self.fetchedResultsController.fetchedObjects.count == 0) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 320, 30)];
-        label.text = @"No photos";
+        label.text = @"Need 3 photos";
         label.font = [UIFont fontWithName:@"Heiti SC" size:30];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = UITextAlignmentCenter;

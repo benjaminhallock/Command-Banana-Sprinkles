@@ -180,9 +180,9 @@
         [UIView animateWithDuration:1.0f animations:^{
             self.nameLabel.alpha = 1;
             self.nameLabel.alpha = 0;
-            self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:135/255.0f blue:168/255.0f alpha:1.0f];
+        self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:135/255.0f blue:168/255.0f alpha:1.0f];
         }];
-
+        self.nameLabel.text = @"";
     }
 }
 
