@@ -12,7 +12,7 @@
 #import <CoreData/CoreData.h>
 
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, UIScrollViewDelegate, NSFetchedResultsControllerDelegate>
+UINavigationControllerDelegate, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITextFieldDelegate>
 
 @property UIImagePickerController *imagePicker;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

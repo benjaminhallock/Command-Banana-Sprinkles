@@ -19,7 +19,7 @@
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
-@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UITabBarControllerDelegate, UITabBarDelegate>
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
@@ -32,14 +32,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.delegate = self;
+}
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (item == self.tabBarItem) {
+        [self randomizeViews];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
+
     if (self.fetchedResultsController.fetchedObjects.count < 0) {
-    [self dupliateFirstAndLastElements];
-   [self randomizeViews];
+        [self dupliateFirstAndLastElements];
+        [self randomizeViews];
     }
 }
 

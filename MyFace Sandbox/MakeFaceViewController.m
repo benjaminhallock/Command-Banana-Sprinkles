@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
 @property DemoImageEditor *imageEditor;
 @property(nonatomic,strong) ALAssetsLibrary *library;
@@ -20,7 +21,7 @@
 - (void)viewDidLoad
 {
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-
+    self.textField.delegate = self;
     [super viewDidLoad];
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.delegate = self;
@@ -79,24 +80,44 @@
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.textField.frame = CGRectMake(0.0f, 320.0f, 320.0f, 30.0f);
+    }];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    [UIView animateWithDuration:0.2 animations:^{
+         self.textField.frame = CGRectMake(0.0f, 484.0f, 320.0f, 30.0f);
+    }];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
-    if (self.makeFaceImageView.image != nil) {
+    if (self.makeFaceImageView.image != nil && self.textField.text.length != nil) {
 
     UIImage *image = self.makeFaceImageView.image;
 
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
     [newManagedObject setValue:UIImagePNGRepresentation(image) forKey:@"image"];
-    [newManagedObject setValue:@"picture" forKey:@"name"];
+    [newManagedObject setValue:self.textField.text forKey:@"name"];
     [newManagedObject setValue:@NO forKey:@"selected"];
     [self.managedObjectContext save:nil];
 
     //Save to core data;
     [UIView  animateWithDuration:1.0 animations:^{
+        self.textField.alpha = 1;
         self.makeFaceImageView.alpha = 1;
         self.makeFaceImageView.image = nil;
+                self.textField.text = @"";
         self.makeFaceImageView.alpha = 0;
+                self.textField.alpha = 0;
         self.makeFaceImageView.alpha = 1;
+                self.textField.alpha = 1;
     }];
 
     }
