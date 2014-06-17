@@ -14,6 +14,7 @@
 #import "BottomCollectionView.h"
 #import "BottomCollectionViewCell.h"
 #import "AppDelegate.h"
+#import "Photos.h"
 
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
@@ -24,52 +25,43 @@
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property NSMutableArray *splitPhotoArray;
-@property NSArray *arrayFetched;
 @end
 
 @implementation MainViewController
 
 - (void)viewDidLoad
 {
-    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [super viewDidLoad];
-    [self loadSampleData];
-    [self dupliateFirstAndLastElements];
-}
-
--(void)load {
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    //    NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@passenger ascending:YES];
-    request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
-
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
-    [self.fetchedResultsController performFetch:nil];
-    self.arrayFetched = self.fetchedResultsController.fetchedObjects;
-    //reload all collection views.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self randomizeViews];
     [self load];
+    [self dupliateFirstAndLastElements];
+    [self randomizeViews];
 }
 
-- (void)loadSampleData
-{
-    for (NSManagedObject *face in self.arrayFetched) {
-        [self.splitPhotoArray addObject:face];
-    }
+-(void)load {
+    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
+    request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
+
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
+    [self.fetchedResultsController performFetch:nil];
 
     self.splitPhotoArray = [NSMutableArray array];
-    NSDictionary *photoItem;
-    photoItem= @{@"name": @"Buster", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]};
-    [self.splitPhotoArray addObject:photoItem];
-    photoItem = @{@"name": @"Fido", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]};
-    [self.splitPhotoArray addObject:photoItem];
-    photoItem = @{@"name": @"Max", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]};
-    [self.splitPhotoArray addObject:photoItem];
+    for (Photos *face in self.fetchedResultsController.fetchedObjects) {
+        NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
+        [self.splitPhotoArray addObject:photoItem];
+    }
+    [self.middleCollectionView reloadData];
+    [self.topCollectionView reloadData];
+    [self.bottomCollectionView reloadData];
+
 }
+
 
 // automatically split the photos into three horizontal sections
 - (NSArray *)slicePhotos:(UIImage *)masterImage
@@ -123,18 +115,13 @@
 // show (animate) the random shuffling of sliced images
 - (void)randomizeViews
 {
-    NSUInteger index;
     // topCollectionView
-    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
+    NSUInteger index = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
+    NSUInteger index1 = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
+    NSUInteger index2 = arc4random_uniform(self.fetchedResultsController.fetchedObjects.count);
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
-
-    // MiddleCollectionView
-    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-    [self scrollView:self.middleCollectionView toIndex:index animated:YES];
-
-    // BottomCollectionView
-    index = arc4random_uniform((int)(self.splitPhotoArray.count - 2)) + 1;
-    [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
+    [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
+    [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
 }
 
 // check if a match has occured, and if so, display the photo name
