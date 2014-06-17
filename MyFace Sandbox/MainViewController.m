@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
-@property (strong, nonatomic) IBOutlet UILabel *winnerLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property NSMutableArray *splitPhotoArray;
 
 @end
@@ -45,10 +45,14 @@
 - (void)loadSampleData
 {
     self.splitPhotoArray = [NSMutableArray array];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]];
-    [self.splitPhotoArray addObject:[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]];
 
+    NSDictionary *photoItem;
+    photoItem= @{@"name": @"Buster", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG156"]]};
+    [self.splitPhotoArray addObject:photoItem];
+    photoItem = @{@"name": @"Fido", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2442"]]};
+    [self.splitPhotoArray addObject:photoItem];
+    photoItem = @{@"name": @"Max", @"photos":[self slicePhotos:[UIImage imageNamed:@"dog_PNG2444"]]};
+    [self.splitPhotoArray addObject:photoItem];
 }
 
 - (NSArray *)slicePhotos:(UIImage *)masterImage
@@ -112,24 +116,34 @@
     [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
 }
 
+- (void)checkForWinner
+{
+    if([self didWin])
+    {
+        self.view.backgroundColor = [UIColor whiteColor];
+        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
+        NSString *name = [photo objectForKey:@"name"];
+        self.nameLabel.text = name;
+    }
+    else
+    {
+        self.view.backgroundColor = [UIColor grayColor];
+        self.nameLabel.text = @"";
+    }
+}
+
 - (BOOL)didWin
 {
-    int topIndex = (int)((self.topCollectionView.contentOffset.x / self.topCollectionView.frame.size.width) + 0.5);
-    int middleIndex = (int)((self.middleCollectionView.contentOffset.x / self.middleCollectionView.frame.size.width) + 0.5);
-    int bottomIndex = (int)((self.bottomCollectionView.contentOffset.x / self.bottomCollectionView.frame.size.width) + 0.5);
+    NSInteger topIndex = [self displayedPhotoIndex:self.topCollectionView];
+    NSInteger middleIndex = [self displayedPhotoIndex:self.middleCollectionView];
+    NSInteger bottomIndex = [self displayedPhotoIndex:self.bottomCollectionView];
+
     return topIndex == middleIndex && middleIndex == bottomIndex;
 }
 
-- (void)checkForWinner
+- (NSInteger)displayedPhotoIndex:(UICollectionView *)collectionView
 {
-    if([self didWin]) {
-        self.winnerLabel.text = @"Winner!";
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-else {
-        self.winnerLabel.text = @"";
-    self.view.backgroundColor = [UIColor grayColor];
-    }
+    return (int)((collectionView.contentOffset.x / collectionView.frame.size.width) + 0.5);
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
@@ -155,24 +169,25 @@ else {
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView
                    cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *photo = [self.splitPhotoArray objectAtIndex:indexPath.row];
+    NSDictionary *photoItem = [self.splitPhotoArray objectAtIndex:indexPath.row];
+    NSArray *photos = [photoItem objectForKey:@"photos"];
 
     if (collectionView == self.topCollectionView)
     {
         TopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:0];
+        cell.imageView.image = [photos objectAtIndex:0];
         return cell;
     }
     else if (collectionView == self.middleCollectionView)
     {
         MiddleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MiddleCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:1];
+        cell.imageView.image = [photos objectAtIndex:1];
         return cell;
     }
     else
     {
         BottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCellID" forIndexPath:indexPath];
-        cell.imageView.image = [photo objectAtIndex:2];
+        cell.imageView.image = [photos objectAtIndex:2];
         return cell;
     }
 }
