@@ -332,6 +332,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTi-pt-4mr" customClass="HFImageEditorFrameView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="523"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.096031021899999999" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
+                                <rect key="frame" x="0.0" y="57" width="320" height="410"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Mpt-VG-4ix"/>
+                                    <constraint firstAttribute="height" constant="410" id="jwy-Za-6Dd"/>
+                                </constraints>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ed-9a-KOE">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -353,20 +366,8 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTi-pt-4mr" customClass="HFImageEditorFrameView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="523"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.096031021899999999" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
-                                <rect key="frame" x="0.0" y="57" width="320" height="410"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Mpt-VG-4ix"/>
-                                    <constraint firstAttribute="height" constant="410" id="jwy-Za-6Dd"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

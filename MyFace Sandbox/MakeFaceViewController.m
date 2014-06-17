@@ -62,8 +62,9 @@
                                           self.makeFaceImageView.image = editedImage;
                                       }
                                   }];
-            }
-    };
+                        }
+
+        };
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -78,7 +79,13 @@
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
     //Save to core data;
-    self.makeFaceImageView.image = nil;
+    [UIView  animateWithDuration:1.0 animations:^{
+        self.makeFaceImageView.alpha = 1;
+        self.makeFaceImageView.image = nil;
+        self.makeFaceImageView.alpha = 0;
+        self.makeFaceImageView.alpha = 1;
+    }];
+
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender {
