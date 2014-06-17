@@ -33,8 +33,6 @@
     [super viewDidLoad];
     [self loadSampleData];
     [self dupliateFirstAndLastElements];
-    [self randomizeViews];
-    [self becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,18 +53,20 @@
     [self.splitPhotoArray addObject:photoItem];
 }
 
+// automatically split the photos into three horizontal sections
 - (NSArray *)slicePhotos:(UIImage *)masterImage
 {
     CGRect cropRect;
     CGImageRef imageRef;
 
-    // first, resize image to fit height
+    // first, determine vertical scaling factor
     float vfactor = (masterImage.size.height / IMAGE_HEIGHT);
 
-    // Divide the size by the greater of the vertical or horizontal shrinkage factor
+    // divide the size by the vertical scaling factor
     float newWidth = masterImage.size.width / vfactor;
     float newHeight = masterImage.size.height / vfactor;
 
+    // scale the image to fit vertically
     CGSize scaleSize = CGSizeMake(newWidth, newHeight);
     UIGraphicsBeginImageContextWithOptions(scaleSize, NO, 0.0);
     [masterImage drawInRect:CGRectMake(0, 0, scaleSize.width, scaleSize.height)];
@@ -88,9 +88,11 @@
     imageRef = CGImageCreateWithImageInRect([resizedImage CGImage], cropRect);
     UIImage *image2 = [UIImage imageWithCGImage:imageRef];
 
+    // finally return the three (sliced) images
     return [NSArray arrayWithObjects:image0, image1, image2, nil];
 }
 
+// to enable the illusion of a circular array of photos
 - (void)dupliateFirstAndLastElements
 {
     NSMutableArray *temp = [NSMutableArray array];
@@ -100,6 +102,7 @@
     self.splitPhotoArray = temp;
 }
 
+// show (animate) the random shuffling of sliced images
 - (void)randomizeViews
 {
     NSUInteger index;
@@ -116,6 +119,7 @@
     [self scrollView:self.bottomCollectionView toIndex:index animated:YES];
 }
 
+// check if a match has occured, and if so, display the photo name
 - (void)checkForWinner
 {
     if([self didWin])
@@ -132,6 +136,7 @@
     }
 }
 
+// determine if a photo is properly alligned
 - (BOOL)didWin
 {
     NSInteger topIndex = [self displayedPhotoIndex:self.topCollectionView];
@@ -141,11 +146,13 @@
     return topIndex == middleIndex && middleIndex == bottomIndex;
 }
 
+// helper method to return the array index position of the given sliced photo
 - (NSInteger)displayedPhotoIndex:(UICollectionView *)collectionView
 {
     return (int)((collectionView.contentOffset.x / collectionView.frame.size.width) + 0.5);
 }
 
+// shake gesture event handler that will then reshuffle photos
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if (motion == UIEventSubtypeMotionShake)
@@ -154,6 +161,8 @@
         [self checkForWinner];
     }
 }
+
+# pragma mark - collection view delegate methods
 
 - (NSInteger) numberOfSectionsInCollectionView: (UICollectionView *)collectionView
 {
@@ -192,9 +201,13 @@
     }
 }
 
+#pragma mark - scroll control methods
+
+// used to provide the impression of an infinite circular collection of photos
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger index;
+
     // Calculate where the collection view should be at the right-hand end item
     float contentOffsetWhenFullyScrolledRight = self.middleCollectionView.frame.size.width * ([self.splitPhotoArray count] -1);
 
@@ -231,6 +244,7 @@
     [self checkForWinner];
 }
 
+// helper method to scroll the given sliced photo to a new position
 - (void)scrollView:(UICollectionView *)collectionView toIndex:(NSInteger)index animated:(BOOL)animated
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
