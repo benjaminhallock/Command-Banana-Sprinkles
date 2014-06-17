@@ -30,8 +30,7 @@
     self.makeFaceScrollView.maximumZoomScale = 25;
     self.makeFaceScrollView.minimumZoomScale = 0;
     self.imagePicker.allowsEditing = NO;
-
-
+    
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -82,13 +81,13 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-        self.textField.frame = CGRectMake(0.0f, 320.0f, 320.0f, 30.0f);
+        self.textField.frame = CGRectMake(0.0f, self.textField.frame.origin.y - 130, 320.0f, 30.0f);
     }];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-         self.textField.frame = CGRectMake(0.0f, 484.0f, 320.0f, 30.0f);
+         self.textField.frame = CGRectMake(30.0f, self.textField.frame.origin.y + 130, 260.0f, 30.0f);
     }];
 }
 
@@ -118,6 +117,7 @@
                 self.textField.alpha = 0;
         self.makeFaceImageView.alpha = 1;
                 self.textField.alpha = 1;
+        [self.textField resignFirstResponder];
     }];
 
     }
