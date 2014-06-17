@@ -197,17 +197,17 @@
                                 </connections>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMH-i9-Y5U">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="-1" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="4iK-Rt-pcX"/>
-                                    <constraint firstAttribute="width" constant="320" id="lqs-Qw-OAV"/>
+                                    <constraint firstAttribute="height" constant="66" id="npy-dZ-S1e"/>
+                                    <constraint firstAttribute="width" constant="320" id="zkd-B0-bda"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Upload" id="AaR-6Y-gna">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="0Cg-o3-IMf">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MiL-QZ-fFj">
-                                                <rect key="frame" x="16" y="7" width="77" height="30"/>
+                                                <rect key="frame" x="16" y="29" width="77" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Take Photo">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -219,7 +219,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="JoX-VX-Lps">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SIW-MP-WPL">
-                                                <rect key="frame" x="254" y="7" width="50" height="30"/>
+                                                <rect key="frame" x="254" y="29" width="50" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Upload">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -235,10 +235,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="SMH-i9-Y5U" firstAttribute="top" secondItem="I61-og-Xyp" secondAttribute="top" id="42F-gT-CTe"/>
-                            <constraint firstItem="hF0-W8-8Of" firstAttribute="top" secondItem="SMH-i9-Y5U" secondAttribute="bottom" constant="4" id="S01-aL-fKg"/>
-                            <constraint firstItem="SMH-i9-Y5U" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="ZJO-FG-mx2"/>
+                            <constraint firstItem="SMH-i9-Y5U" firstAttribute="top" secondItem="I61-og-Xyp" secondAttribute="top" constant="-1" id="0Dr-HL-PmY"/>
+                            <constraint firstItem="hF0-W8-8Of" firstAttribute="top" secondItem="P1d-dJ-w5z" secondAttribute="bottom" constant="28" id="Pkm-Zl-5Bi"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="b3Z-wk-xfP"/>
+                            <constraint firstItem="SMH-i9-Y5U" firstAttribute="leading" secondItem="hF0-W8-8Of" secondAttribute="leading" id="jp5-oY-IPY"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="makeFace" image="camera-white44" id="SRi-W1-UUB"/>

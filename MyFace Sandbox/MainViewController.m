@@ -37,8 +37,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
+    if (self.fetchedResultsController.fetchedObjects.count < 0) {
     [self dupliateFirstAndLastElements];
-//   [self randomizeViews];
+   [self randomizeViews];
+    }
 }
 
 -(void)load {
