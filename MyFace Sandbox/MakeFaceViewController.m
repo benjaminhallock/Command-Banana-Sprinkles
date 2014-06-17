@@ -88,7 +88,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-         self.textField.frame = CGRectMake(0.0f, self.textField.frame.origin.y + 130, 320.0f, 30.0f);
+         self.textField.frame = CGRectMake(30.0f, self.textField.frame.origin.y + 130, 260.0f, 30.0f);
     }];
 }
 
