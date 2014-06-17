@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aqq-PC-eTv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -226,28 +226,17 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="hht-EC-JYb">
-                                <rect key="frame" x="0.0" y="47" width="320" height="410"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="GDf-N5-saf"/>
-                                    <constraint firstAttribute="height" constant="410" id="VMd-zh-6WA"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SMH-i9-Y5U" firstAttribute="top" secondItem="I61-og-Xyp" secondAttribute="top" id="42F-gT-CTe"/>
-                            <constraint firstItem="hht-EC-JYb" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="Dqa-e9-IBq"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="top" secondItem="SMH-i9-Y5U" secondAttribute="bottom" constant="4" id="S01-aL-fKg"/>
                             <constraint firstItem="SMH-i9-Y5U" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="ZJO-FG-mx2"/>
-                            <constraint firstItem="hht-EC-JYb" firstAttribute="top" secondItem="SMH-i9-Y5U" secondAttribute="bottom" constant="3" id="ahZ-Lu-n3X"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="b3Z-wk-xfP"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="makeFace" image="template-1" id="SRi-W1-UUB"/>
                     <connections>
-                        <outlet property="imageViewFace" destination="hht-EC-JYb" id="KSD-3S-BQe"/>
                         <outlet property="makeFaceImageView" destination="0T5-lF-WPP" id="3H3-Bj-W9w"/>
                         <outlet property="makeFaceScrollView" destination="hF0-W8-8Of" id="Gq2-2I-buI"/>
                     </connections>
@@ -343,23 +332,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ed-9a-KOE">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTi-pt-4mr" customClass="HFImageEditorFrameView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="523"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.096031021899999999" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ed-9a-KOE">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="2Ge-tc-zrR"/>
-                                    <barButtonItem systemItem="done" id="6CW-Rd-Jyl"/>
+                                    <barButtonItem title="Cancel" id="2Ge-tc-zrR">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="cancelAction:" destination="Ls3-cz-afk" id="SFr-o7-PfG"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="done" id="6CW-Rd-Jyl">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="doneAction:" destination="Ls3-cz-afk" id="yEs-5I-0SL"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TOz-9c-4dK" customClass="HFImageEditorFrameView">
-                                <rect key="frame" x="0.0" y="-1" width="320" height="524"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
+                                <rect key="frame" x="0.0" y="57" width="320" height="410"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="410" id="Foo-Mo-AMd"/>
+                                    <constraint firstAttribute="width" constant="320" id="tF8-Q2-JzS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="ahR-zi-yj6"/>
+                    <connections>
+                        <outlet property="frameView" destination="xTi-pt-4mr" id="VEY-z0-XdZ"/>
+                        <outlet property="saveButton" destination="6CW-Rd-Jyl" id="gQ6-x5-KJ3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5x7-Qz-sUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

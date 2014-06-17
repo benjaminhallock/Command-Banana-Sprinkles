@@ -3,14 +3,12 @@
 
 
 @interface HFImageEditorFrameView ()
-
-//@property (nonatomic) CGRect *cropRect;
-
+@property (nonatomic,strong) UIImageView *imageView;
 @end
 
 @implementation HFImageEditorFrameView
 
-//@synthesize cropRect = _cropRect;
+@synthesize cropRect = _cropRect;
 @synthesize imageView  = _imageView;
 
 
@@ -44,37 +42,38 @@
 }
 
 
-- (void)setCropRect:(CGRect)cropRectGiven
+
+- (void)setCropRect:(CGRect)cropRect
 {
-//    if(!CGRectEqualToRect(cropRect,cropRectGiven)){
-        self.cropRect = CGRectOffset(cropRectGiven, self.frame.origin.x, self.frame.origin.y);
+    if(!CGRectEqualToRect(_cropRect,cropRect)){
+        _cropRect = CGRectOffset(cropRect, self.frame.origin.x, self.frame.origin.y);
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.f);
         CGContextRef context = UIGraphicsGetCurrentContext();
         [[UIColor blackColor] setFill];
         UIRectFill(self.bounds);
         CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor);
-        CGContextStrokeRect(context, cropRectGiven);
+        CGContextStrokeRect(context, cropRect);
         [[UIColor clearColor] setFill];
-        UIRectFill(CGRectInset(cropRectGiven, 1, 1));
+        UIRectFill(CGRectInset(cropRect, 1, 1));
         self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 
         UIGraphicsEndImageContext();
-//    }
+    }
 }
 
 /*
-- (void)drawRect:(CGRect)rect
-{
-   CGContextRef context = UIGraphicsGetCurrentContext();
+ - (void)drawRect:(CGRect)rect
+ {
+ CGContextRef context = UIGraphicsGetCurrentContext();
 
-    [[UIColor blackColor] setFill];
-    UIRectFill(rect);
-    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor);
-    CGContextStrokeRect(context, self.cropRect);
-    [[UIColor clearColor] setFill];
-    UIRectFill(CGRectInset(self.cropRect, 1, 1));
+ [[UIColor blackColor] setFill];
+ UIRectFill(rect);
+ CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] colorWithAlphaComponent:0.5].CGColor);
+ CGContextStrokeRect(context, self.cropRect);
+ [[UIColor clearColor] setFill];
+ UIRectFill(CGRectInset(self.cropRect, 1, 1));
 
-}
-*/
+ }
+ */
 
 @end

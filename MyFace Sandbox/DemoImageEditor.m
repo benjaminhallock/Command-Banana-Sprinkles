@@ -20,6 +20,15 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+
+    self.cropRect = CGRectMake(0,100,320,410);
+    self.cropSize = CGSizeMake(320,410);
+    self.minimumScale = 0.2;
+    self.maximumScale = 10;
+    [self reset:YES];
+}
+
 
 - (void)viewDidUnload
 {

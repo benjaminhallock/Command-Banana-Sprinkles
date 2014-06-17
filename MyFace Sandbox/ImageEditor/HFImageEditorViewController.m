@@ -310,6 +310,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
             UIImage *transform =  [UIImage imageWithCGImage:resultRef scale:1.0 orientation:UIImageOrientationUp];
             CGImageRelease(resultRef);
             self.view.userInteractionEnabled = YES;
+            [self dismissViewControllerAnimated:YES completion:nil];
             if(self.doneCallback) {
                 self.doneCallback(transform, NO);
             }
@@ -323,6 +324,7 @@ static const NSTimeInterval kAnimationIntervalTransform = 0.2;
 - (IBAction)cancelAction:(id)sender
 {
     if(self.doneCallback) {
+        [super dismissViewControllerAnimated:YES completion:nil];
         self.doneCallback(nil, YES);
     }
 }
