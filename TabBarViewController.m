@@ -32,10 +32,10 @@
     UIButton *surveyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [surveyButton addTarget:self action:@selector(surveyButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
     surveyButton.tag = 0;
-[surveyButton setBackgroundImage:[UIImage imageNamed:@"gallerybutton"] forState:UIControlStateNormal];
+    [surveyButton setBackgroundImage:[UIImage imageNamed:@"gallerybutton"] forState:UIControlStateNormal];
 
     CGRect surveyButtonFrame = surveyButton.frame ;
-    surveyButtonFrame.origin.x = 0;
+    surveyButtonFrame.origin.x = 6;
     surveyButtonFrame.origin.y = 0;
     surveyButtonFrame.size.height = 50;
     surveyButtonFrame.size.width = 100;
@@ -66,7 +66,7 @@
     [camerabutton setBackgroundImage:[UIImage imageNamed:@"camerabutton"] forState:UIControlStateNormal];
 
     CGRect cameraButtonFrame = camerabutton.frame ;
-    cameraButtonFrame.origin.x = 220;
+    cameraButtonFrame.origin.x = 214;
     cameraButtonFrame.origin.y = 0;
     cameraButtonFrame.size.height = 50;
     cameraButtonFrame.size.width = 100;
