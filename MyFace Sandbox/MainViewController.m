@@ -60,6 +60,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
+    if (self.splitPhotoArray.count > 2) {
+        [self dupliateFirstAndLastElements];
+        [self randomizeViews];
+    }
 }
 
 -(IBAction)onInsivisbleButton:(UIButton *)sender{
@@ -116,9 +120,6 @@
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
-    
-    [self dupliateFirstAndLastElements];
-    [self randomizeViews];
 
 }
 

@@ -10,9 +10,10 @@
 #import "ChangeFaceCustomCell.h"
 #import "Photos.h"
 #import "AppDelegate.h"
+#import "Resize.h"
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) IBOutlet UICollectionView *collectionView;
 //@property NSArray *splitPhotoArray;
 @end
 
@@ -29,6 +30,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [self load];
+    [self.collectionView reloadData];
 }
 
 - (void) processDoubleTap:(UITapGestureRecognizer *)sender
@@ -76,16 +78,26 @@
         label.textAlignment = UITextAlignmentCenter;
         [self.view addSubview:label];
     }
-    [self.collectionView reloadData];
 }
 
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.imageView.image = [UIImage imageWithData:hero.image];
-    
+    Resize *image = [Resize imageWithImage:[UIImage imageWithData:hero.image] scaledToSize:CGSizeMake(32, 41)];
+    cell.imageView.image = image;
     if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"✪";
     } else {

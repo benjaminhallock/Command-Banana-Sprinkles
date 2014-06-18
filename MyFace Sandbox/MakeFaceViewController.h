@@ -14,7 +14,7 @@
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITextFieldDelegate>
 
-@property UIImagePickerController *imagePicker;
+@property (nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
