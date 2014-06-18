@@ -7,7 +7,6 @@
         <!--Main View Controller - myFace-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <viewController id="vXZ-lx-hvc" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
@@ -164,6 +163,16 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jND-LJ-aTG">
+                                <rect key="frame" x="20" y="438" width="280" height="129"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onInsivisbleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="23h-iL-q72"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -186,6 +195,7 @@
                         <outlet property="topCollectionView" destination="QEL-Dy-gaf" id="ymR-Sq-foV"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="911" y="-78"/>
         </scene>
@@ -271,8 +281,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" borderStyle="roundedRect" placeholder="name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
-                                <rect key="frame" x="20" y="390" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" borderStyle="roundedRect" placeholder="name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
+                                <rect key="frame" x="17" y="390" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.53016651459999997" blue="0.65770415149999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -469,7 +479,7 @@
                         <color key="barTintColor" red="0.9041793185" green="1" blue="0.89836054649999997" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <outlet property="tabBarr" destination="zIZ-lh-Vl9" id="09a-E9-LCa"/>
+                        <outlet property="tabBar" destination="zIZ-lh-Vl9" id="GXh-UG-INI"/>
                         <segue destination="0Po-mQ-Kxv" kind="relationship" relationship="viewControllers" id="dBb-aw-az4"/>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="fZe-5t-sW2"/>
                         <segue destination="kq0-4q-pBN" kind="relationship" relationship="viewControllers" id="3DK-xs-LLq"/>

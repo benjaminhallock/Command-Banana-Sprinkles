@@ -26,8 +26,8 @@
     /* Tab Bar Background */
 
     //
-    UIImage *tabBarBackgroundImage = [UIImage imageNamed:@""];
-    [[UITabBar appearance] setBackgroundImage:tabBarBackgroundImage];
+//    UIImage *tabBarBackgroundImage = [UIImage imageNamed:@""];
+//    [[UITabBar appearance] setBackgroundImage:tabBarBackgroundImage];
 
     /* Tab Bar Item */
     UIButton *surveyButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -85,6 +85,7 @@
 {
     self.selectedIndex = 1;
     self.selectedViewController = self.viewControllers[1];
+
 }
 -(void)cameraButtonDidSelect
 {

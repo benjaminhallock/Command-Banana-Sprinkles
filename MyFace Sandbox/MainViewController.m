@@ -59,16 +59,19 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
-
     if (self.splitPhotoArray.count > 2) {
         [self dupliateFirstAndLastElements];
         [self randomizeViews];
     }
 }
 
+-(IBAction)onInsivisbleButton:(UIButton *)sender{
+    [self randomizeViews];
+}
+
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"touched");
-    if (tabBarController.tabBarItem == self.tabBarItem) {
+    if (tabBarController.selectedIndex == 1) {
         [self randomizeViews];
     }
 }
