@@ -34,7 +34,7 @@
     [surveyButton addTarget:self action:@selector(surveyButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
     surveyButton.tag = 0;
 [surveyButton setBackgroundImage:[UIImage imageNamed:@"gallerybutton"] forState:UIControlStateNormal];
-    [surveyButton setBackgroundImage:[UIImage imageNamed:@"gallerybuttonselected"] forState:UIControlStateHighlighted];
+
     CGRect surveyButtonFrame = surveyButton.frame ;
     surveyButtonFrame.origin.x = 0;
     surveyButtonFrame.origin.y = 0;
@@ -47,10 +47,9 @@
 
     UIButton *statusButton = [UIButton buttonWithType:UIButtonTypeCustom];
     statusButton.tag = 1;
-
     [statusButton addTarget:self action:@selector(statusButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
     [statusButton setBackgroundImage:[UIImage imageNamed:@"myfacebutton"] forState:UIControlStateNormal];
-    [statusButton setBackgroundImage:[UIImage imageNamed:@"myfacebuttonselected"] forState:UIControlStateHighlighted];
+
     CGRect statusButtonFrame = statusButton.frame ;
     statusButtonFrame.origin.x = 110;
     statusButtonFrame.origin.y = 0;
@@ -65,8 +64,8 @@
     UIButton *camerabutton = [UIButton buttonWithType:UIButtonTypeCustom];
     camerabutton.tag = 2;
     [camerabutton addTarget:self action:@selector(cameraButtonDidSelect) forControlEvents:UIControlEventTouchUpInside];
-
     [camerabutton setBackgroundImage:[UIImage imageNamed:@"camerabutton"] forState:UIControlStateNormal];
+
     CGRect cameraButtonFrame = camerabutton.frame ;
     cameraButtonFrame.origin.x = 220;
     cameraButtonFrame.origin.y = 0;

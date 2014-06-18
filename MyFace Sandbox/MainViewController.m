@@ -71,7 +71,7 @@
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"touched");
-    if (tabBarController.selectedIndex == 1) {
+    if (viewController == self) {
         [self randomizeViews];
     }
 }

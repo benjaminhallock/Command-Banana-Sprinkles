@@ -20,25 +20,19 @@
 @implementation MakeFaceViewController
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     self.textField.delegate = self;
-    [super viewDidLoad];
+
     self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.allowsEditing = NO;
     self.imagePicker.delegate = self;
+
     //    self.makeFaceScrollView.delegate = self; // In storyboard
     self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
     self.makeFaceScrollView.maximumZoomScale = 25;
     self.makeFaceScrollView.minimumZoomScale = 0;
-    self.imagePicker.allowsEditing = NO;
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else
-    {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -61,16 +55,24 @@
                                                                                 otherButtonTitles: nil];
                                           [alert show];
                                       } else {
-                                          self.makeFaceImageView.image = editedImage;
+            self.makeFaceImageView.image = editedImage;
                                       }
                                   }];
-                        }
-
+            }
         };
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self viewDidLoad];
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
