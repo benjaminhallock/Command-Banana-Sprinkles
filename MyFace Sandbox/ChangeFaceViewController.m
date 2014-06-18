@@ -19,8 +19,9 @@
 @implementation ChangeFaceViewController
 -(void)viewDidLoad {
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
     [self load];
-    
+
     UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
     [doubleTapFolderGesture setNumberOfTapsRequired:2];
     [doubleTapFolderGesture setNumberOfTouchesRequired:1];
@@ -33,9 +34,10 @@
     {
         CGPoint point = [sender locationInView:self.collectionView];
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-        Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+
         if (indexPath)
         {
+        Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
             NSLog(@"Image was double tapped");
             [self.managedObjectContext deleteObject:selectedObject];
             [self.managedObjectContext save:nil];
@@ -56,9 +58,16 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 320, 30)];
     if (self.fetchedResultsController.fetchedObjects.count < 3) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 320, 30)];
         label.text = @"Need 3 photos";
+        label.font = [UIFont fontWithName:@"Heiti SC" size:30];
+        label.textColor = [UIColor whiteColor];
+        label.textAlignment = UITextAlignmentCenter;
+        [self.view addSubview:label];
+    } else {
+        label.text = @"";
         label.font = [UIFont fontWithName:@"Heiti SC" size:30];
         label.textColor = [UIColor whiteColor];
         label.textAlignment = UITextAlignmentCenter;

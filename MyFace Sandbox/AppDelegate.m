@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ChangeFaceViewController.h"
+#import "TabBarViewController.h"
 
 @implementation AppDelegate
 
@@ -17,13 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    TabBarViewController *tabBarController = (TabBarViewController *)self.window.rootViewController;
     tabBarController.selectedIndex = 1;
-    tabBarController.delegate = self;
-
+//    tabBarController.delegate = self;
     // Override point for customization after application launch.
     //Ben here
-
 //    ChangeFaceViewController *controller = (ChangeFaceViewController *)tabBarController.viewControllers.lastObject;
 //    controller.managedObjectContext = self.managedObjectContext;
 

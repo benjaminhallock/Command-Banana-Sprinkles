@@ -7,7 +7,6 @@
 //
 
 #import "TabBarViewController.h"
-#import "MainViewController.h"
 
 @interface TabBarViewController ()
 
@@ -22,7 +21,7 @@
 //    tabBarFrame.size.height = 100;
 //    self.tabBar.frame = tabBarFrame;
 //    self.tabBarController.delegate = self;
-//    self.delegate = self;
+    self.delegate = self;
     /* Tab Bar Background */
 
     //

@@ -11,5 +11,4 @@
 @interface TabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITabBar *tabBar;
-
 @end
