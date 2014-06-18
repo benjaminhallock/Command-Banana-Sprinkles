@@ -38,7 +38,7 @@
     surveyButtonFrame.origin.x = 6;
     surveyButtonFrame.origin.y = 0;
     surveyButtonFrame.size.height = 50;
-    surveyButtonFrame.size.width = 100;
+    surveyButtonFrame.size.width = 95;
     surveyButton.frame = surveyButtonFrame;
     [self.tabBar addSubview:surveyButton];
 
@@ -53,7 +53,7 @@
     statusButtonFrame.origin.x = 110;
     statusButtonFrame.origin.y = 0;
     statusButtonFrame.size.height = 50;
-    statusButtonFrame.size.width = 100;
+    statusButtonFrame.size.width = 95;
     statusButton.frame = statusButtonFrame;
 
     [self.tabBar addSubview:statusButton];
@@ -69,7 +69,7 @@
     cameraButtonFrame.origin.x = 214;
     cameraButtonFrame.origin.y = 0;
     cameraButtonFrame.size.height = 50;
-    cameraButtonFrame.size.width = 100;
+    cameraButtonFrame.size.width = 95;
     camerabutton.frame = cameraButtonFrame;
     [self.tabBar addSubview:camerabutton];
 }
