@@ -60,14 +60,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
-    if (self.splitPhotoArray.count > 2) {
-        [self dupliateFirstAndLastElements];
-        [self randomizeViews];
-    }
+    [self dupliateFirstAndLastElements];
+    [self.middleCollectionView reloadData];
+    [self.topCollectionView reloadData];
+    [self.bottomCollectionView reloadData];
 }
 
 -(IBAction)onInsivisbleButton:(UIButton *)sender{
     [self randomizeViews];
+    [self checkForWinner];
 }
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
@@ -116,11 +117,6 @@
         photoItem = @{@"name":@"Tim" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample8"]]};
         [self.splitPhotoArray addObject:photoItem];
     }
-
-    [self.middleCollectionView reloadData];
-    [self.topCollectionView reloadData];
-    [self.bottomCollectionView reloadData];
-
 }
 
 
@@ -183,7 +179,6 @@
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
     [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
     [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
-    [self checkForWinner];
 }
 
 // check if a match has occured, and if so, display the photo name
@@ -197,6 +192,7 @@
         [UIView animateWithDuration:1.0f animations:^{
             self.nameLabel.alpha = 0;
             self.nameLabel.alpha = 1;
+
             self.view.backgroundColor = [UIColor whiteColor];
         }];
     }
@@ -206,7 +202,7 @@
         [UIView animateWithDuration:1.0f animations:^{
             self.nameLabel.alpha = 1;
             self.nameLabel.alpha = 0;
-        self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:135/255.0f blue:168/255.0f alpha:1.0f];
+        self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
         }];
         self.nameLabel.text = @"";
     }
@@ -234,7 +230,6 @@
     if (motion == UIEventSubtypeMotionShake)
     {
         [self randomizeViews];
-        [self checkForWinner];
     }
 }
 

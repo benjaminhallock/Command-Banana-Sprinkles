@@ -109,6 +109,9 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    if ([self.textField.text  isEqual: @""]) {
+        self.textField.text = @"name";
+    }
     return YES;
 }
 
