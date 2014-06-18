@@ -55,6 +55,11 @@
                                    selector:@selector(randomizeViews)
                                    userInfo:nil
                                     repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:3.0f
+                                     target:self
+                                   selector:@selector(randomizeViews)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
