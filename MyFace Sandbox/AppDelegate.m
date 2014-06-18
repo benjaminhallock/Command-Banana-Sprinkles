@@ -20,7 +20,8 @@
 {
     TabBarViewController *tabBarController = (TabBarViewController *)self.window.rootViewController;
     tabBarController.selectedIndex = 1;
-//    tabBarController.delegate = self;
+    tabBarController.delegate = self;
+
     // Override point for customization after application launch.
     //Ben here
 //    ChangeFaceViewController *controller = (ChangeFaceViewController *)tabBarController.viewControllers.lastObject;
