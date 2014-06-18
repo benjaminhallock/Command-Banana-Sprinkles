@@ -199,6 +199,30 @@
             </objects>
             <point key="canvasLocation" x="911" y="-78"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="fqM-9b-W23">
+            <objects>
+                <viewController id="sR6-E7-jKo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="73u-7s-ztV"/>
+                        <viewControllerLayoutGuide type="bottom" id="q9E-wQ-mT6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7eO-YR-7WM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="hj3-OY-jtL">
+                                <rect key="frame" x="0.0" y="79" width="320" height="410"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rNu-Nu-HZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280" y="-78"/>
+        </scene>
         <!--Make Face View Controller - makeFace-->
         <scene sceneID="2xF-f5-iXm">
             <objects>
@@ -422,7 +446,7 @@
                                     <constraint firstAttribute="height" constant="410" id="elI-dm-etg"/>
                                 </constraints>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ed-9a-KOE">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ed-9a-KOE">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <constraints>
@@ -492,6 +516,7 @@
     <resources>
         <image name="camera-white44" width="44" height="44"/>
         <image name="manyface44" width="40" height="33"/>
+        <image name="splash" width="260" height="294"/>
         <image name="template" width="654" height="813"/>
         <image name="whiteface44" width="30" height="38"/>
     </resources>

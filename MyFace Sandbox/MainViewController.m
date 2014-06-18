@@ -60,6 +60,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
+    if (self.splitPhotoArray.count > 2) {
+        [self dupliateFirstAndLastElements];
+        [self randomizeViews];
+    }
 }
 
 -(IBAction)onInsivisbleButton:(UIButton *)sender{
@@ -116,9 +120,6 @@
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
-    
-    [self dupliateFirstAndLastElements];
-    [self randomizeViews];
 
 }
 
@@ -182,6 +183,7 @@
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
     [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
     [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
+    [self checkForWinner];
 }
 
 // check if a match has occured, and if so, display the photo name

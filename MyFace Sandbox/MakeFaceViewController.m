@@ -19,6 +19,7 @@
 
 @implementation MakeFaceViewController
 
+
 -(void)viewDidAppear:(BOOL)animated {
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -29,7 +30,7 @@
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    
+
 }
 
 - (void)viewDidLoad
@@ -41,6 +42,7 @@
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = NO;
     self.imagePicker.delegate = self;
+    self.imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext; //fixes snapshot error
 
     //    self.makeFaceScrollView.delegate = self; // In storyboard
     self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
@@ -53,10 +55,13 @@
     self.imageEditor = [storyboard instantiateViewControllerWithIdentifier:@"DemoImageEditor"];
     self.imageEditor.checkBounds = YES;
     self.imageEditor.rotateEnabled = YES;
+    self.imageEditor.modalPresentationStyle = UIModalPresentationCurrentContext;//Seing if this helps
     self.library = library;
 
     self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
         if(!canceled) {
+
+
             [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
                                       orientation:(ALAssetOrientation)editedImage.imageOrientation
                                   completionBlock:^(NSURL *assetURL, NSError *error){
@@ -69,11 +74,11 @@
                                                                                 otherButtonTitles: nil];
                                           [alert show];
                                       } else {
-            self.makeFaceImageView.image = editedImage;
+                                          self.makeFaceImageView.image = editedImage;
                                       }
                                   }];
-            }
-        };
+        }
+    };
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -98,7 +103,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-         self.textField.frame = CGRectMake(30.0f, self.textField.frame.origin.y + 130, 260.0f, 30.0f);
+        self.textField.frame = CGRectMake(30.0f, self.textField.frame.origin.y + 130, 260.0f, 30.0f);
     }];
 }
 
@@ -111,32 +116,32 @@
 {
     if (self.makeFaceImageView.image != nil && self.textField.text.length != nil && ![self.textField.text  isEqual: @"name"]) {
 
-    UIImage *image = self.makeFaceImageView.image;
+        UIImage *image = self.makeFaceImageView.image;
 
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
-    [newManagedObject setValue:UIImagePNGRepresentation(image) forKey:@"image"];
-    [newManagedObject setValue:self.textField.text forKey:@"name"];
-    [newManagedObject setValue:@YES forKey:@"selected"];
-    [self.managedObjectContext save:nil];
+        NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+        [newManagedObject setValue:UIImagePNGRepresentation(image) forKey:@"image"];
+        [newManagedObject setValue:self.textField.text forKey:@"name"];
+        [newManagedObject setValue:@YES forKey:@"selected"];
+        [self.managedObjectContext save:nil];
 
-    //Save to core data;
-    [UIView  animateWithDuration:1.0 animations:^{
-        self.textField.alpha = 1;
-        self.makeFaceImageView.alpha = 1;
-        self.makeFaceImageView.image = nil;
-                self.textField.text = @"";
-        self.makeFaceImageView.alpha = 0;
-                self.textField.alpha = 0;
-        self.makeFaceImageView.alpha = 1;
-                self.textField.alpha = 1;
-        [self.textField resignFirstResponder];
-    }];
+        //Save to core data;
+        [UIView  animateWithDuration:1.0 animations:^{
+            self.textField.alpha = 1;
+            self.makeFaceImageView.alpha = 1;
+            self.makeFaceImageView.image = nil;
+            self.textField.text = @"";
+            self.makeFaceImageView.alpha = 0;
+            self.textField.alpha = 0;
+            self.makeFaceImageView.alpha = 1;
+            self.textField.alpha = 1;
+            [self.textField resignFirstResponder];
+        }];
 
     }
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender {
-    
+
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -153,15 +158,15 @@
         self.imageEditor.previewImage = preview;
         [self.imageEditor reset:NO];
 
-//        [picker presentViewController:self.imageEditor animated:YES completion:nil];
+        //        [picker presentViewController:self.imageEditor animated:YES completion:nil];
         [picker pushViewController:self.imageEditor animated:YES];
         [picker setNavigationBarHidden:YES animated:NO];
 
     } failureBlock:^(NSError *error) {
         NSLog(@"Failed to get asset from library");
     }];
-
-//    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
+    
+    //    [self.imagePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
