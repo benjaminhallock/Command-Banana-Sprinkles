@@ -83,8 +83,11 @@
 {
     self.selectedIndex = 1;
     self.selectedViewController = self.viewControllers[1];
-
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"TestNotification"
+     object:self];
 }
+
 -(void)cameraButtonDidSelect
 {
     self.selectedIndex = 2;

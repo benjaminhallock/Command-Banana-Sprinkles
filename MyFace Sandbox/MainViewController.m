@@ -19,7 +19,7 @@
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
-@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UITabBarControllerDelegate>
+@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.delegate = self;
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
     [UIView animateWithDuration:3.0 animations:^{
@@ -64,23 +63,32 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:@"TestNotification"
+                                               object:nil];
+
     [self load];
     [self dupliateFirstAndLastElements];
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
+    [self randomizeViews];
 }
 
--(IBAction)onInsivisbleButton:(UIButton *)sender{
+- (void)receiveTestNotification:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    if ([[notification name] isEqualToString:@"TestNotification"]) {
+        NSLog (@"Successfully received the test notification!");
     [self randomizeViews];
     [self checkForWinner];
-}
-
--(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    NSLog(@"touched");
-    if (viewController == self) {
-        [self randomizeViews];
     }
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)load {

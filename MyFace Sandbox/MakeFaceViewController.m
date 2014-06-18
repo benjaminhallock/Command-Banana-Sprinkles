@@ -81,10 +81,10 @@
     };
 }
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return self.makeFaceImageView;
-}
+//-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+//{
+//    return self.makeFaceImageView;
+//}
 
 - (IBAction)onTakePhotoPressed:(id)sender {
     [self presentViewController:self.imagePicker animated:YES completion:nil];
