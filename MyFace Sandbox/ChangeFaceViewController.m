@@ -17,15 +17,18 @@
 @end
 
 @implementation ChangeFaceViewController
+
 -(void)viewDidLoad {
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-
-    [self load];
 
     UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
     [doubleTapFolderGesture setNumberOfTapsRequired:2];
     [doubleTapFolderGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:doubleTapFolderGesture];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self load];
 }
 
 - (void) processDoubleTap:(UITapGestureRecognizer *)sender
@@ -45,7 +48,7 @@
         }
         else
         {
-
+            
         }
     }
 }
@@ -76,9 +79,6 @@
     [self.collectionView reloadData];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [self load];
-}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 

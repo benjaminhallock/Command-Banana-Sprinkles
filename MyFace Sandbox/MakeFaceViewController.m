@@ -18,6 +18,20 @@
 @end
 
 @implementation MakeFaceViewController
+
+-(void)viewDidAppear:(BOOL)animated {
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,19 +76,6 @@
         };
 }
 
--(void)viewDidAppear:(BOOL)animated {
-
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else
-    {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-
-}
-
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.makeFaceImageView;
@@ -85,7 +86,7 @@
 }
 
 -(IBAction)onGalleryPressed:(UIButton *)sender{
-    self.imagePicker.sourceType =UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 

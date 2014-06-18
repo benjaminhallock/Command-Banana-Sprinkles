@@ -33,6 +33,7 @@
 {
     [super viewDidLoad];
     self.tabBarController.delegate = self;
+    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
     [UIView animateWithDuration:3.0 animations:^{
         self.nameLabel.alpha = 0;
@@ -59,10 +60,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self load];
-    if (self.splitPhotoArray.count > 2) {
-        [self dupliateFirstAndLastElements];
-        [self randomizeViews];
-    }
 }
 
 -(IBAction)onInsivisbleButton:(UIButton *)sender{
@@ -77,7 +74,6 @@
 }
 
 -(void)load {
-    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
@@ -120,6 +116,9 @@
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
+    
+    [self dupliateFirstAndLastElements];
+    [self randomizeViews];
 
 }
 
