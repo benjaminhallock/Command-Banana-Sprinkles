@@ -99,7 +99,7 @@
     Resize *image = [Resize imageWithImage:[UIImage imageWithData:hero.image] scaledToSize:CGSizeMake(32, 41)];
     cell.imageView.image = image;
     if ([hero.selected  isEqual: @YES]) {
-        cell.label.text = @"✪";
+        cell.label.text = @"✔︎";
     } else {
         cell.label.text = @"";
     }
@@ -118,7 +118,7 @@
         cell.label.text = @"";
         hero.selected  =@NO;
     } else {
-        cell.label.text = @"✪";
+        cell.label.text = @"✔︎"; //✪
         hero.selected = @YES;
     }
     [self.managedObjectContext save:nil];
