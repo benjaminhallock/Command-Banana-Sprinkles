@@ -50,7 +50,6 @@
     self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
         if(!canceled) {
             [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
-
                                       orientation:(ALAssetOrientation)editedImage.imageOrientation
                                   completionBlock:^(NSURL *assetURL, NSError *error){
                                       if (error) {
@@ -70,12 +69,21 @@
         };
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [self viewDidLoad];
+}
+
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.makeFaceImageView;
 }
 
-- (IBAction)onTakePhotoPressed:(UIButton *)sender {
+- (IBAction)onTakePhotoPressed:(id)sender {
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+-(IBAction)onGalleryPressed:(UIButton *)sender{
+    self.imagePicker.sourceType =UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
@@ -95,9 +103,10 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
-    if (self.makeFaceImageView.image != nil && self.textField.text.length != nil) {
+    if (self.makeFaceImageView.image != nil && self.textField.text.length != nil && ![self.textField.text  isEqual: @"name"]) {
 
     UIImage *image = self.makeFaceImageView.image;
 

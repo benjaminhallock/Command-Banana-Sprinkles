@@ -32,11 +32,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.delegate = self;
 
     [UIView animateWithDuration:3.0 animations:^{
         self.nameLabel.alpha = 0;
         self.nameLabel.alpha = 1;
     }];
+    
     [UIView animateWithDuration:1.0 animations:^{
         self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
         self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
@@ -61,12 +63,12 @@
     if (self.splitPhotoArray.count > 2) {
         [self dupliateFirstAndLastElements];
         [self randomizeViews];
-        self.tabBarController.delegate = self;
     }
 }
 
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    if (viewController == self) {
+    NSLog(@"touched");
+    if (tabBarController.tabBarItem == self.tabBarItem) {
         [self randomizeViews];
     }
 }
@@ -191,7 +193,7 @@
         [UIView animateWithDuration:1.0f animations:^{
             self.nameLabel.alpha = 0;
             self.nameLabel.alpha = 1;
-            self.view.backgroundColor = [UIColor blackColor];
+            self.view.backgroundColor = [UIColor whiteColor];
         }];
     }
     else

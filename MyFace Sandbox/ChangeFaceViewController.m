@@ -13,20 +13,14 @@
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 //@property NSArray *splitPhotoArray;
 @end
 
 @implementation ChangeFaceViewController
-
-
-
 -(void)viewDidLoad {
-
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-
     [self load];
-
+    
     UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
     [doubleTapFolderGesture setNumberOfTapsRequired:2];
     [doubleTapFolderGesture setNumberOfTouchesRequired:1];
@@ -62,7 +56,7 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
-    if (self.fetchedResultsController.fetchedObjects.count == 0) {
+    if (self.fetchedResultsController.fetchedObjects.count < 3) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 320, 30)];
         label.text = @"Need 3 photos";
         label.font = [UIFont fontWithName:@"Heiti SC" size:30];
