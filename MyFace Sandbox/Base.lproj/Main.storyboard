@@ -232,11 +232,11 @@
                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0T5-lF-WPP">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="0.37254901959999998" green="0.17254901959999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
+                                                <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
@@ -258,10 +258,12 @@
                                     <constraint firstAttribute="height" constant="66" id="npy-dZ-S1e"/>
                                     <constraint firstAttribute="width" constant="320" id="zkd-B0-bda"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.0" green="0.66274509800000003" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem id="AaR-6Y-gna">
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="camera" id="0Cg-o3-IMf">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="onTakePhotoPressed:" destination="kq0-4q-pBN" id="pzR-Q1-jyk"/>
                                             </connections>
@@ -271,6 +273,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="Gallery">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -278,6 +281,7 @@
                                             </connections>
                                         </button>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="JoX-VX-Lps">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="onUploadPhotoPressed:" destination="kq0-4q-pBN" id="WSL-3T-XE6"/>
                                             </connections>
@@ -285,18 +289,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" borderStyle="roundedRect" placeholder="name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
-                                <rect key="frame" x="30" y="375" width="260" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="SD1-M4-K8O"/>
-                                    <constraint firstAttribute="width" constant="260" id="XZ4-fj-j2X"/>
-                                </constraints>
-                                <color key="textColor" red="0.37254901959999998" green="0.17254901959999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfA-6m-9DO">
                                 <rect key="frame" x="0.0" y="265" width="320" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -313,16 +305,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" placeholder="name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gOd-XF-gvj">
+                                <rect key="frame" x="0.0" y="469" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mW0-qf-lU8"/>
+                                    <constraint firstAttribute="width" constant="320" id="zXz-XS-AJ0"/>
+                                </constraints>
+                                <color key="textColor" red="0.37254901959999998" green="0.17254901959999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.47058823529411764" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SMH-i9-Y5U" firstAttribute="top" secondItem="I61-og-Xyp" secondAttribute="top" constant="-1" id="0Dr-HL-PmY"/>
+                            <constraint firstAttribute="bottom" secondItem="gOd-XF-gvj" secondAttribute="bottom" constant="49" id="Jqg-54-uXJ"/>
                             <constraint firstAttribute="trailing" secondItem="hF0-W8-8Of" secondAttribute="trailing" id="Uvg-ss-fCh"/>
-                            <constraint firstItem="gOd-XF-gvj" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" constant="30" id="Ybc-C0-fWc"/>
+                            <constraint firstItem="gOd-XF-gvj" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="clw-gr-w9b"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="i3t-o7-1nm"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="leading" secondItem="I61-og-Xyp" secondAttribute="leading" id="i6V-Um-Tsh"/>
                             <constraint firstItem="hF0-W8-8Of" firstAttribute="top" secondItem="SMH-i9-Y5U" secondAttribute="bottom" id="sBk-3x-HW3"/>
-                            <constraint firstItem="6yI-tO-3Kg" firstAttribute="top" secondItem="gOd-XF-gvj" secondAttribute="bottom" constant="114" id="xLW-AB-5o4"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" enabled="NO" title="makeFace" id="SRi-W1-UUB"/>

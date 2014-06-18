@@ -97,13 +97,13 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-        self.textField.frame = CGRectMake(0.0f, self.textField.frame.origin.y - 100, 320.0f, 30.0f);
+        self.textField.frame = CGRectMake(0.0f, self.textField.frame.origin.y - 160, 320.0f, 50.0f);
     }];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
     [UIView animateWithDuration:0.2 animations:^{
-        self.textField.frame = CGRectMake(30.0f, self.textField.frame.origin.y + 100, 260.0f, 30.0f);
+        self.textField.frame = CGRectMake(0.0f, self.textField.frame.origin.y + 160, 320.0f, 50.0f);
     }];
 }
 
