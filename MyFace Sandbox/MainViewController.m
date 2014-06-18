@@ -43,6 +43,10 @@
         self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
         self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
     }];
+    [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
+        self.nameLabel.alpha = 1;
+           self.nameLabel.alpha = 0;
+    } completion:nil];
 
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                      target:self
@@ -202,22 +206,15 @@
         NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
         NSString *name = [photo objectForKey:@"name"];
         self.nameLabel.text = name;
-        [UIView animateWithDuration:1.0f animations:^{
+        self.nameLabel.alpha = 0;
+        [UIView animateWithDuration:3.0f animations:^{
             self.nameLabel.alpha = 0;
             self.nameLabel.alpha = 1;
-
-            self.view.backgroundColor = [UIColor whiteColor];
         }];
-    }
-    else
-    {
-
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
             self.nameLabel.alpha = 1;
             self.nameLabel.alpha = 0;
-        self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
-        }];
-        self.nameLabel.text = @"";
+        } completion:nil];
     }
 }
 

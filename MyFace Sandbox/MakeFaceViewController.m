@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIScrollView *makeFaceScrollView;
 @property DemoImageEditor *imageEditor;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonSave;
 @property(nonatomic,strong) ALAssetsLibrary *library;
 @end
 
@@ -29,6 +30,12 @@
     else
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+
+    if (self.makeFaceImageView.image != nil) {
+        self.buttonSave.enabled = YES;
+    } else {
+        self.buttonSave.enabled = NO;
     }
 
 }
@@ -75,6 +82,7 @@
                                           [alert show];
                                       } else {
                                           self.makeFaceImageView.image = editedImage;
+                                          self.buttonSave.enabled = YES;
                                       }
                                   }];
         }
@@ -110,14 +118,18 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     if ([self.textField.text  isEqual: @""]) {
-        self.textField.text = @"name";
+        self.textField.text = @"name this face";
     }
     return YES;
 }
 
 - (IBAction)onUploadPhotoPressed:(id)sender
 {
-    if (self.makeFaceImageView.image != nil && self.textField.text.length != nil && ![self.textField.text  isEqual: @"name"]) {
+    if (self.makeFaceImageView.image != nil) {
+
+        if ([self.textField.text isEqualToString:@"name this face"]) {
+            self.textField.text = @"";
+        }
 
         UIImage *image = self.makeFaceImageView.image;
 
