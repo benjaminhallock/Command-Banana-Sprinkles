@@ -35,10 +35,10 @@
     [surveyButton setBackgroundImage:[UIImage imageNamed:@"gallerybutton"] forState:UIControlStateNormal];
 
     CGRect surveyButtonFrame = surveyButton.frame ;
-    surveyButtonFrame.origin.x = 6;
+    surveyButtonFrame.origin.x = 0;
     surveyButtonFrame.origin.y = 0;
     surveyButtonFrame.size.height = 50;
-    surveyButtonFrame.size.width = 95;
+    surveyButtonFrame.size.width = (320/3);
     surveyButton.frame = surveyButtonFrame;
     [self.tabBar addSubview:surveyButton];
 
@@ -50,10 +50,10 @@
     [statusButton setBackgroundImage:[UIImage imageNamed:@"myfacebutton"] forState:UIControlStateNormal];
 
     CGRect statusButtonFrame = statusButton.frame ;
-    statusButtonFrame.origin.x = 110;
+    statusButtonFrame.origin.x = (320/3);
     statusButtonFrame.origin.y = 0;
     statusButtonFrame.size.height = 50;
-    statusButtonFrame.size.width = 95;
+    statusButtonFrame.size.width = (320/3);
     statusButton.frame = statusButtonFrame;
 
     [self.tabBar addSubview:statusButton];
@@ -66,10 +66,10 @@
     [camerabutton setBackgroundImage:[UIImage imageNamed:@"camerabutton"] forState:UIControlStateNormal];
 
     CGRect cameraButtonFrame = camerabutton.frame ;
-    cameraButtonFrame.origin.x = 214;
+    cameraButtonFrame.origin.x = (320/3 + 320/3);
     cameraButtonFrame.origin.y = 0;
     cameraButtonFrame.size.height = 50;
-    cameraButtonFrame.size.width = 95;
+    cameraButtonFrame.size.width = 108;
     camerabutton.frame = cameraButtonFrame;
     [self.tabBar addSubview:camerabutton];
 }
