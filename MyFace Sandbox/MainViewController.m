@@ -15,11 +15,13 @@
 #import "BottomCollectionViewCell.h"
 #import "AppDelegate.h"
 #import "Photos.h"
+#import "ChangeFaceViewController.h"
+#import "Resize.h"
 
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
-@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
+@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UIImagePickerControllerDelegate>
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
@@ -30,26 +32,55 @@
 
 @implementation MainViewController
 
-- (void)viewDidLoad
-{
-    self.buttonShuffle.alpha = 0;
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ChangeFaceViewController *nextView = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"showGallery"]) {
+        nextView.imagePicker = self.imagePicker;
+        nextView.imageEditor = self.imageEditor;
+        nextView.library = self.library;
+    }
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    [self loadImagePicker];
+    [self ViewDidLoadAnimation];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTestNotification:)
+                                                 name:@"TestNotification"
+                                               object:nil];
+
+    [self load];
+    [self dupliateFirstAndLastElements];
+    [self randomizeViews];
+}
+
+-(IBAction)onCameraButtonPressed:(id)sender {
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+-(void)ViewDidLoadAnimation {
+    self.buttonShuffle.alpha = 0;
     [UIView animateWithDuration:3.0 animations:^{
         self.nameLabel.alpha = 0;
         self.nameLabel.alpha = 1;
     }];
-    
+
     [UIView animateWithDuration:1.0 animations:^{
         self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
         self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
     }];
     [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
         self.nameLabel.alpha = 1;
-           self.nameLabel.alpha = 0;
+        self.nameLabel.alpha = 0;
         self.buttonShuffle.alpha = 0;
-                self.buttonShuffle.alpha = 1;
+        self.buttonShuffle.alpha = 1;
     } completion:nil];
 
     [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -67,19 +98,94 @@
                                    selector:@selector(randomizeViews)
                                    userInfo:nil
                                     repeats:NO];
+
 }
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)loadImagePicker {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.allowsEditing = NO;
+    self.imagePicker.delegate = self;
+    self.imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext; //fixes snapshot error
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 75, 320, 410)];
+        image.image = [UIImage imageNamed:@"template"];
+        self.imagePicker.cameraOverlayView = image;
+    }
+    else
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    self.imageEditor = [storyboard instantiateViewControllerWithIdentifier:@"DemoImageEditor"];
+    self.imageEditor.checkBounds = YES;
+    self.imageEditor.rotateEnabled = YES;
+    self.imageEditor.modalPresentationStyle = UIModalPresentationCurrentContext;//Seing if this helps
+    self.library = library;
+
+    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
+        if(!canceled) {
+//            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
+//                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
+//                                  completionBlock:^(NSURL *assetURL, NSError *error){
+//                                      if (error) {
+//
+//                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
+//                                                                                          message:[error localizedDescription]
+//                                                                                         delegate:nil
+//                                                                                cancelButtonTitle:@"Ok"
+//                                                                                otherButtonTitles: nil];
+//                                          [alert show];
+//                                      } else {
+//                                          if (editedImage != nil) {
+                                              NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+                                              [newManagedObject setValue:UIImagePNGRepresentation(editedImage) forKey:@"image"];
+                                              [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
+                                              [newManagedObject setValue:@YES forKey:@"selected"];
+                                              [self.managedObjectContext save:nil];
+//        }
+                }
+//                                  }];
+    };
+//    }
+}
+
+#pragma mark - Image Picker Controller delegate methods
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveTestNotification:)
-                                                 name:@"TestNotification"
-                                               object:nil];
+    UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
 
-    [self load];
-    [self dupliateFirstAndLastElements];
-    [self randomizeViews];
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        if (image != nil) {
+            Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(320, 410)];
+            UIImageWriteToSavedPhotosAlbum(resizedImage, 0, 0, 0);
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+            [newManagedObject setValue:UIImagePNGRepresentation(resizedImage) forKey:@"image"];
+            [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
+            [newManagedObject setValue:@YES forKey:@"selected"];
+            [self.managedObjectContext save:nil];
+        }
+    } else {
+        [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+            UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+            self.imageEditor.sourceImage = image;
+            self.imageEditor.previewImage = preview;
+            [self.imageEditor reset:NO];
+            [picker pushViewController:self.imageEditor animated:YES];
+            [picker setNavigationBarHidden:YES animated:NO];
+
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Failed to get asset from library");
+        }];
+    }
 }
+
 
 - (void)receiveTestNotification:(NSNotification *) notification
 {
@@ -88,8 +194,8 @@
     // as well.
     if ([[notification name] isEqualToString:@"TestNotification"]) {
         NSLog (@"Successfully received the test notification!");
-    [self randomizeViews];
-    [self checkForWinner];
+        [self randomizeViews];
+        [self checkForWinner];
     }
 }
 
@@ -117,7 +223,7 @@
         NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
         request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
-//        request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
+        //        request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
         [self.fetchedResultsController performFetch:nil];
 
@@ -144,7 +250,7 @@
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Tim" ,@"photos":[UIImage imageNamed:@"sample8"]};
         [self.splitPhotoArray addObject:photoItem];
-        
+
         for (NSDictionary *person in self.splitPhotoArray) {
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
             [newManagedObject setValue:UIImagePNGRepresentation(person[@"photos"]) forKey:@"image"];
@@ -154,12 +260,12 @@
         }
         [self load];
     }
-            self.splitPhotoArray = [NSMutableArray array];
-            for (Photos *face in self.fetchedResultsController.fetchedObjects)
-        {
-            NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
-            [self.splitPhotoArray addObject:photoItem];
-        }
+    self.splitPhotoArray = [NSMutableArray array];
+    for (Photos *face in self.fetchedResultsController.fetchedObjects)
+    {
+        NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
+        [self.splitPhotoArray addObject:photoItem];
+    }
     [self.middleCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.bottomCollectionView reloadData];
@@ -237,14 +343,14 @@
         self.nameLabel.text = name;
         self.nameLabel.alpha = 0;
         [UIView animateWithDuration:3.0f animations:^{
-        self.view.backgroundColor = [[UIColor alloc] initWithRed:244/255.0f green:120/255.0f blue:58/255.0f alpha:1.0f];
-//            self.nameLabel.alpha = 0;
-//            self.nameLabel.alpha = 1;
+            self.view.backgroundColor = [[UIColor alloc] initWithRed:244/255.0f green:120/255.0f blue:58/255.0f alpha:1.0f];
+            //            self.nameLabel.alpha = 0;
+            //            self.nameLabel.alpha = 1;
         }];
         [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
             self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
-//            self.nameLabel.alpha = 1;
-//            self.nameLabel.alpha = 0;
+            //            self.nameLabel.alpha = 1;
+            //            self.nameLabel.alpha = 0;
         } completion:nil];
     }
 }
@@ -284,7 +390,7 @@
 - (NSInteger) collectionView:(UICollectionView *)collectionView
       numberOfItemsInSection:(NSInteger)section
 {
-   return [self.splitPhotoArray count];
+    return [self.splitPhotoArray count];
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView

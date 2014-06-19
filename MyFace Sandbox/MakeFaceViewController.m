@@ -9,6 +9,7 @@
 #import "MakeFaceViewController.h"
 #import "Photos.h"
 #import "AppDelegate.h"
+
 @interface MakeFaceViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *makeFaceImageView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
@@ -55,52 +56,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    self.textField.delegate = self;
-
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.allowsEditing = NO;
-    self.imagePicker.delegate = self;
-    self.imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext; //fixes snapshot error
-
-    //    self.makeFaceScrollView.delegate = self; // In storyboard
-    self.makeFaceScrollView.contentSize = self.makeFaceImageView.frame.size;
-    self.makeFaceScrollView.maximumZoomScale = 25;
-    self.makeFaceScrollView.minimumZoomScale = 0;
-
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    self.imageEditor = [storyboard instantiateViewControllerWithIdentifier:@"DemoImageEditor"];
-    self.imageEditor.checkBounds = YES;
-    self.imageEditor.rotateEnabled = YES;
-    self.imageEditor.modalPresentationStyle = UIModalPresentationCurrentContext;//Seing if this helps
-    self.library = library;
-
-    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
-        if(!canceled) {
-
-
-            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
-                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
-                                  completionBlock:^(NSURL *assetURL, NSError *error){
-                                      if (error) {
-
-                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
-                                                                                          message:[error localizedDescription]
-                                                                                         delegate:nil
-                                                                                cancelButtonTitle:@"Ok"
-                                                                                otherButtonTitles: nil];
-                                          [alert show];
-                                      } else {
-                                          self.makeFaceImageView.image = editedImage;
-                                          self.buttonSave.enabled = YES;
-                                      }
-                                  }];
-        }
-    };
-}
+    }
 
 //-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 //{

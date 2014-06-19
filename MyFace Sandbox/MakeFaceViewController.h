@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "DemoImageEditor.h"
 #import <CoreData/CoreData.h>
+#import "DemoImageEditor.h"
 
 @interface MakeFaceViewController : UIViewController <UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UIScrollViewDelegate, NSFetchedResultsControllerDelegate, UITextFieldDelegate>

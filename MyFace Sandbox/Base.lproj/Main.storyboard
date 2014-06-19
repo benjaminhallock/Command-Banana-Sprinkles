@@ -66,7 +66,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLW-5b-E2g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                                    <rect key="frame" x="1" y="0.0" width="320" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -163,7 +163,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Rfq-9M-8gY"/>
-                                    <segue destination="0Po-mQ-Kxv" kind="push" id="zuD-FT-NDv"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
@@ -192,7 +191,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="x5B-HK-k52"/>
-                                    <segue destination="kq0-4q-pBN" kind="modal" id="8L2-6p-LUJ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match my Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
@@ -232,13 +230,13 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="camera" id="Jo5-vY-gE7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="kq0-4q-pBN" kind="modal" id="q6q-oh-fV7"/>
+                                <action selector="onCameraButtonPressed:" destination="vXZ-lx-hvc" id="CfM-8O-Rae"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="Lqi-pV-dZF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="0Po-mQ-Kxv" kind="push" id="Dkc-HR-cRA"/>
+                                <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="Dkc-HR-cRA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -480,7 +478,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" enabled="NO" title="changeFace" id="jO5-OG-yjx"/>
                     <navigationItem key="navigationItem" id="exD-hN-xM7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2g-6l-uwk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2g-6l-uwk">
+                            <connections>
+                                <action selector="onAddButtonPressed:" destination="0Po-mQ-Kxv" id="yJO-oO-G31"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Bhb-iA-dHG" id="O1S-ee-YB4"/>
@@ -511,18 +513,6 @@
                                     <constraint firstAttribute="width" constant="320" id="7e7-Zb-iCr"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name this face" placeholder="name" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TJL-tx-xE8">
-                                <rect key="frame" x="0.0" y="474" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="DTj-eu-8i1"/>
-                                    <constraint firstAttribute="width" constant="320" id="pDv-uj-Eh0"/>
-                                </constraints>
-                                <color key="textColor" red="0.37254901959999998" green="0.17254901959999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
                                 <rect key="frame" x="0.0" y="57" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -562,8 +552,6 @@
                             <constraint firstItem="fgm-0o-w7e" firstAttribute="top" secondItem="1ed-9a-KOE" secondAttribute="bottom" id="PIE-E5-YZi"/>
                             <constraint firstItem="xTi-pt-4mr" firstAttribute="leading" secondItem="NeJ-KV-9sP" secondAttribute="leading" id="RwK-I2-xfD"/>
                             <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="gP6-5u-jSu" secondAttribute="bottom" constant="57" id="X6X-ZT-voU"/>
-                            <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="TJL-tx-xE8" secondAttribute="bottom" id="bTZ-Bb-lOA"/>
-                            <constraint firstAttribute="trailing" secondItem="TJL-tx-xE8" secondAttribute="trailing" id="di1-Q4-uxM"/>
                             <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="xTi-pt-4mr" secondAttribute="bottom" constant="1" id="fiD-hC-GLf"/>
                             <constraint firstItem="gP6-5u-jSu" firstAttribute="leading" secondItem="NeJ-KV-9sP" secondAttribute="leading" id="jDn-Oo-gg4"/>
                         </constraints>
@@ -617,8 +605,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="zuD-FT-NDv"/>
-        <segue reference="q6q-oh-fV7"/>
-    </inferredMetricsTieBreakers>
 </document>
