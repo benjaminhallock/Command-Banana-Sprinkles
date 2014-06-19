@@ -116,12 +116,12 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-g7-Wz4">
-                                <rect key="frame" x="112" y="454" width="100" height="100"/>
+                                <rect key="frame" x="111" y="454" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="7Hi-T4-Bzn"/>
-                                    <constraint firstAttribute="height" constant="100" id="iV9-cL-CDg"/>
+                                    <constraint firstAttribute="width" constant="100" id="2Wq-Fe-6OE"/>
+                                    <constraint firstAttribute="height" constant="100" id="CRM-AA-dgY"/>
                                 </constraints>
                                 <state key="normal" image="myfacebutton">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -139,7 +139,7 @@
                                     <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aWl-K9-Nxb"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf">
                                 <rect key="frame" x="255" y="473" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
@@ -220,12 +220,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="knB-xO-XQf" secondAttribute="bottom" constant="-5" id="2df-lt-14T"/>
                             <constraint firstItem="0Rj-fI-OFV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="B2g-bR-M1d"/>
+                            <constraint firstItem="PBe-g7-Wz4" firstAttribute="leading" secondItem="qY6-la-zGy" secondAttribute="trailing" constant="41" id="Dsl-oH-v7J"/>
                             <constraint firstItem="cX3-ER-2HA" firstAttribute="top" secondItem="0Rj-fI-OFV" secondAttribute="bottom" constant="33" id="Ogw-rw-sPd"/>
-                            <constraint firstAttribute="bottom" secondItem="PBe-g7-Wz4" secondAttribute="bottom" constant="14" id="PDT-Cp-nZa"/>
                             <constraint firstAttribute="bottom" secondItem="qY6-la-zGy" secondAttribute="bottom" constant="-5" id="W6n-go-sHt"/>
                             <constraint firstItem="qY6-la-zGy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="-30" id="Wpy-VZ-BxK"/>
-                            <constraint firstItem="knB-xO-XQf" firstAttribute="leading" secondItem="PBe-g7-Wz4" secondAttribute="trailing" constant="43" id="l7i-Ae-kCt"/>
-                            <constraint firstItem="PBe-g7-Wz4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="112" id="tJx-7M-azf"/>
+                            <constraint firstItem="cX3-ER-2HA" firstAttribute="top" secondItem="PBe-g7-Wz4" secondAttribute="bottom" constant="14" id="c0m-6d-eYo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="myFace" id="6Bz-bR-f4O">
@@ -312,7 +311,7 @@
                                 </connections>
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SMH-i9-Y5U">
-                                <rect key="frame" x="0.0" y="-1" width="320" height="66"/>
+                                <rect key="frame" x="0.0" y="-1" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.0" green="0.66274509800000003" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
@@ -325,7 +324,7 @@
                                             </connections>
                                         </barButtonItem>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KMX-oG-vu9">
-                                            <rect key="frame" x="86" y="22" width="149" height="44"/>
+                                            <rect key="frame" x="86" y="0.0" width="149" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="Gallery">
