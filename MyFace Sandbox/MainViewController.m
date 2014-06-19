@@ -70,7 +70,7 @@
     }
     
     [self load];
-    [self dupliateFirstAndLastElements];
+    [self duplicateFirstAndLastElements];
     [self randomizeViews];
 }
 
@@ -200,21 +200,21 @@
 }
 
 
-- (void)receiveTestNotification:(NSNotification *) notification
+- (void)receiveTestNotification:(NSNotification *) notification // not used sincetabbar
 {
     // [notification name] should always be @"TestNotification"
     // unless you use this method for observation of other notifications
     // as well.
     if ([[notification name] isEqualToString:@"TestNotification"]) {
         NSLog (@"Successfully received the test notification!");
-        [self randomizeViews];
-        [self checkForWinner];
+//        [self randomizeViews];
+//        [self checkForWinner];
     }
 }
 
 -(IBAction)shuffleButton:(id)sender {
     [self randomizeViews];
-    [self checkForWinner];
+//    [self checkForWinner];
 
 }
 
@@ -325,7 +325,7 @@
 }
 
 // to enable the illusion of a circular array of photos
-- (void)dupliateFirstAndLastElements
+- (void)duplicateFirstAndLastElements
 {
     NSMutableArray *temp = [NSMutableArray array];
     [temp addObject:[self.splitPhotoArray lastObject]];
