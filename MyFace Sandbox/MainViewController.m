@@ -55,13 +55,26 @@
                                                  name:@"TestNotification"
                                                object:nil];
 
+
+
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 75, 320, 410)];
+        image.image = [UIImage imageNamed:@"template"];
+        self.imagePicker.cameraOverlayView = image;
+    }
+    else
+    {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
     [self load];
     [self dupliateFirstAndLastElements];
     [self randomizeViews];
 }
 
 -(IBAction)onCameraButtonPressed:(id)sender {
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 

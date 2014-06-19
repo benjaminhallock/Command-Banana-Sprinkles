@@ -20,9 +20,10 @@
 @implementation ChangeFaceViewController
 
 -(IBAction)onAddButtonPressed:(id)sender {
-    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
+
 
 -(void)viewDidLoad {
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
@@ -36,6 +37,8 @@
 -(void)viewDidAppear:(BOOL)animated {
     [self load];
     [self.collectionView reloadData];
+    
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 }
 
 - (void) processDoubleTap:(UITapGestureRecognizer *)sender
