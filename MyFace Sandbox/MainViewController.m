@@ -215,7 +215,6 @@
 -(IBAction)shuffleButton:(id)sender {
     [self randomizeViews];
 //    [self checkForWinner];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

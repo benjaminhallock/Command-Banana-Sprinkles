@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QEL-Dy-gaf" customClass="TopCollectionView">
-                                <rect key="frame" x="1" y="33" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="33" width="320" height="200"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Z0r-tE-1r2">
                                     <size key="itemSize" width="320" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -66,7 +66,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLW-5b-E2g">
-                                                    <rect key="frame" x="1" y="0.0" width="320" height="75"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -514,7 +514,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
-                                <rect key="frame" x="0.0" y="57" width="320" height="410"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="410" id="Xzn-LV-xMC"/>
@@ -551,7 +551,7 @@
                             <constraint firstItem="1ed-9a-KOE" firstAttribute="leading" secondItem="NeJ-KV-9sP" secondAttribute="leading" id="GPe-Jx-PS2"/>
                             <constraint firstItem="fgm-0o-w7e" firstAttribute="top" secondItem="1ed-9a-KOE" secondAttribute="bottom" id="PIE-E5-YZi"/>
                             <constraint firstItem="xTi-pt-4mr" firstAttribute="leading" secondItem="NeJ-KV-9sP" secondAttribute="leading" id="RwK-I2-xfD"/>
-                            <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="gP6-5u-jSu" secondAttribute="bottom" constant="57" id="X6X-ZT-voU"/>
+                            <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="gP6-5u-jSu" secondAttribute="bottom" constant="58" id="X6X-ZT-voU"/>
                             <constraint firstItem="1ed-9a-KOE" firstAttribute="top" secondItem="xTi-pt-4mr" secondAttribute="bottom" constant="1" id="fiD-hC-GLf"/>
                             <constraint firstItem="gP6-5u-jSu" firstAttribute="leading" secondItem="NeJ-KV-9sP" secondAttribute="leading" id="jDn-Oo-gg4"/>
                         </constraints>

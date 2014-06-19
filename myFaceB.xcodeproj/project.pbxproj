@@ -31,12 +31,12 @@
 		C20B6BB8194FD48B0080F9AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20B6BB7194FD48B0080F9AF /* AssetsLibrary.framework */; };
 		C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */; };
 		C28436D41950F24F00D9BC63 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28436D31950F24F00D9BC63 /* TabBarViewController.m */; };
+		C288E1A319536493001659A2 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = C288E1A219536493001659A2 /* Photos.m */; };
 		C29335D4194FC5300031688C /* HFImageEditorFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335CF194FC5300031688C /* HFImageEditorFrameView.m */; };
 		C29335D5194FC5300031688C /* HFImageEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335D2194FC5300031688C /* HFImageEditorViewController.m */; };
 		C29335D9194FC5390031688C /* DemoImageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335D8194FC5390031688C /* DemoImageEditor.m */; };
 		C294458019509936002486F7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C294457F19509936002486F7 /* CoreData.framework */; };
 		C2944583195099C4002486F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2944581195099C4002486F7 /* Model.xcdatamodeld */; };
-		C294458919509D0C002486F7 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = C294458819509D0C002486F7 /* Photos.m */; };
 		C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958BF194F46D200944955 /* ChangeFaceViewController.m */; };
 		C2FA6A621951EDEE00DCE669 /* Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6A611951EDEE00DCE669 /* Resize.m */; };
 /* End PBXBuildFile section */
@@ -90,6 +90,8 @@
 		C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceCustomCell.m; sourceTree = "<group>"; };
 		C28436D21950F24F00D9BC63 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		C28436D31950F24F00D9BC63 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		C288E1A119536493001659A2 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photos.h; sourceTree = "<group>"; };
+		C288E1A219536493001659A2 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photos.m; sourceTree = "<group>"; };
 		C29335CE194FC5300031688C /* HFImageEditorFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFImageEditorFrameView.h; sourceTree = "<group>"; };
 		C29335CF194FC5300031688C /* HFImageEditorFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFImageEditorFrameView.m; sourceTree = "<group>"; };
 		C29335D0194FC5300031688C /* HFImageEditorViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HFImageEditorViewController+Private.h"; sourceTree = "<group>"; };
@@ -99,8 +101,6 @@
 		C29335D8194FC5390031688C /* DemoImageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoImageEditor.m; sourceTree = "<group>"; };
 		C294457F19509936002486F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C2944582195099C4002486F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		C294458719509D0C002486F7 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photos.h; path = "MyFace Sandbox/Photos.h"; sourceTree = "<group>"; };
-		C294458819509D0C002486F7 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photos.m; path = "MyFace Sandbox/Photos.m"; sourceTree = "<group>"; };
 		C2A958BE194F46D200944955 /* ChangeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceViewController.h; sourceTree = "<group>"; };
 		C2A958BF194F46D200944955 /* ChangeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceViewController.m; sourceTree = "<group>"; };
 		C2FA6A601951EDED00DCE669 /* Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resize.h; sourceTree = "<group>"; };
@@ -138,9 +138,9 @@
 			children = (
 				C28436D21950F24F00D9BC63 /* TabBarViewController.h */,
 				C28436D31950F24F00D9BC63 /* TabBarViewController.m */,
-				C294458719509D0C002486F7 /* Photos.h */,
-				C294458819509D0C002486F7 /* Photos.m */,
 				C2944581195099C4002486F7 /* Model.xcdatamodeld */,
+				C288E1A119536493001659A2 /* Photos.h */,
+				C288E1A219536493001659A2 /* Photos.m */,
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
@@ -386,13 +386,13 @@
 				AE08F4CE194B55DA00E2A260 /* BottomCollectionView.m in Sources */,
 				AE08F4A2194B552100E2A260 /* AppDelegate.m in Sources */,
 				C2944583195099C4002486F7 /* Model.xcdatamodeld in Sources */,
+				C288E1A319536493001659A2 /* Photos.m in Sources */,
 				AE08F49E194B552100E2A260 /* main.m in Sources */,
 				AE08F4D1194B560C00E2A260 /* TopCollectionViewCell.m in Sources */,
 				C29335D9194FC5390031688C /* DemoImageEditor.m in Sources */,
 				C29335D5194FC5300031688C /* HFImageEditorViewController.m in Sources */,
 				C28436D41950F24F00D9BC63 /* TabBarViewController.m in Sources */,
 				C2FA6A621951EDEE00DCE669 /* Resize.m in Sources */,
-				C294458919509D0C002486F7 /* Photos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
