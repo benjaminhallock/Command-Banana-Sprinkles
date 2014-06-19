@@ -23,6 +23,15 @@
 
 -(void)viewDidAppear:(BOOL)animated {
 
+    self.editing = !self.editing;
+
+    if (self.editing == YES) {
+    [self onTakePhotoPressed:nil];
+    } else {
+        [self onUploadPhotoPressed:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -32,12 +41,12 @@
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
 
-    if (self.makeFaceImageView.image != nil) {
+    if (self.makeFaceImageView.image) {
         self.buttonSave.enabled = YES;
     } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
         self.buttonSave.enabled = NO;
     }
-
 }
 
 - (void)viewDidLoad
@@ -94,6 +103,10 @@
 //    return self.makeFaceImageView;
 //}
 
+- (IBAction)onCancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)onTakePhotoPressed:(id)sender {
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
@@ -127,8 +140,8 @@
 {
     if (self.makeFaceImageView.image != nil) {
 
-        if ([self.textField.text isEqualToString:@"name this face"]) {
-            self.textField.text = @"";
+        if ([self.textField.text isEqualToString:@"name this face"] || [self.textField.text isEqualToString:@""]) {
+            self.textField.text = @"Joe Shmoe";
         }
 
         UIImage *image = self.makeFaceImageView.image;
@@ -150,6 +163,7 @@
             self.makeFaceImageView.alpha = 1;
             self.textField.alpha = 1;
             [self.textField resignFirstResponder];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
 
     }

@@ -63,21 +63,6 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
-
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 250, 320, 30)];
-    if (self.fetchedResultsController.fetchedObjects.count < 3) {
-        label.text = @"Need 3 photos";
-        label.font = [UIFont fontWithName:@"Heiti SC" size:30];
-        label.textColor = [UIColor whiteColor];
-        label.textAlignment = UITextAlignmentCenter;
-        [self.view addSubview:label];
-    } else {
-        label.text = @"";
-        label.font = [UIFont fontWithName:@"Heiti SC" size:30];
-        label.textColor = [UIColor whiteColor];
-        label.textAlignment = UITextAlignmentCenter;
-        [self.view addSubview:label];
-    }
 }
 
 

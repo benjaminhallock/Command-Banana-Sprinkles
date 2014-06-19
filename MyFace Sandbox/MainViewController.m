@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (strong, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (strong, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
+@property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property NSMutableArray *splitPhotoArray;
 @end
@@ -31,6 +32,7 @@
 
 - (void)viewDidLoad
 {
+    self.buttonShuffle.alpha = 0;
     [super viewDidLoad];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
@@ -46,6 +48,8 @@
     [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
         self.nameLabel.alpha = 1;
            self.nameLabel.alpha = 0;
+        self.buttonShuffle.alpha = 0;
+                self.buttonShuffle.alpha = 1;
     } completion:nil];
 
     [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -74,9 +78,6 @@
 
     [self load];
     [self dupliateFirstAndLastElements];
-    [self.middleCollectionView reloadData];
-    [self.topCollectionView reloadData];
-    [self.bottomCollectionView reloadData];
     [self randomizeViews];
 }
 
@@ -91,6 +92,13 @@
     [self checkForWinner];
     }
 }
+
+-(IBAction)shuffleButton:(id)sender {
+    [self randomizeViews];
+    [self checkForWinner];
+
+}
+
 -(void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -104,36 +112,45 @@
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
 
-    self.splitPhotoArray = [NSMutableArray array];
 
-    if (self.fetchedResultsController.fetchedObjects.count > 2)
-    {
-        for (Photos *face in self.fetchedResultsController.fetchedObjects)
+    if (self.fetchedResultsController.fetchedObjects.count  < 3) {
+        self.splitPhotoArray = [NSMutableArray array];
+        NSDictionary *photoItem;
+        photoItem = @{@"name":@"Frank" ,@"photos":[UIImage imageNamed:@"sample1.png"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tom" ,@"photos":[UIImage imageNamed:@"sample2"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Brian" ,@"photos":[UIImage imageNamed:@"sample3"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Sally" ,@"photos":[UIImage imageNamed:@"sample4"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Ben" ,@"photos":[UIImage imageNamed:@"sample5"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Max" ,@"photos":[UIImage imageNamed:@"sample6"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Don" ,@"photos":[UIImage imageNamed:@"sample7"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tim" ,@"photos":[UIImage imageNamed:@"sample8"]};
+        [self.splitPhotoArray addObject:photoItem];
+        
+        for (NSDictionary *person in self.splitPhotoArray) {
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+            [newManagedObject setValue:UIImagePNGRepresentation(person[@"photos"]) forKey:@"image"];
+            [newManagedObject setValue:person[@"name"] forKey:@"name"];
+            [newManagedObject setValue:@YES forKey:@"selected"];
+            [self.managedObjectContext save:nil];
+        }
+        [self load];
+    }
+            self.splitPhotoArray = [NSMutableArray array];
+            for (Photos *face in self.fetchedResultsController.fetchedObjects)
         {
             NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
             [self.splitPhotoArray addObject:photoItem];
         }
-    }
-    else
-    {
-        NSDictionary *photoItem;
-        photoItem = @{@"name":@"Frank" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample1.png"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Tom" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample2"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Brian" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample3"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Sally" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample4"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Ben" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample5"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Max" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample6"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Don" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample7"]]};
-        [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Tim" ,@"photos":[self slicePhotos:[UIImage imageNamed:@"sample8"]]};
-        [self.splitPhotoArray addObject:photoItem];
-    }
+    [self.middleCollectionView reloadData];
+    [self.topCollectionView reloadData];
+    [self.bottomCollectionView reloadData];
 }
 
 
@@ -266,7 +283,7 @@
     if (collectionView == self.topCollectionView)
     {
         TopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TopCellID" forIndexPath:indexPath];
-        cell.imageView.image = photos.firstObject;
+        cell.imageView.image = [photos objectAtIndex:0];
         return cell;
     }
     else if (collectionView == self.middleCollectionView)
@@ -278,7 +295,7 @@
     else
     {
         BottomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"BottomCellID" forIndexPath:indexPath];
-        cell.imageView.image = photos.lastObject;
+        cell.imageView.image = [photos objectAtIndex:2];
         return cell;
     }
 }

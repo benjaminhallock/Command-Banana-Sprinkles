@@ -52,21 +52,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AE08F48E194B552000E2A260 /* MyFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE08F48E194B552000E2A260 /* myFaceB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myFaceB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE08F491194B552000E2A260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AE08F493194B552100E2A260 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AE08F495194B552100E2A260 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AE08F499194B552100E2A260 /* MyFace-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyFace-Info.plist"; sourceTree = "<group>"; };
+		AE08F499194B552100E2A260 /* myFaceB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myFaceB-Info.plist"; sourceTree = "<group>"; };
 		AE08F49B194B552100E2A260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE08F49D194B552100E2A260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AE08F49F194B552100E2A260 /* MyFace-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyFace-Prefix.pch"; sourceTree = "<group>"; };
+		AE08F49F194B552100E2A260 /* myFaceB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myFaceB-Prefix.pch"; sourceTree = "<group>"; };
 		AE08F4A0194B552100E2A260 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "MyFace Sandbox/AppDelegate.h"; sourceTree = "<group>"; };
 		AE08F4A1194B552100E2A260 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "MyFace Sandbox/AppDelegate.m"; sourceTree = "<group>"; };
 		AE08F4A4194B552100E2A260 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE08F4A6194B552100E2A260 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AE08F4A7194B552100E2A260 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AE08F4A9194B552100E2A260 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AE08F4AF194B552100E2A260 /* MyFaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myFaceBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE08F4B0194B552100E2A260 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AE08F4B8194B552100E2A260 /* MyFace SandboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyFace SandboxTests-Info.plist"; sourceTree = "<group>"; };
 		AE08F4BA194B552100E2A260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -154,8 +154,8 @@
 		AE08F48F194B552000E2A260 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE08F48E194B552000E2A260 /* MyFace.app */,
-				AE08F4AF194B552100E2A260 /* MyFaceTests.xctest */,
+				AE08F48E194B552000E2A260 /* myFaceB.app */,
+				AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,10 +192,10 @@
 		AE08F498194B552100E2A260 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AE08F499194B552100E2A260 /* MyFace-Info.plist */,
+				AE08F499194B552100E2A260 /* myFaceB-Info.plist */,
 				AE08F49A194B552100E2A260 /* InfoPlist.strings */,
 				AE08F49D194B552100E2A260 /* main.m */,
-				AE08F49F194B552100E2A260 /* MyFace-Prefix.pch */,
+				AE08F49F194B552100E2A260 /* myFaceB-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE08F48D194B552000E2A260 /* MyFace */ = {
+		AE08F48D194B552000E2A260 /* myFaceB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "MyFace" */;
+			buildConfigurationList = AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceB" */;
 			buildPhases = (
 				AE08F48A194B552000E2A260 /* Sources */,
 				AE08F48B194B552000E2A260 /* Frameworks */,
@@ -289,14 +289,14 @@
 			);
 			dependencies = (
 			);
-			name = MyFace;
+			name = myFaceB;
 			productName = "MyFace Sandbox";
-			productReference = AE08F48E194B552000E2A260 /* MyFace.app */;
+			productReference = AE08F48E194B552000E2A260 /* myFaceB.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AE08F4AE194B552100E2A260 /* MyFaceTests */ = {
+		AE08F4AE194B552100E2A260 /* myFaceBTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "MyFaceTests" */;
+			buildConfigurationList = AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceBTests" */;
 			buildPhases = (
 				AE08F4AB194B552100E2A260 /* Sources */,
 				AE08F4AC194B552100E2A260 /* Frameworks */,
@@ -307,9 +307,9 @@
 			dependencies = (
 				AE08F4B5194B552100E2A260 /* PBXTargetDependency */,
 			);
-			name = MyFaceTests;
+			name = myFaceBTests;
 			productName = "MyFace SandboxTests";
-			productReference = AE08F4AF194B552100E2A260 /* MyFaceTests.xctest */;
+			productReference = AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -329,7 +329,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE08F489194B552000E2A260 /* Build configuration list for PBXProject "MyFace" */;
+			buildConfigurationList = AE08F489194B552000E2A260 /* Build configuration list for PBXProject "myFaceB" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -342,8 +342,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE08F48D194B552000E2A260 /* MyFace */,
-				AE08F4AE194B552100E2A260 /* MyFaceTests */,
+				AE08F48D194B552000E2A260 /* myFaceB */,
+				AE08F4AE194B552100E2A260 /* myFaceBTests */,
 			);
 		};
 /* End PBXProject section */
@@ -409,7 +409,7 @@
 /* Begin PBXTargetDependency section */
 		AE08F4B5194B552100E2A260 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AE08F48D194B552000E2A260 /* MyFace */;
+			target = AE08F48D194B552000E2A260 /* myFaceB */;
 			targetProxy = AE08F4B4194B552100E2A260 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -521,10 +521,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace-Prefix.pch";
-				INFOPLIST_FILE = "MyFace Sandbox/MyFace-Info.plist";
+				GCC_PREFIX_HEADER = "MyFace Sandbox/myFaceB-Prefix.pch";
+				INFOPLIST_FILE = "MyFace Sandbox/myFaceB-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = MyFace;
+				PRODUCT_NAME = myFaceB;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -538,10 +538,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace-Prefix.pch";
-				INFOPLIST_FILE = "MyFace Sandbox/MyFace-Info.plist";
+				GCC_PREFIX_HEADER = "MyFace Sandbox/myFaceB-Prefix.pch";
+				INFOPLIST_FILE = "MyFace Sandbox/myFaceB-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = MyFace;
+				PRODUCT_NAME = myFaceB;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -563,7 +563,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MyFace SandboxTests/MyFace SandboxTests-Info.plist";
-				PRODUCT_NAME = MyFaceTests;
+				PRODUCT_NAME = myFaceBTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -581,7 +581,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace Sandbox-Prefix.pch";
 				INFOPLIST_FILE = "MyFace SandboxTests/MyFace SandboxTests-Info.plist";
-				PRODUCT_NAME = MyFaceTests;
+				PRODUCT_NAME = myFaceBTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -590,7 +590,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE08F489194B552000E2A260 /* Build configuration list for PBXProject "MyFace" */ = {
+		AE08F489194B552000E2A260 /* Build configuration list for PBXProject "myFaceB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4BE194B552100E2A260 /* Debug */,
@@ -599,7 +599,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "MyFace" */ = {
+		AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4C1194B552100E2A260 /* Debug */,
@@ -608,7 +608,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "MyFaceTests" */ = {
+		AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceBTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4C4194B552100E2A260 /* Debug */,
