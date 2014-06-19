@@ -114,6 +114,18 @@
 
 
     if (self.fetchedResultsController.fetchedObjects.count  < 3) {
+        NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
+//        request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
+        [self.fetchedResultsController performFetch:nil];
+
+        for (NSManagedObject *face in self.fetchedResultsController.fetchedObjects) {
+            [self.managedObjectContext deleteObject:face];
+            [self.managedObjectContext save:nil];
+        }
+
         self.splitPhotoArray = [NSMutableArray array];
         NSDictionary *photoItem;
         photoItem = @{@"name":@"Frank" ,@"photos":[UIImage imageNamed:@"sample1.png"]};
@@ -225,12 +237,14 @@
         self.nameLabel.text = name;
         self.nameLabel.alpha = 0;
         [UIView animateWithDuration:3.0f animations:^{
-            self.nameLabel.alpha = 0;
-            self.nameLabel.alpha = 1;
+        self.view.backgroundColor = [[UIColor alloc] initWithRed:244/255.0f green:120/255.0f blue:58/255.0f alpha:1.0f];
+//            self.nameLabel.alpha = 0;
+//            self.nameLabel.alpha = 1;
         }];
-        [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
-            self.nameLabel.alpha = 1;
-            self.nameLabel.alpha = 0;
+        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
+            self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
+//            self.nameLabel.alpha = 1;
+//            self.nameLabel.alpha = 0;
         } completion:nil];
     }
 }

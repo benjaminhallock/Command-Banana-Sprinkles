@@ -35,6 +35,10 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 75, 320, 410)];
+        image.image = [UIImage imageNamed:@"template"];
+        self.imagePicker.cameraOverlayView = image;
+
     }
     else
     {
@@ -186,6 +190,8 @@
         self.imageEditor.sourceImage = image;
         self.imageEditor.previewImage = preview;
         [self.imageEditor reset:NO];
+
+
 
         //        [picker presentViewController:self.imageEditor animated:YES completion:nil];
         [picker pushViewController:self.imageEditor animated:YES];
