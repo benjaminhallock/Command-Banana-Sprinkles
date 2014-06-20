@@ -20,7 +20,7 @@
 @implementation ChangeFaceViewController
 
 -(IBAction)onAddButtonPressed:(id)sender {
-//    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
