@@ -115,113 +115,57 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="zIH-X8-Nh6"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-g7-Wz4" userLabel="Middle shuffle button">
-                                <rect key="frame" x="111" y="454" width="100" height="100"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBe-g7-Wz4" userLabel="Middle shuffle button">
+                                <rect key="frame" x="102" y="454" width="116" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="2Wq-Fe-6OE"/>
+                                    <constraint firstAttribute="width" constant="116" id="2Wq-Fe-6OE"/>
                                     <constraint firstAttribute="height" constant="100" id="CRM-AA-dgY"/>
                                 </constraints>
-                                <state key="normal" image="myfacebutton">
+                                <state key="normal" image="circleshuffle">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                        <size key="value" width="1" height="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aWl-K9-Nxb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf" userLabel="Gallery button hidden">
-                                <rect key="frame" x="220" y="454" width="100" height="100"/>
+                            <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf" userLabel="Gallery button hidden">
+                                <rect key="frame" x="208" y="456" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="WjJ-wo-PXU"/>
                                     <constraint firstAttribute="height" constant="100" id="YGL-SZ-Vpf"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="jWK-pY-cZh"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="ucF-wC-PBO"/>
                                 </constraints>
-                                <state key="normal" image="gallerybutton">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="squares8 (1)">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                        <size key="value" width="1" height="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="VFu-PB-RPR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
-                                <rect key="frame" x="0.0" y="454" width="100" height="100"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
+                                <rect key="frame" x="28" y="489" width="51" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="XbS-JK-Duq"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="dPe-0R-7sa"/>
+                                    <constraint firstAttribute="height" constant="42" id="XbS-JK-Duq"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="dPe-0R-7sa"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="fOl-tx-Y8e"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="lNG-T2-QpM"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51" id="lNG-T2-QpM"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="lvP-03-h2Q"/>
-                                    <constraint firstAttribute="width" constant="100" id="w99-wm-ulU"/>
+                                    <constraint firstAttribute="width" constant="51" id="w99-wm-ulU"/>
                                 </constraints>
-                                <state key="normal" image="camerabutton">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                        <size key="value" width="1" height="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="grocery10"/>
                                 <connections>
                                     <action selector="onScreenShotTook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lWx-aV-dax"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Match my Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
-                                <rect key="frame" x="20" y="473" width="280" height="62"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Match my Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
+                                <rect key="frame" x="20" y="350" width="280" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.47058823529999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -243,12 +187,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.66274509803921566" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="knB-xO-XQf" secondAttribute="bottom" constant="14" id="2df-lt-14T"/>
+                            <constraint firstAttribute="bottom" secondItem="knB-xO-XQf" secondAttribute="bottom" constant="12" id="2df-lt-14T"/>
                             <constraint firstItem="0Rj-fI-OFV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="B2g-bR-M1d"/>
-                            <constraint firstItem="PBe-g7-Wz4" firstAttribute="leading" secondItem="qY6-la-zGy" secondAttribute="trailing" constant="11" id="Dsl-oH-v7J"/>
+                            <constraint firstItem="PBe-g7-Wz4" firstAttribute="leading" secondItem="qY6-la-zGy" secondAttribute="trailing" constant="23" id="Dsl-oH-v7J"/>
                             <constraint firstItem="cX3-ER-2HA" firstAttribute="top" secondItem="0Rj-fI-OFV" secondAttribute="bottom" constant="33" id="Ogw-rw-sPd"/>
-                            <constraint firstAttribute="bottom" secondItem="qY6-la-zGy" secondAttribute="bottom" constant="14" id="W6n-go-sHt"/>
-                            <constraint firstItem="qY6-la-zGy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Wpy-VZ-BxK"/>
+                            <constraint firstAttribute="bottom" secondItem="qY6-la-zGy" secondAttribute="bottom" constant="37" id="W6n-go-sHt"/>
+                            <constraint firstItem="qY6-la-zGy" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="28" id="Wpy-VZ-BxK"/>
                             <constraint firstItem="cX3-ER-2HA" firstAttribute="top" secondItem="PBe-g7-Wz4" secondAttribute="bottom" constant="14" id="c0m-6d-eYo"/>
                         </constraints>
                     </view>
@@ -621,10 +565,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camerabutton" width="107" height="50"/>
-        <image name="gallerybutton" width="107" height="50"/>
-        <image name="myfacebutton" width="107" height="50"/>
+        <image name="circleshuffle" width="107" height="100"/>
+        <image name="grocery10" width="64" height="64"/>
         <image name="splash" width="260" height="294"/>
+        <image name="squares8 (1)" width="64" height="64"/>
         <image name="template" width="654" height="813"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
