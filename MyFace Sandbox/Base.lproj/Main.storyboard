@@ -160,9 +160,6 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="grocery10"/>
-                                <connections>
-                                    <action selector="onScreenShotTook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lWx-aV-dax"/>
-                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Match my Face" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rj-fI-OFV">
                                 <rect key="frame" x="20" y="350" width="280" height="62"/>
@@ -207,7 +204,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Lqi-pV-dZF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="Dkc-HR-cRA"/>
+                                <action selector="onScreenShotTook:" destination="vXZ-lx-hvc" id="ZkY-gg-Trf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -245,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rNu-Nu-HZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2324" y="-60"/>
+            <point key="canvasLocation" x="2262" y="-60"/>
         </scene>
         <!--Make Face View Controller - makeFace-->
         <scene sceneID="2xF-f5-iXm">
@@ -370,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ERU-L2-ayC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1901" y="-656"/>
+            <point key="canvasLocation" x="1893" y="-716"/>
         </scene>
         <!--Change Face View Controller - changeFace-->
         <scene sceneID="UNU-HC-PF5">
@@ -461,7 +458,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlw-eh-rnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1895" y="8"/>
+            <point key="canvasLocation" x="1893" y="-60"/>
         </scene>
         <!--Demo Image Editor-->
         <scene sceneID="Jrz-Pq-UFH">
@@ -535,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5x7-Qz-sUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2324" y="-724"/>
+            <point key="canvasLocation" x="2262" y="-716"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9EH-EU-Qcc">
@@ -576,7 +573,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="VFu-PB-RPR"/>
-    </inferredMetricsTieBreakers>
 </document>
