@@ -253,14 +253,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="myFace" id="6Bz-bR-f4O">
-                        <barButtonItem key="backBarButtonItem" title=" " id="Op7-DA-3mk"/>
+                        <barButtonItem key="backBarButtonItem" title=" 👶 " id="Op7-DA-3mk"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="camera" id="Jo5-vY-gE7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCameraButtonPressed:" destination="vXZ-lx-hvc" id="CfM-8O-Rae"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="Lqi-pV-dZF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Lqi-pV-dZF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="Dkc-HR-cRA"/>

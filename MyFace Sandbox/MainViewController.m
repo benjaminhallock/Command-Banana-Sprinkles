@@ -35,17 +35,22 @@
 @implementation MainViewController
 
 -(IBAction)onScreenShotTook:(id)sender {
+
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, [UIScreen mainScreen].scale);
     } else {
-        UIGraphicsBeginImageContext(self.view.window.bounds.size);
+        UIGraphicsBeginImageContext(CGSizeMake(320, 430));
     }
     [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     NSData * data = UIImagePNGRepresentation(image);
     [data writeToFile:@"foo.png" atomically:YES];
-    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
+    //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
+    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -71,8 +76,6 @@
                                                  name:@"TestNotification"
                                                object:nil];
 
-
-
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -84,7 +87,7 @@
     {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    
+
     [self load];
     [self duplicateFirstAndLastElements];
     [self randomizeViews];
@@ -158,29 +161,29 @@
 
     self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
         if(!canceled) {
-//            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
-//                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
-//                                  completionBlock:^(NSURL *assetURL, NSError *error){
-//                                      if (error) {
-//
-//                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
-//                                                                                          message:[error localizedDescription]
-//                                                                                         delegate:nil
-//                                                                                cancelButtonTitle:@"Ok"
-//                                                                                otherButtonTitles: nil];
-//                                          [alert show];
-//                                      } else {
-//                                          if (editedImage != nil) {
-                                              NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
-                                              [newManagedObject setValue:UIImagePNGRepresentation(editedImage) forKey:@"image"];
-                                              [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
-                                              [newManagedObject setValue:@YES forKey:@"selected"];
-                                              [self.managedObjectContext save:nil];
-//        }
-                }
-//                                  }];
+            //            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
+            //                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
+            //                                  completionBlock:^(NSURL *assetURL, NSError *error){
+            //                                      if (error) {
+            //
+            //                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
+            //                                                                                          message:[error localizedDescription]
+            //                                                                                         delegate:nil
+            //                                                                                cancelButtonTitle:@"Ok"
+            //                                                                                otherButtonTitles: nil];
+            //                                          [alert show];
+            //                                      } else {
+            //                                          if (editedImage != nil) {
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+            [newManagedObject setValue:UIImagePNGRepresentation(editedImage) forKey:@"image"];
+            [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
+            [newManagedObject setValue:@YES forKey:@"selected"];
+            [self.managedObjectContext save:nil];
+            //        }
+        }
+        //                                  }];
     };
-//    }
+    //    }
 }
 
 #pragma mark - Image Picker Controller delegate methods
@@ -223,14 +226,14 @@
     // as well.
     if ([[notification name] isEqualToString:@"TestNotification"]) {
         NSLog (@"Successfully received the test notification!");
-//        [self randomizeViews];
-//        [self checkForWinner];
+        //        [self randomizeViews];
+        //        [self checkForWinner];
     }
 }
 
 -(IBAction)shuffleButton:(id)sender {
     [self randomizeViews];
-//    [self checkForWinner];
+    //    [self checkForWinner];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
