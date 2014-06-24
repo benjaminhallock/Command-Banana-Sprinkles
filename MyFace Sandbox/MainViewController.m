@@ -18,6 +18,8 @@
 #import "ChangeFaceViewController.h"
 #import "Resize.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
@@ -31,6 +33,20 @@
 @end
 
 @implementation MainViewController
+
+-(IBAction)onScreenShotTook:(id)sender {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, [UIScreen mainScreen].scale);
+    } else {
+        UIGraphicsBeginImageContext(self.view.window.bounds.size);
+    }
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData * data = UIImagePNGRepresentation(image);
+    [data writeToFile:@"foo.png" atomically:YES];
+    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ChangeFaceViewController *nextView = [segue destinationViewController];
