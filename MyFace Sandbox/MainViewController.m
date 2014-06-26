@@ -45,7 +45,7 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     NSData * data = UIImagePNGRepresentation(image);
-    [data writeToFile:@"foo.png" atomically:YES];
+    // [data writeToFile:@"foo.png" atomically:YES];/
     //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
     NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
@@ -64,6 +64,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
@@ -170,13 +171,13 @@
             //                                                                                          message:[error localizedDescription]
             //                                                                                         delegate:nil
             //                                                                                cancelButtonTitle:@"Ok"
-            //                                                                                otherButtonTitles: nil];
+            //                                                                              otherButtonTitles: nil];
             //                                          [alert show];
             //                                      } else {
             //                                          if (editedImage != nil) {
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
             [newManagedObject setValue:UIImagePNGRepresentation(editedImage) forKey:@"image"];
-            [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
+            [newManagedObject setValue:@"Zeus" forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
             //        }
@@ -199,7 +200,7 @@
             UIImageWriteToSavedPhotosAlbum(resizedImage, 0, 0, 0);
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
             [newManagedObject setValue:UIImagePNGRepresentation(resizedImage) forKey:@"image"];
-            [newManagedObject setValue:@"Joe Schmoe" forKey:@"name"];
+            [newManagedObject setValue:@"Zeus" forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
         }
