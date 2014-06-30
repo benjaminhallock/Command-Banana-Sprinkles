@@ -194,14 +194,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="myFace" id="6Bz-bR-f4O">
-                        <barButtonItem key="backBarButtonItem" title=" 👶 " id="Op7-DA-3mk"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="Jo5-vY-gE7">
+                        <barButtonItem key="backBarButtonItem" title=" " id="EPD-mg-Ek5"/>
+                        <barButtonItem key="leftBarButtonItem" image="camera" id="Jo5-vY-gE7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onCameraButtonPressed:" destination="vXZ-lx-hvc" id="CfM-8O-Rae"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Lqi-pV-dZF">
+                        <barButtonItem key="rightBarButtonItem" image="milkshake" id="Lqi-pV-dZF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onScreenShotTook:" destination="vXZ-lx-hvc" id="ZkY-gg-Trf"/>
@@ -446,7 +446,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" enabled="NO" title="changeFace" id="jO5-OG-yjx"/>
                     <navigationItem key="navigationItem" id="exD-hN-xM7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="N2g-6l-uwk">
+                        <barButtonItem key="leftBarButtonItem" image="smiley" id="DZH-4e-sFt" userLabel="back">
+                            <connections>
+                                <segue destination="Eow-NL-IaP" kind="unwind" unwindAction="unwind:" id="WS3-S0-7NX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="dashsquare" id="N2g-6l-uwk">
                             <connections>
                                 <action selector="onAddButtonPressed:" destination="0Po-mQ-Kxv" id="yJO-oO-G31"/>
                             </connections>
@@ -457,6 +462,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlw-eh-rnn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Eow-NL-IaP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1893" y="-60"/>
         </scene>
@@ -562,8 +568,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="32" height="32"/>
         <image name="circleshuffle" width="107" height="100"/>
+        <image name="dashsquare" width="32" height="32"/>
         <image name="grocery10" width="64" height="64"/>
+        <image name="milkshake" width="35" height="35"/>
+        <image name="smiley" width="32" height="32"/>
         <image name="splash" width="260" height="294"/>
         <image name="squares8 (1)" width="64" height="64"/>
         <image name="template" width="654" height="813"/>
