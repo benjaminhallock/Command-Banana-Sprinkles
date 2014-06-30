@@ -20,7 +20,6 @@
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-
 //    TabBarViewController *tabBarController = (TabBarViewController *)self.window.rootViewController;
 //    tabBarController.selectedIndex = 1;
 //    tabBarController.delegate = self;

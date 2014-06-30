@@ -2,7 +2,7 @@
 //  Photos.m
 //  myFaceB
 //
-//  Created by benjaminhallock@gmail.com on 6/19/14.
+//  Created by benjaminhallock@gmail.com on 6/26/14.
 //  Copyright (c) 2014 Mobile Makers Academy. All rights reserved.
 //
 
@@ -14,6 +14,6 @@
 @dynamic image;
 @dynamic name;
 @dynamic selected;
-@dynamic thumbnail;
+@dynamic imageURL;
 
 @end

@@ -73,24 +73,14 @@
     [self.fetchedResultsController performFetch:nil];
 }
 
-
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
-    //UIGraphicsBeginImageContext(newSize);
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    Resize *image = [Resize imageWithImage:[UIImage imageWithData:hero.image] scaledToSize:CGSizeMake(32, 41)];
-    cell.imageView.image = image;
+    NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
+    UIImage *image = [UIImage imageWithData:data];
+    Resize *imagee = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
+    cell.imageView.image = imagee;
     if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"✔︎";
     } else {

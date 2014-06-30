@@ -1,10 +1,3 @@
-//
-//  ViewController.m
-//  MyFace Sandbox
-//
-//  Created by tbredemeier on 6/13/14.
-//  Copyright (c) 2014 Mobile Makers Academy. All rights reserved.
-//
 
 #import "MainViewController.h"
 #import "TopCollectionView.h"
@@ -34,38 +27,11 @@
 
 @implementation MainViewController
 
--(IBAction)onScreenShotTook:(id)sender {
-
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, [UIScreen mainScreen].scale);
-    } else {
-        UIGraphicsBeginImageContext(CGSizeMake(320, 430));
-    }
-    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData * data = UIImagePNGRepresentation(image);
-    // [data writeToFile:@"foo.png" atomically:YES];/
-    //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
-    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
-
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ChangeFaceViewController *nextView = [segue destinationViewController];
-    if ([segue.identifier isEqualToString:@"showGallery"]) {
-        nextView.imagePicker = self.imagePicker;
-        nextView.imageEditor = self.imageEditor;
-        nextView.library = self.library;
-    }
-}
-
 - (void)viewDidLoad {
+
     [super viewDidLoad];
-    
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
 }
@@ -94,11 +60,44 @@
     [self randomizeViews];
 }
 
+-(IBAction)onScreenShotTook:(id)sender {
+
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, [UIScreen mainScreen].scale);
+    } else {
+        UIGraphicsBeginImageContext(CGSizeMake(320, 430));
+    }
+    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData * data = UIImagePNGRepresentation(image);
+    // [data writeToFile:@"foo.png" atomically:YES];/
+    //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
+    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
+
+}
+
 -(IBAction)onCameraButtonPressed:(id)sender {
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
--(void)ViewDidLoadAnimation {
+-(IBAction)shuffleButton:(id)sender {
+    [self randomizeViews];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ChangeFaceViewController *nextView = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"showGallery"]) {
+        nextView.imagePicker = self.imagePicker;
+        nextView.imageEditor = self.imageEditor;
+        nextView.library = self.library;
+    }
+}
+
+-(void)ViewDidLoadAnimation
+{
     self.buttonShuffle.alpha = 0;
     [UIView animateWithDuration:3.0 animations:^{
         self.nameLabel.alpha = 0;
@@ -162,32 +161,16 @@
 
     self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
         if(!canceled) {
-            //            [library writeImageToSavedPhotosAlbum:[editedImage CGImage]
-            //                                      orientation:(ALAssetOrientation)editedImage.imageOrientation
-            //                                  completionBlock:^(NSURL *assetURL, NSError *error){
-            //                                      if (error) {
-            //
-            //                                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Saving"
-            //                                                                                          message:[error localizedDescription]
-            //                                                                                         delegate:nil
-            //                                                                                cancelButtonTitle:@"Ok"
-            //                                                                              otherButtonTitles: nil];
-            //                                          [alert show];
-            //                                      } else {
-            //                                          if (editedImage != nil) {
+            //[library writeImageToSavedPhotosAlbum:[editedImage CGImage]
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
-            [newManagedObject setValue:UIImagePNGRepresentation(editedImage) forKey:@"image"];
+            NSString *path = [self writeImage:editedImage withName:@"gallery"];
+            [newManagedObject setValue:path forKey:@"imageURL"];
             [newManagedObject setValue:@"Zeus" forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
-            //        }
         }
-        //                                  }];
     };
-    //    }
 }
-
-#pragma mark - Image Picker Controller delegate methods
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -198,13 +181,17 @@
         if (image != nil) {
             Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(320, 410)];
             UIImageWriteToSavedPhotosAlbum(resizedImage, 0, 0, 0);
+            UIImage *finalImage = resizedImage;
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
-            [newManagedObject setValue:UIImagePNGRepresentation(resizedImage) forKey:@"image"];
+            NSString *path = [self writeImage:finalImage withName:@"camera"];
+            [newManagedObject setValue:path forKey:@"imageURL"];
             [newManagedObject setValue:@"Zeus" forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
         }
-    } else {
+    }
+    else
+    {
         [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
             UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
             self.imageEditor.sourceImage = image;
@@ -219,27 +206,32 @@
     }
 }
 
+-(NSString *) writeImage:(UIImage *)image withName:(NSString *)name {
+    NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *storePath = [applicationDocumentsDir stringByAppendingString:[NSString stringWithFormat:@"/%@%u.png", name, arc4random_uniform(1000000)]];
+    [UIImagePNGRepresentation(image) writeToFile:storePath atomically:YES];
+    NSLog(@"done");
+    return storePath;
+}
+
+-(NSData *) getImageFromURL:(NSString *)fileURL {
+    UIImage * result;
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
+    result = [UIImage imageWithData:data];
+    NSData *resultt = UIImagePNGRepresentation(result);
+    return resultt;
+} // Not used
 
 - (void)receiveTestNotification:(NSNotification *) notification // not used sincetabbar
 {
-    // [notification name] should always be @"TestNotification"
-    // unless you use this method for observation of other notifications
-    // as well.
     if ([[notification name] isEqualToString:@"TestNotification"]) {
         NSLog (@"Successfully received the test notification!");
-        //        [self randomizeViews];
-        //        [self checkForWinner];
     }
-}
-
--(IBAction)shuffleButton:(id)sender {
-    [self randomizeViews];
-    //    [self checkForWinner];
-}
+} // used to be used for calling shuffle on tab bar custom class
 
 -(void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+} // not used
 
 -(void)load {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
@@ -249,7 +241,6 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
-
 
     if (self.fetchedResultsController.fetchedObjects.count  < 3) {
         NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
@@ -285,17 +276,23 @@
 
         for (NSDictionary *person in self.splitPhotoArray) {
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
-            [newManagedObject setValue:UIImagePNGRepresentation(person[@"photos"]) forKey:@"image"];
+            NSString *path = [self writeImage:person[@"photos"] withName:@"stock"];
+            [newManagedObject setValue:path forKey:@"imageURL"];
             [newManagedObject setValue:person[@"name"] forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
         }
-        [self load];
-    }
+        [self load]; //should have more than 3 now.
+    } // End if less than 3 selected images;
+
+
     self.splitPhotoArray = [NSMutableArray array];
     for (Photos *face in self.fetchedResultsController.fetchedObjects)
     {
-        NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:[UIImage imageWithData:face.image]]};
+        NSLog(@"%@", face.imageURL);
+        NSData *data = [NSData dataWithContentsOfFile:face.imageURL];
+        UIImage *image = [UIImage imageWithData:data];
+        NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:image]};
         [self.splitPhotoArray addObject:photoItem];
     }
     [self.middleCollectionView reloadData];
