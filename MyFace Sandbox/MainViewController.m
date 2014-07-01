@@ -261,7 +261,7 @@
 
         self.splitPhotoArray = [NSMutableArray array];
         NSDictionary *photoItem;
-        photoItem = @{@"name":@"Frank" ,@"photos":[UIImage imageNamed:@"sample1.png"]};
+        photoItem = @{@"name":@"Frank" ,@"photos":[UIImage imageNamed:@"sample1"]};
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Tom" ,@"photos":[UIImage imageNamed:@"sample2"]};
         [self.splitPhotoArray addObject:photoItem];
@@ -269,14 +269,42 @@
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Sally" ,@"photos":[UIImage imageNamed:@"sample4"]};
         [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Ben" ,@"photos":[UIImage imageNamed:@"sample5"]};
+        photoItem = @{@"name":@"Ben" ,@"photos":[UIImage imageNamed:@"wsample5"]};
         [self.splitPhotoArray addObject:photoItem];
-        photoItem = @{@"name":@"Max" ,@"photos":[UIImage imageNamed:@"sample6"]};
-        [self.splitPhotoArray addObject:photoItem];
+ 
         photoItem = @{@"name":@"Don" ,@"photos":[UIImage imageNamed:@"sample7"]};
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Tim" ,@"photos":[UIImage imageNamed:@"sample8"]};
         [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Frank1" ,@"photos":[UIImage imageNamed:@"wsample9"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tom1" ,@"photos":[UIImage imageNamed:@"sample10"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Brian1" ,@"photos":[UIImage imageNamed:@"wsample11"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Sally1" ,@"photos":[UIImage imageNamed:@"wsample12"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Ben1" ,@"photos":[UIImage imageNamed:@"sample13"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Max1" ,@"photos":[UIImage imageNamed:@"wsample14"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Don1" ,@"photos":[UIImage imageNamed:@"wsample15"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tim1" ,@"photos":[UIImage imageNamed:@"sample16"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Tom1" ,@"photos":[UIImage imageNamed:@"sample17"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Brian2" ,@"photos":[UIImage imageNamed:@"sample18"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Sally2" ,@"photos":[UIImage imageNamed:@"wsample19"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Ben2" ,@"photos":[UIImage imageNamed:@"sample20"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Max2" ,@"photos":[UIImage imageNamed:@"wsample21"]};
+        [self.splitPhotoArray addObject:photoItem];
+        photoItem = @{@"name":@"Don2" ,@"photos":[UIImage imageNamed:@"wsample22"]};
+        [self.splitPhotoArray addObject:photoItem];
+
 
         for (NSDictionary *person in self.splitPhotoArray) {
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
