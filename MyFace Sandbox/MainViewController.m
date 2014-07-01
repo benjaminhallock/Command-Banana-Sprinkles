@@ -28,10 +28,8 @@
 @implementation MainViewController
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
 }
@@ -40,6 +38,7 @@
 {
 
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
