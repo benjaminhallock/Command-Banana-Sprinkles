@@ -524,6 +524,7 @@
     [self checkForWinner];
 }
 
+
 // helper method to scroll the given sliced photo to a new position
 - (void)scrollView:(UICollectionView *)collectionView toIndex:(NSInteger)index animated:(BOOL)animated
 {
