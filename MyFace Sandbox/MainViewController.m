@@ -497,17 +497,17 @@
 - (void)infiniteScroll:(UIScrollView *)scrollView
 {
     NSInteger index;
+    NSInteger frameWidth = self.middleCollectionView.frame.size.width;
 
     // Calculate where the collection view should be at the right-hand end item
-    float contentOffsetWhenFullyScrolledRight = self.middleCollectionView.frame.size.width * ([self.splitPhotoArray count] -1);
+    float contentOffsetWhenFullyScrolledRight = frameWidth * ([self.splitPhotoArray count] -1);
 
-    if (abs(scrollView.contentOffset.x - contentOffsetWhenFullyScrolledRight) < 5)
-    {
+    if (abs(scrollView.contentOffset.x - contentOffsetWhenFullyScrolledRight) < frameWidth / 2)    {
         // user is scrolling to the right from the last item to the 'fake' item 1.
         // reposition offset to show the 'real' item 1 at the left-hand end of the collection view
         index = 1;
     }
-    else if (abs(scrollView.contentOffset.x) < 5)
+    else if (abs(scrollView.contentOffset.x) < frameWidth / 2)
     {
         // user is scrolling to the left from the first item to the fake 'item N'.
         // reposition offset to show the 'real' item N at the right end end of the collection view
