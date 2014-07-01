@@ -234,9 +234,9 @@
     }
 } // used to be used for calling shuffle on tab bar custom class
 
--(void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-} // not used
+//-(void)viewWillDisappear:(BOOL)animated {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//} // not used
 
 -(void)load {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
@@ -272,7 +272,6 @@
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Ben" ,@"photos":[UIImage imageNamed:@"wsample5"]};
         [self.splitPhotoArray addObject:photoItem];
- 
         photoItem = @{@"name":@"Don" ,@"photos":[UIImage imageNamed:@"sample7"]};
         [self.splitPhotoArray addObject:photoItem];
         photoItem = @{@"name":@"Tim" ,@"photos":[UIImage imageNamed:@"sample8"]};
