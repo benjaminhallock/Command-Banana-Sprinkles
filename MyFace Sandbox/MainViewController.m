@@ -398,7 +398,7 @@
 - (void)checkForWinner
 {
     if([self didWin])
-    {
+    {  
         NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
         NSString *name = [photo objectForKey:@"name"];
         self.nameLabel.text = name;
