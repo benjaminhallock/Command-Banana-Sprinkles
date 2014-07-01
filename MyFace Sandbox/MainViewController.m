@@ -483,21 +483,31 @@
 
 #pragma mark - scroll control methods
 
-// used to provide the impression of an infinite circular collection of photos
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self infiniteScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self infiniteScroll:scrollView];
+}
+
+// used to provide the impression of an infinite circular collection of photos
+- (void)infiniteScroll:(UIScrollView *)scrollView
 {
     NSInteger index;
 
     // Calculate where the collection view should be at the right-hand end item
     float contentOffsetWhenFullyScrolledRight = self.middleCollectionView.frame.size.width * ([self.splitPhotoArray count] -1);
 
-    if (scrollView.contentOffset.x == contentOffsetWhenFullyScrolledRight)
+    if (abs(scrollView.contentOffset.x - contentOffsetWhenFullyScrolledRight) < 5)
     {
         // user is scrolling to the right from the last item to the 'fake' item 1.
         // reposition offset to show the 'real' item 1 at the left-hand end of the collection view
         index = 1;
     }
-    else if (scrollView.contentOffset.x == 0)
+    else if (abs(scrollView.contentOffset.x) < 5)
     {
         // user is scrolling to the left from the first item to the fake 'item N'.
         // reposition offset to show the 'real' item N at the right end end of the collection view
