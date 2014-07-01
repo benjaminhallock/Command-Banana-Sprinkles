@@ -481,8 +481,8 @@
                                     <constraint firstAttribute="width" constant="320" id="7e7-Zb-iCr"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
-                                <rect key="frame" x="0.0" y="56" width="320" height="410"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="template" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-5u-jSu">
+                                <rect key="frame" x="0.0" y="53" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="410" id="Xzn-LV-xMC"/>
