@@ -28,6 +28,8 @@
 @implementation MainViewController
 
 - (void)viewDidLoad {
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [super viewDidLoad];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
@@ -111,7 +113,7 @@
         self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
         self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
     }];
-    [UIView animateWithDuration:3.0 delay:3.0 options:0 animations:^{
+    [UIView animateWithDuration:1.0 delay:3.0 options:0 animations:^{
         self.nameLabel.alpha = 1;
         self.nameLabel.alpha = 0;
         self.buttonShuffle.alpha = 0;

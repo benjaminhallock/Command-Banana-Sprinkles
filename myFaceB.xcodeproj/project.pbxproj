@@ -30,7 +30,6 @@
 		AEE46AA8194F57FA00B1B793 /* MakeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */; };
 		C20B6BB8194FD48B0080F9AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20B6BB7194FD48B0080F9AF /* AssetsLibrary.framework */; };
 		C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */; };
-		C28436D41950F24F00D9BC63 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C28436D31950F24F00D9BC63 /* TabBarViewController.m */; };
 		C29335D4194FC5300031688C /* HFImageEditorFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335CF194FC5300031688C /* HFImageEditorFrameView.m */; };
 		C29335D5194FC5300031688C /* HFImageEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335D2194FC5300031688C /* HFImageEditorViewController.m */; };
 		C29335D9194FC5390031688C /* DemoImageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335D8194FC5390031688C /* DemoImageEditor.m */; };
@@ -88,8 +87,6 @@
 		C20B6BB7194FD48B0080F9AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C246621B194F567D00BBA57B /* ChangeFaceCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceCustomCell.h; sourceTree = "<group>"; };
 		C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceCustomCell.m; sourceTree = "<group>"; };
-		C28436D21950F24F00D9BC63 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
-		C28436D31950F24F00D9BC63 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		C29335CE194FC5300031688C /* HFImageEditorFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFImageEditorFrameView.h; sourceTree = "<group>"; };
 		C29335CF194FC5300031688C /* HFImageEditorFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFImageEditorFrameView.m; sourceTree = "<group>"; };
 		C29335D0194FC5300031688C /* HFImageEditorViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HFImageEditorViewController+Private.h"; sourceTree = "<group>"; };
@@ -174,7 +171,6 @@
 		AE08F497194B552100E2A260 /* MyFace */ = {
 			isa = PBXGroup;
 			children = (
-				C243C453195D0698006C84BA /* not used */,
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
 				AE08F4A7194B552100E2A260 /* MainViewController.m */,
 				C2A958BD194F45E100944955 /* Custom Class Collection myFace */,
@@ -216,16 +212,6 @@
 				AE08F4B9194B552100E2A260 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C243C453195D0698006C84BA /* not used */ = {
-			isa = PBXGroup;
-			children = (
-				C28436D21950F24F00D9BC63 /* TabBarViewController.h */,
-				C28436D31950F24F00D9BC63 /* TabBarViewController.m */,
-			);
-			name = "not used";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		C29335CD194FC5300031688C /* ImageEditor */ = {
@@ -400,7 +386,6 @@
 				AE08F4D1194B560C00E2A260 /* TopCollectionViewCell.m in Sources */,
 				C29335D9194FC5390031688C /* DemoImageEditor.m in Sources */,
 				C29335D5194FC5300031688C /* HFImageEditorViewController.m in Sources */,
-				C28436D41950F24F00D9BC63 /* TabBarViewController.m in Sources */,
 				C2FA6A621951EDEE00DCE669 /* Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

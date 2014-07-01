@@ -147,7 +147,7 @@
                                     <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="VFu-PB-RPR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
+                            <button hidden="YES" opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
                                 <rect key="frame" x="33" y="485" width="51" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>

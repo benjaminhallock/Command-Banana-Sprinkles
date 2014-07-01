@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ChangeFaceViewController.h"
-#import "TabBarViewController.h"
-
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -18,16 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-//    TabBarViewController *tabBarController = (TabBarViewController *)self.window.rootViewController;
-//    tabBarController.selectedIndex = 1;
-//    tabBarController.delegate = self;
-
-    // Override point for customization after application launch.
-    //Ben here
-//    ChangeFaceViewController *controller = (ChangeFaceViewController *)tabBarController.viewControllers.lastObject;
-//    controller.managedObjectContext = self.managedObjectContext;
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     return YES;
 }
