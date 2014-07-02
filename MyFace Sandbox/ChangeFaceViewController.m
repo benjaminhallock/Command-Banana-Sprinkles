@@ -36,7 +36,8 @@
     for (Photos *hero in self.fetchedResultsController.fetchedObjects) {
         NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
         UIImage *image = [UIImage imageWithData:data];
-        [imageArray addObject:image];
+        Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
+        [imageArray addObject:resizedImage];
     }
 
     UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
