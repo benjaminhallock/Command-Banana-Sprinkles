@@ -29,8 +29,8 @@
 
 - (void)viewDidLoad {
      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     [super viewDidLoad];
+    NSLog(@"viewdidloooooooooaaaaaaddddd");
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
@@ -398,21 +398,29 @@
 - (void)checkForWinner
 {
     if([self didWin])
-    {  
-        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
-        NSString *name = [photo objectForKey:@"name"];
-        self.nameLabel.text = name;
-        self.nameLabel.alpha = 0;
-        [UIView animateWithDuration:3.0f animations:^{
+    {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
+        view.alpha = 0;
+        view.backgroundColor = [UIColor whiteColor];
+        [self.view insertSubview:view aboveSubview:self.view];
+//        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
+//        NSString *name = [photo objectForKey:@"name"];
+//        self.nameLabel.text = name;
+//        self.nameLabel.alpha = 0;
+        [UIView animateWithDuration:1.0f animations:^{
+            view.alpha = .5;
+            view.alpha = 0;
             self.view.backgroundColor = [[UIColor alloc] initWithRed:244/255.0f green:120/255.0f blue:58/255.0f alpha:1.0f];
+            self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
             //            self.nameLabel.alpha = 0;
             //            self.nameLabel.alpha = 1;
         }];
-        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
-            self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
-            //            self.nameLabel.alpha = 1;
-            //            self.nameLabel.alpha = 0;
-        } completion:nil];
+//        
+//        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
+//
+//            //            self.nameLabel.alpha = 1;
+//            //            self.nameLabel.alpha = 0;
+//        } completion:nil];
     }
 }
 

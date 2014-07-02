@@ -17,16 +17,27 @@
 //@property NSArray *splitPhotoArray;
 @end
 
-@implementation ChangeFaceViewController
+@implementation ChangeFaceViewController {
+    NSMutableArray *imageArray;
+}
 
 -(IBAction)onAddButtonPressed:(id)sender {
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
-
 -(void)viewDidLoad {
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
+    [self load];
+
+    imageArray = [NSMutableArray new];
+
+    for (Photos *hero in self.fetchedResultsController.fetchedObjects) {
+        NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
+        UIImage *image = [UIImage imageWithData:data];
+        [imageArray addObject:image];
+    }
 
     UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
     [doubleTapFolderGesture setNumberOfTapsRequired:2];
@@ -35,9 +46,6 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    [self load];
-    [self.collectionView reloadData];
-    
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 }
 
@@ -54,11 +62,7 @@
             NSLog(@"Image was double tapped");
             [self.managedObjectContext deleteObject:selectedObject];
             [self.managedObjectContext save:nil];
-            [self viewDidAppear:YES];
-        }
-        else
-        {
-            
+            [self load];
         }
     }
 }
@@ -71,31 +75,31 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
+    [self.collectionView reloadData];
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Photos *hero = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
-    UIImage *image = [UIImage imageWithData:data];
-    Resize *imagee = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
-    cell.imageView.image = imagee;
+    
+    cell.imageView.image = imageArray[indexPath.row];
     if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"✔︎";
     } else {
         cell.label.text = @"";
     }
+    cell.contentView.layer.shouldRasterize = YES;
+    cell.contentView.layer.rasterizationScale = 2.0f;
     return cell;
 }
-
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.fetchedResultsController.sections.firstObject numberOfObjects];
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Photos *hero = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    Photos *hero = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
     ChangeFaceCustomCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"";
