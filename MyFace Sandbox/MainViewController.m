@@ -45,6 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveTestNotification:)
                                                  name:@"TestNotification"
