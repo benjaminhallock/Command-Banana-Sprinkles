@@ -217,7 +217,7 @@
     NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *storePath = [applicationDocumentsDir stringByAppendingString:[NSString stringWithFormat:@"/%@%u.png", name, arc4random_uniform(1000000)]];
     [UIImagePNGRepresentation(image) writeToFile:storePath atomically:YES];
-    NSLog(@"done");
+//    NSLog(@"done");
     return storePath;
 }
 
@@ -323,7 +323,7 @@
     self.splitPhotoArray = [NSMutableArray array];
     for (Photos *face in self.fetchedResultsController.fetchedObjects)
     {
-        NSLog(@"%@", face.imageURL);
+//        NSLog(@"%@", face.imageURL);
         NSData *data = [NSData dataWithContentsOfFile:face.imageURL];
         UIImage *image = [UIImage imageWithData:data];
         NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:image]};

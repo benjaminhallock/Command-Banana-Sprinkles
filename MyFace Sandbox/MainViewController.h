@@ -8,7 +8,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property DemoImageEditor *imageEditor;
 @property(nonatomic,strong) ALAssetsLibrary *library;
