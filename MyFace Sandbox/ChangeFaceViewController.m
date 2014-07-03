@@ -6,9 +6,10 @@
 #import "AppDelegate.h"
 #import "Resize.h"
 
-@interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate>
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
 @property CGPoint savedPoint;
+@property UITapGestureRecognizer *tapGestureRecognizer;
 @end
 
 @implementation ChangeFaceViewController {
@@ -26,23 +27,23 @@
     [self load];
 
     UILongPressGestureRecognizer *doubleTapFolderGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
-//    [doubleTapFolderGesture setNumberOfTapsRequired:2];
 //    doubleTapFolderGesture.minimumPressDuration = (CFTimeInterval)1.0;
-//    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:doubleTapFolderGesture];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 }
+
 -(void)viewDidAppear:(BOOL)animated {
     [self load];
 }
 
 - (void)processDoubleTap:(UILongPressGestureRecognizer *)sender
 {
-    self.savedPoint = [sender locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:self.savedPoint];
+    CGPoint cheese = [sender locationInView:self.collectionView];
+    NSLog(@"%@ pointhold", NSStringFromCGPoint(cheese));
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:cheese];
     if (indexPath)
     {
     if (sender.state == UIGestureRecognizerStateBegan)
@@ -50,10 +51,23 @@
         self.editing = YES;
         if (self.editing) {
             [self startWobble];
-        } else {
-            [self stopWobble];
         }
     }
+    }
+}
+
+-(void)didTapGesture:(UITapGestureRecognizer *)sender {
+    if (self.editing) {
+        CGPoint point = [self.tapGestureRecognizer locationInView:self.collectionView];
+        NSLog(@"%@ pointtap", NSStringFromCGPoint(point));
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+    if (indexPath) {
+                Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+                [self.managedObjectContext deleteObject:selectedObject];
+                [self.managedObjectContext save:nil];
+                [self load];
+    }
+    [self stopWobble];
     }
 }
 
@@ -61,18 +75,25 @@
 
 - (void)startWobble {
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-3, -3, 30, 30)];
+        UILabel *button = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 64, 82)];
 //        button.titleLabel.textColor  = [UIColor blackColor];
 //        button.titleLabel.text = @"✗";
-//        button.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:5];
-//        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        [button setTitle: @"✗" forState: UIControlStateApplication];
+        button.font = [UIFont fontWithName:@"Helvetica" size:50];
+        button.textAlignment = NSTextAlignmentCenter;
+        button.text =@"✗";
+        button.textColor = [UIColor blackColor];
         button.backgroundColor = [UIColor whiteColor];
+        button.alpha = .8;
         button.layer.cornerRadius = 15;
+        button.userInteractionEnabled = NO;
         button.layer.borderColor = [UIColor orangeColor].CGColor;
         button.layer.masksToBounds = YES;
-        [button addTarget:self
-                   action:@selector(stopWobble)
-         forControlEvents:UIControlEventTouchUpInside];
+        button.enabled = NO;
+//        [button addTarget:self
+//                   action:@selector(didTapGesture:)
+//         forControlEvents:UIControlEventTouchUpInside];
+
         button.layer.borderWidth = 2;
         [itemView insertSubview:button aboveSubview:itemView.subviews.firstObject];
 
@@ -86,19 +107,15 @@
                      completion:NULL
      ];
     }
-    
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapGesture:)];
+    self.tapGestureRecognizer.delegate = self;
+    self.tapGestureRecognizer.numberOfTapsRequired = 1;
+    self.tapGestureRecognizer.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)stopWobble {
     if (self.editing) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:self.savedPoint];
-              if (indexPath)
-                {
-                Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-                    [self.managedObjectContext deleteObject:selectedObject];
-                    [self.managedObjectContext save:nil];
-                    [self load];
-                }
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
         [itemView.subviews.lastObject removeFromSuperview];
     [UIView animateWithDuration:0.25
@@ -111,6 +128,7 @@
      ];
     }
         self.editing = NO;
+        [self.view removeGestureRecognizer:self.tapGestureRecognizer];
 }
 }
 
