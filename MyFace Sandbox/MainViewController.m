@@ -28,7 +28,9 @@
 @implementation MainViewController
 
 - (void)viewDidLoad {
-     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+        self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [super viewDidLoad];
     NSLog(@"viewdidloooooooooaaaaaaddddd");
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
@@ -403,10 +405,10 @@
         view.alpha = 0;
         view.backgroundColor = [UIColor whiteColor];
         [self.view insertSubview:view aboveSubview:self.view];
-//        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
-//        NSString *name = [photo objectForKey:@"name"];
-//        self.nameLabel.text = name;
-//        self.nameLabel.alpha = 0;
+        //        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
+        //        NSString *name = [photo objectForKey:@"name"];
+        //        self.nameLabel.text = name;
+        //        self.nameLabel.alpha = 0;
         [UIView animateWithDuration:1.0f animations:^{
             view.alpha = .5;
             view.alpha = 0;
@@ -415,12 +417,12 @@
             //            self.nameLabel.alpha = 0;
             //            self.nameLabel.alpha = 1;
         }];
-//        
-//        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
-//
-//            //            self.nameLabel.alpha = 1;
-//            //            self.nameLabel.alpha = 0;
-//        } completion:nil];
+        //
+        //        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{
+        //
+        //            //            self.nameLabel.alpha = 1;
+        //            //            self.nameLabel.alpha = 0;
+        //        } completion:nil];
     }
 }
 

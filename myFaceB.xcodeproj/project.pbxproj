@@ -64,7 +64,7 @@
 		AE08F4A4194B552100E2A260 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE08F4A6194B552100E2A260 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AE08F4A7194B552100E2A260 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		AE08F4A9194B552100E2A260 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AE08F4A9194B552100E2A260 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "MyFace Sandbox/Images.xcassets"; sourceTree = "<group>"; };
 		AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myFaceBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE08F4B0194B552100E2A260 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AE08F4B8194B552100E2A260 /* MyFace SandboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyFace SandboxTests-Info.plist"; sourceTree = "<group>"; };
@@ -139,6 +139,7 @@
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
+				AE08F4A9194B552100E2A260 /* Images.xcassets */,
 				AE08F497194B552100E2A260 /* MyFace */,
 				AE08F4B6194B552100E2A260 /* MyFace Tests */,
 				AE08F490194B552000E2A260 /* Frameworks */,
@@ -177,7 +178,6 @@
 				C2FA6A651951F0CB00DCE669 /* MakeFace */,
 				C2FA6A641951F0A600DCE669 /* ChangeFace */,
 				C29335CD194FC5300031688C /* ImageEditor */,
-				AE08F4A9194B552100E2A260 /* Images.xcassets */,
 				AE08F498194B552100E2A260 /* Supporting Files */,
 			);
 			name = MyFace;
