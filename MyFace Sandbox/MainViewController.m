@@ -106,16 +106,16 @@
 -(void)ViewDidLoadAnimation
 {
     self.buttonShuffle.alpha = 0;
-    [UIView animateWithDuration:3.0 animations:^{
+    [UIView animateWithDuration:1.0 animations:^{
         self.nameLabel.alpha = 0;
         self.nameLabel.alpha = 1;
     }];
 
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
         self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
     }];
-    [UIView animateWithDuration:1.0 delay:3.0 options:0 animations:^{
+    [UIView animateWithDuration:1.0 delay:2.0 options:0 animations:^{
         self.nameLabel.alpha = 1;
         self.nameLabel.alpha = 0;
         self.buttonShuffle.alpha = 0;
@@ -416,6 +416,10 @@
             self.view.backgroundColor = [[UIColor alloc] initWithRed:0/255.0f green:169/255.0f blue:162/255.0f alpha:1.0f];
             //            self.nameLabel.alpha = 0;
             //            self.nameLabel.alpha = 1;
+        } completion:^(BOOL finished) {
+            if (finished) {
+            [self randomizeViews];
+            }
         }];
         //
         //        [UIView animateWithDuration:2.0 delay:1.0 options:0 animations:^{

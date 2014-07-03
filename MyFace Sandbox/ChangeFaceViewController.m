@@ -1,10 +1,4 @@
-//
-//  ChangeFaceViewController.m
-//  MyFace
-//
-//  Created by benjaminhallock@gmail.com on 6/16/14.
-//  Copyright (c) 2014 Mobile Makers Academy. All rights reserved.
-//
+
 
 #import "ChangeFaceViewController.h"
 #import "ChangeFaceCustomCell.h"
@@ -14,7 +8,6 @@
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
-//@property NSArray *splitPhotoArray;
 @end
 
 @implementation ChangeFaceViewController {
@@ -31,28 +24,23 @@
 
     [self load];
 
-    imageArray = [NSMutableArray new];
-
-    for (Photos *hero in self.fetchedResultsController.fetchedObjects) {
-        NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
-        UIImage *image = [UIImage imageWithData:data];
-        Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
-        [imageArray addObject:resizedImage];
-    }
-
-    UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
-    [doubleTapFolderGesture setNumberOfTapsRequired:2];
-    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
+    UILongPressGestureRecognizer *doubleTapFolderGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+//    [doubleTapFolderGesture setNumberOfTapsRequired:2];
+//    doubleTapFolderGesture.minimumPressDuration = (CFTimeInterval)1.0;
+//    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:doubleTapFolderGesture];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+}
 -(void)viewDidAppear:(BOOL)animated {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self load];
 }
 
-- (void) processDoubleTap:(UITapGestureRecognizer *)sender
+- (void)processDoubleTap:(UILongPressGestureRecognizer *)sender
 {
-    if (sender.state == UIGestureRecognizerStateEnded)
+    if (sender.state == UIGestureRecognizerStateBegan)
     {
         CGPoint point = [sender locationInView:self.collectionView];
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
@@ -60,7 +48,6 @@
         if (indexPath)
         {
         Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-            NSLog(@"Image was double tapped");
             [self.managedObjectContext deleteObject:selectedObject];
             [self.managedObjectContext save:nil];
             [self load];
@@ -76,6 +63,16 @@
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
     [self.fetchedResultsController performFetch:nil];
+
+    imageArray = [NSMutableArray new];
+
+    for (Photos *hero in self.fetchedResultsController.fetchedObjects) {
+        NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
+        UIImage *image = [UIImage imageWithData:data];
+        Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
+        [imageArray addObject:resizedImage];
+    }
+
     [self.collectionView reloadData];
 }
 
@@ -83,7 +80,7 @@
 {
     Photos *hero = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
     ChangeFaceCustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    
+
     cell.imageView.image = imageArray[indexPath.row];
     if ([hero.selected  isEqual: @YES]) {
         cell.label.text = @"✔︎";
