@@ -62,12 +62,11 @@
 - (void)startWobble {
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-3, -3, 30, 30)];
-        button.titleLabel.textColor  = [UIColor blackColor];
-        button.titleLabel.text = @"✗";
-        button.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:5];
-        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+//        button.titleLabel.textColor  = [UIColor blackColor];
+//        button.titleLabel.text = @"✗";
+//        button.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:5];
+//        button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.backgroundColor = [UIColor whiteColor];
-        button.titleLabel.tintColor = [UIColor blackColor];
         button.layer.cornerRadius = 15;
         button.layer.borderColor = [UIColor orangeColor].CGColor;
         button.layer.masksToBounds = YES;
