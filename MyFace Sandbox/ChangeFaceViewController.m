@@ -8,6 +8,7 @@
 
 @interface ChangeFaceViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic) IBOutlet UICollectionView *collectionView;
+@property CGPoint savedPoint;
 @end
 
 @implementation ChangeFaceViewController {
@@ -40,19 +41,78 @@
 
 - (void)processDoubleTap:(UILongPressGestureRecognizer *)sender
 {
+    self.savedPoint = [sender locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:self.savedPoint];
+    if (indexPath)
+    {
     if (sender.state == UIGestureRecognizerStateBegan)
     {
-        CGPoint point = [sender locationInView:self.collectionView];
-        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-
-        if (indexPath)
-        {
-        Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-            [self.managedObjectContext deleteObject:selectedObject];
-            [self.managedObjectContext save:nil];
-            [self load];
+        self.editing = YES;
+        if (self.editing) {
+            [self startWobble];
+        } else {
+            [self stopWobble];
         }
     }
+    }
+}
+
+#define RADIANS(degrees) ((degrees * M_PI) / 180.0)
+
+- (void)startWobble {
+    for (UICollectionViewCell *itemView in self.collectionView.subviews) {
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-3, -3, 30, 30)];
+        button.titleLabel.textColor  = [UIColor whiteColor];
+        button.titleLabel.text = @"✗";
+//        button.titleLabel.font = [UIFont fontWithName:@"Arial" size:5];
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        button.backgroundColor = [UIColor blackColor];
+        button.titleLabel.tintColor = [UIColor whiteColor];
+        button.layer.cornerRadius = 15;
+        button.layer.borderColor = [UIColor orangeColor].CGColor;
+        button.layer.masksToBounds = YES;
+        [button addTarget:self
+                   action:@selector(stopWobble)
+         forControlEvents:UIControlEventTouchUpInside];
+        button.layer.borderWidth = 2;
+        [itemView insertSubview:button aboveSubview:itemView.subviews.firstObject];
+
+    itemView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-5));
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
+                     animations:^ {
+                         itemView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(5));
+                     }
+                     completion:NULL
+     ];
+    }
+    
+}
+
+- (void)stopWobble {
+    if (self.editing) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:self.savedPoint];
+              if (indexPath)
+                {
+                Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+                    [self.managedObjectContext deleteObject:selectedObject];
+                    [self.managedObjectContext save:nil];
+                    [self load];
+                }
+    for (UICollectionViewCell *itemView in self.collectionView.subviews) {
+        [itemView.subviews.lastObject removeFromSuperview];
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
+                     animations:^ {
+                         itemView.transform = CGAffineTransformIdentity;
+                     }
+                     completion:NULL
+     ];
+    }
+        self.editing = NO;
+}
 }
 
 -(void)load {
