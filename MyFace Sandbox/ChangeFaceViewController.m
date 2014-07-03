@@ -67,7 +67,7 @@
                 [self.managedObjectContext save:nil];
                 [self load];
     }
-    [self stopWobble];
+        [self stopWobble];
     }
 }
 

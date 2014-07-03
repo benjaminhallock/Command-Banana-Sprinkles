@@ -200,6 +200,7 @@
     }
     else
     {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
             UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
             self.imageEditor.sourceImage = image;

@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller - myFace-->
+        <!--Main View Controller - My Face-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MainViewController" sceneMemberID="viewController">
@@ -191,7 +191,7 @@
                             <constraint firstItem="cX3-ER-2HA" firstAttribute="top" secondItem="PBe-g7-Wz4" secondAttribute="bottom" constant="14" id="c0m-6d-eYo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="myFace" id="6Bz-bR-f4O">
+                    <navigationItem key="navigationItem" title="My Face" id="6Bz-bR-f4O">
                         <barButtonItem key="backBarButtonItem" title=" " id="EPD-mg-Ek5"/>
                         <barButtonItem key="leftBarButtonItem" image="camera" id="Jo5-vY-gE7">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -539,10 +539,10 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.37254901959999998" green="0.17254901959999999" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="25"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="30"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <offsetWrapper key="textShadowOffset" horizontal="1" vertical="1"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
