@@ -72,6 +72,9 @@
 }
 
 #define RADIANS(degrees) ((degrees * M_PI) / 180.0)
+static float angle = 0.035;
+static float offset = 0;
+static float transform = -0.5;
 
 - (void)startWobble {
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
@@ -97,15 +100,46 @@
         button.layer.borderWidth = 2;
         [itemView insertSubview:button aboveSubview:itemView.subviews.firstObject];
 
-    itemView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-5));
-    [UIView animateWithDuration:0.25
-                          delay:0.0
-                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
-                     animations:^ {
-                         itemView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(5));
-                     }
-                     completion:NULL
-     ];
+        //Start Max Wiggle
+
+            itemView.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
+
+            angle = -angle;
+
+            offset += 0.03;
+            if (offset > 0.9)
+                offset -= 0.9;
+
+            transform = -transform;
+
+            CABasicAnimation *aa = [CABasicAnimation animationWithKeyPath:@"transform"];
+            aa.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(angle, 0, 0, 1.0)];
+            aa.repeatCount = HUGE_VALF;
+            aa.duration = 0.12;
+            aa.autoreverses = YES;
+            aa.timeOffset = offset;
+            [itemView.layer addAnimation:aa forKey:nil];
+
+            aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+            aa.duration = 0.08;
+            aa.repeatCount = HUGE_VALF;
+            aa.autoreverses = YES;
+            aa.fromValue = @(transform);
+            aa.toValue = @(-transform);
+            aa.fillMode = kCAFillModeForwards;
+            aa.timeOffset = offset;
+            [itemView.layer addAnimation:aa forKey:nil];
+
+            aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+            aa.duration = 0.09;
+            aa.repeatCount = HUGE_VALF;
+            aa.autoreverses = YES;
+            aa.fromValue = @(transform);
+            aa.toValue = @(-transform);
+            aa.fillMode = kCAFillModeForwards;
+            aa.timeOffset = offset + 0.6;
+            [itemView.layer addAnimation:aa forKey:nil];
+
     }
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapGesture:)];
     self.tapGestureRecognizer.delegate = self;
@@ -114,18 +148,13 @@
     [self.view addGestureRecognizer:self.tapGestureRecognizer];
 }
 
+
 - (void)stopWobble {
     if (self.editing) {
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
+        [itemView.layer removeAllAnimations];
+        itemView.layer.transform = CATransform3DIdentity;
         [itemView.subviews.lastObject removeFromSuperview];
-    [UIView animateWithDuration:0.25
-                          delay:0.0
-                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
-                     animations:^ {
-                         itemView.transform = CGAffineTransformIdentity;
-                     }
-                     completion:NULL
-     ];
     }
         self.editing = NO;
         [self.view removeGestureRecognizer:self.tapGestureRecognizer];
