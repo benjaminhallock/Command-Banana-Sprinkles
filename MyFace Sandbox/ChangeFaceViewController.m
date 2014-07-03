@@ -32,6 +32,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 }
 

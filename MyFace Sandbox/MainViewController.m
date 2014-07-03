@@ -30,12 +30,15 @@
 - (void)viewDidLoad {
 
         self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [super viewDidLoad];
     NSLog(@"viewdidloooooooooaaaaaaddddd");
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender
@@ -45,7 +48,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveTestNotification:)
                                                  name:@"TestNotification"
@@ -179,6 +181,7 @@
         }
     };
 }
+
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -200,7 +203,6 @@
     }
     else
     {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
             UIImage *preview = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
             self.imageEditor.sourceImage = image;
