@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sr7-xK-9Ex">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sr7-xK-9Ex">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -130,7 +130,7 @@
                                     <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aWl-K9-Nxb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf" userLabel="Gallery button hidden">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knB-xO-XQf" userLabel="Gallery button hidden">
                                 <rect key="frame" x="208" y="456" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -141,9 +141,6 @@
                                 </constraints>
                                 <color key="tintColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="squares8 (1)"/>
-                                <connections>
-                                    <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="VFu-PB-RPR"/>
-                                </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qY6-la-zGy" userLabel="Big Camera Button">
                                 <rect key="frame" x="33" y="485" width="51" height="42"/>
@@ -199,10 +196,10 @@
                                 <action selector="onCameraButtonPressed:" destination="vXZ-lx-hvc" id="CfM-8O-Rae"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="milkshake" id="Lqi-pV-dZF">
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="Lqi-pV-dZF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="onScreenShotTook:" destination="vXZ-lx-hvc" id="ZkY-gg-Trf"/>
+                                <segue destination="0Po-mQ-Kxv" kind="push" identifier="showGallery" id="ikf-Fc-okc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -560,7 +557,7 @@
         <image name="circleshuffle" width="107" height="100"/>
         <image name="dashsquare" width="32" height="32"/>
         <image name="grocery10" width="64" height="64"/>
-        <image name="milkshake" width="35" height="35"/>
+        <image name="plus" width="32" height="32"/>
         <image name="splash" width="260" height="294"/>
         <image name="squares8 (1)" width="64" height="64"/>
         <image name="template" width="654" height="813"/>

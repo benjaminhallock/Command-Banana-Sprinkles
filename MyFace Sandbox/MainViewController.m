@@ -27,6 +27,8 @@
 
 @implementation MainViewController
 
+
+
 - (void)viewDidLoad {
 
         self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
@@ -35,10 +37,20 @@
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
+
+    UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processLongPress:)];
+    [self.view addGestureRecognizer:longpress];
+}
+
+-(void)processLongPress:(UILongPressGestureRecognizer *)sender {
+    self.editing = !self.editing;
+    if (self.editing) {
+    [self onScreenShotTook:nil];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender
@@ -81,12 +93,19 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     NSData * data = UIImagePNGRepresentation(image);
-    // [data writeToFile:@"foo.png" atomically:YES];/
-    //    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
-    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
-    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
+     [data writeToFile:@"foo.png" atomically:YES];
+    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo Saved to Roll" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    [alert show];
+    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.0f];
+//    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
+//    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//    [self presentViewController:activityController animated:YES completion:nil];
 
+}
+
+-(void)dismiss:(UIAlertView *)alert {
+    [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
 -(IBAction)onCameraButtonPressed:(id)sender {

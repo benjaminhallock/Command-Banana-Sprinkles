@@ -42,18 +42,16 @@
 
 - (void)processDoubleTap:(UILongPressGestureRecognizer *)sender
 {
+    if (!self.editing) {
     CGPoint cheese = [sender locationInView:self.collectionView];
     NSLog(@"%@ pointhold", NSStringFromCGPoint(cheese));
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:cheese];
     if (indexPath)
-    {
-    if (sender.state == UIGestureRecognizerStateBegan)
-    {
-        self.editing = YES;
-        if (self.editing) {
+    { if (sender.state == UIGestureRecognizerStateBegan) {
             [self startWobble];
+            self.editing = YES;
+            }
         }
-    }
     }
 }
 
@@ -157,8 +155,8 @@ static float transform = -0.5;
         itemView.layer.transform = CATransform3DIdentity;
         [itemView.subviews.lastObject removeFromSuperview];
     }
-        self.editing = NO;
         [self.view removeGestureRecognizer:self.tapGestureRecognizer];
+        self.editing = NO;
 }
 }
 
