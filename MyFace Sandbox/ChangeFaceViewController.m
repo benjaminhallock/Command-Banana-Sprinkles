@@ -27,7 +27,7 @@
     [self load];
 
     UILongPressGestureRecognizer *doubleTapFolderGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
-//    doubleTapFolderGesture.minimumPressDuration = (CFTimeInterval)1.0;
+    //    doubleTapFolderGesture.minimumPressDuration = (CFTimeInterval)1.0;
     [self.view addGestureRecognizer:doubleTapFolderGesture];
 }
 
@@ -40,32 +40,35 @@
     [self load];
 }
 
+//Long press to Delete
 - (void)processDoubleTap:(UILongPressGestureRecognizer *)sender
 {
     if (!self.editing) {
-    CGPoint cheese = [sender locationInView:self.collectionView];
-    NSLog(@"%@ pointhold", NSStringFromCGPoint(cheese));
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:cheese];
-    if (indexPath)
-    { if (sender.state == UIGestureRecognizerStateBegan) {
+        CGPoint cellpoint = [sender locationInView:self.collectionView];
+        NSLog(@"%@ pointhold", NSStringFromCGPoint(cellpoint));
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:cellpoint];
+        if (indexPath)
+        { if (sender.state == UIGestureRecognizerStateBegan) {
             [self startWobble];
             self.editing = YES;
-            }
+        }
         }
     }
 }
 
--(void)didTapGesture:(UITapGestureRecognizer *)sender {
+//Tap to Delete if Editing
+- (void)didTapGesture:(UITapGestureRecognizer *)sender
+{
     if (self.editing) {
         CGPoint point = [self.tapGestureRecognizer locationInView:self.collectionView];
         NSLog(@"%@ pointtap", NSStringFromCGPoint(point));
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-    if (indexPath) {
-                Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-                [self.managedObjectContext deleteObject:selectedObject];
-                [self.managedObjectContext save:nil];
-                [self load];
-    }
+        if (indexPath) {
+            Photos *selectedObject = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+            [self.managedObjectContext deleteObject:selectedObject];
+            [self.managedObjectContext save:nil];
+            [self load];
+        }
         [self stopWobble];
     }
 }
@@ -78,9 +81,9 @@ static float transform = -0.5;
 - (void)startWobble {
     for (UICollectionViewCell *itemView in self.collectionView.subviews) {
         UILabel *button = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 64, 82)];
-//        button.titleLabel.textColor  = [UIColor blackColor];
-//        button.titleLabel.text = @"✗";
-//        [button setTitle: @"✗" forState: UIControlStateApplication];
+        //        button.titleLabel.textColor  = [UIColor blackColor];
+        //        button.titleLabel.text = @"✗";
+        //        [button setTitle: @"✗" forState: UIControlStateApplication];
         button.font = [UIFont fontWithName:@"Helvetica" size:50];
         button.textAlignment = NSTextAlignmentCenter;
         button.text =@"✗";
@@ -92,52 +95,52 @@ static float transform = -0.5;
         button.layer.borderColor = [UIColor orangeColor].CGColor;
         button.layer.masksToBounds = YES;
         button.enabled = NO;
-//        [button addTarget:self
-//                   action:@selector(didTapGesture:)
-//         forControlEvents:UIControlEventTouchUpInside];
+        //        [button addTarget:self
+        //                   action:@selector(didTapGesture:)
+        //         forControlEvents:UIControlEventTouchUpInside];
 
         button.layer.borderWidth = 2;
         [itemView insertSubview:button aboveSubview:itemView.subviews.firstObject];
 
         //Start Max Wiggle
 
-            itemView.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
+        itemView.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
 
-            angle = -angle;
+        angle = -angle;
 
-            offset += 0.03;
-            if (offset > 0.9)
-                offset -= 0.9;
+        offset += 0.03;
+        if (offset > 0.9)
+            offset -= 0.9;
 
-            transform = -transform;
+        transform = -transform;
 
-            CABasicAnimation *aa = [CABasicAnimation animationWithKeyPath:@"transform"];
-            aa.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(angle, 0, 0, 1.0)];
-            aa.repeatCount = HUGE_VALF;
-            aa.duration = 0.12;
-            aa.autoreverses = YES;
-            aa.timeOffset = offset;
-            [itemView.layer addAnimation:aa forKey:nil];
+        CABasicAnimation *aa = [CABasicAnimation animationWithKeyPath:@"transform"];
+        aa.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(angle, 0, 0, 1.0)];
+        aa.repeatCount = HUGE_VALF;
+        aa.duration = 0.12;
+        aa.autoreverses = YES;
+        aa.timeOffset = offset;
+        [itemView.layer addAnimation:aa forKey:nil];
 
-            aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
-            aa.duration = 0.08;
-            aa.repeatCount = HUGE_VALF;
-            aa.autoreverses = YES;
-            aa.fromValue = @(transform);
-            aa.toValue = @(-transform);
-            aa.fillMode = kCAFillModeForwards;
-            aa.timeOffset = offset;
-            [itemView.layer addAnimation:aa forKey:nil];
+        aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
+        aa.duration = 0.08;
+        aa.repeatCount = HUGE_VALF;
+        aa.autoreverses = YES;
+        aa.fromValue = @(transform);
+        aa.toValue = @(-transform);
+        aa.fillMode = kCAFillModeForwards;
+        aa.timeOffset = offset;
+        [itemView.layer addAnimation:aa forKey:nil];
 
-            aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
-            aa.duration = 0.09;
-            aa.repeatCount = HUGE_VALF;
-            aa.autoreverses = YES;
-            aa.fromValue = @(transform);
-            aa.toValue = @(-transform);
-            aa.fillMode = kCAFillModeForwards;
-            aa.timeOffset = offset + 0.6;
-            [itemView.layer addAnimation:aa forKey:nil];
+        aa = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+        aa.duration = 0.09;
+        aa.repeatCount = HUGE_VALF;
+        aa.autoreverses = YES;
+        aa.fromValue = @(transform);
+        aa.toValue = @(-transform);
+        aa.fillMode = kCAFillModeForwards;
+        aa.timeOffset = offset + 0.6;
+        [itemView.layer addAnimation:aa forKey:nil];
 
     }
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapGesture:)];
@@ -150,14 +153,14 @@ static float transform = -0.5;
 
 - (void)stopWobble {
     if (self.editing) {
-    for (UICollectionViewCell *itemView in self.collectionView.subviews) {
-        [itemView.layer removeAllAnimations];
-        itemView.layer.transform = CATransform3DIdentity;
-        [itemView.subviews.lastObject removeFromSuperview];
-    }
+        for (UICollectionViewCell *itemView in self.collectionView.subviews) {
+            [itemView.layer removeAllAnimations];
+            itemView.layer.transform = CATransform3DIdentity;
+            [itemView.subviews.lastObject removeFromSuperview];
+        }
         [self.view removeGestureRecognizer:self.tapGestureRecognizer];
         self.editing = NO;
-}
+    }
 }
 
 -(void)load {

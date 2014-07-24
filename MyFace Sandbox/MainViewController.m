@@ -26,14 +26,10 @@
 @end
 
 @implementation MainViewController
-
-
-
-- (void)viewDidLoad {
-
-        self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    NSLog(@"viewdidloooooooooaaaaaaddddd");
+    self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
@@ -42,15 +38,16 @@
     [self.view addGestureRecognizer:longpress];
 }
 
+//Take a Screenshot by holding screen.
 -(void)processLongPress:(UILongPressGestureRecognizer *)sender {
     self.editing = !self.editing;
     if (self.editing) {
-    [self onScreenShotTook:nil];
+        [self onScreenShotTook:nil];
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 -(IBAction)unwind:(UIStoryboardSegue *)sender
@@ -82,8 +79,9 @@
     [self randomizeViews];
 }
 
--(IBAction)onScreenShotTook:(id)sender {
-
+//Press to hold and take a screenshot.
+- (IBAction)onScreenShotTook:(id)sender
+{
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, [UIScreen mainScreen].scale);
     } else {
@@ -93,14 +91,16 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     NSData * data = UIImagePNGRepresentation(image);
-     [data writeToFile:@"foo.png" atomically:YES];
+    [data writeToFile:@"foo.png" atomically:YES];
     UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo Saved to Roll" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
     [alert show];
     [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.0f];
-//    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
-//    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-//    [self presentViewController:activityController animated:YES completion:nil];
+
+    //Not Used Because of Kids Sharing Limitation.
+    //    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
+    //    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    //    [self presentViewController:activityController animated:YES completion:nil];
 
 }
 
@@ -240,30 +240,30 @@
     NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *storePath = [applicationDocumentsDir stringByAppendingString:[NSString stringWithFormat:@"/%@%u.png", name, arc4random_uniform(1000000)]];
     [UIImagePNGRepresentation(image) writeToFile:storePath atomically:YES];
-//    NSLog(@"done");
+    //    NSLog(@"done");
     return storePath;
 }
 
--(NSData *) getImageFromURL:(NSString *)fileURL {
+// Not used in this case
+- (NSData *) getImageFromURL:(NSString *)fileURL
+{
     UIImage * result;
     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
     result = [UIImage imageWithData:data];
     NSData *resultt = UIImagePNGRepresentation(result);
     return resultt;
-} // Not used
+}
 
-- (void)receiveTestNotification:(NSNotification *) notification // not used sincetabbar
+ // not used sincetabbar
+- (void)receiveTestNotification:(NSNotification *) notification
 {
     if ([[notification name] isEqualToString:@"TestNotification"]) {
         NSLog (@"Successfully received the test notification!");
     }
-} // used to be used for calling shuffle on tab bar custom class
+}
 
-//-(void)viewWillDisappear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//} // not used
-
--(void)load {
+//Fetch Core Data and Reload if empty
+- (void)load {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
@@ -346,7 +346,7 @@
     self.splitPhotoArray = [NSMutableArray array];
     for (Photos *face in self.fetchedResultsController.fetchedObjects)
     {
-//        NSLog(@"%@", face.imageURL);
+        //        NSLog(@"%@", face.imageURL);
         NSData *data = [NSData dataWithContentsOfFile:face.imageURL];
         UIImage *image = [UIImage imageWithData:data];
         NSDictionary *photoItem = @{@"name": face.name ,@"photos":[self slicePhotos:image]};
@@ -441,7 +441,7 @@
             //            self.nameLabel.alpha = 1;
         } completion:^(BOOL finished) {
             if (finished) {
-            [self randomizeViews];
+                [self randomizeViews];
             }
         }];
         //

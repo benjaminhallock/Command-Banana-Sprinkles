@@ -175,7 +175,7 @@
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
 				AE08F4A7194B552100E2A260 /* MainViewController.m */,
 				C2A958BD194F45E100944955 /* Custom Class Collection myFace */,
-				C2FA6A651951F0CB00DCE669 /* MakeFace */,
+				C2FA6A651951F0CB00DCE669 /* MakeFace Not Used */,
 				C2FA6A641951F0A600DCE669 /* ChangeFace */,
 				C29335CD194FC5300031688C /* ImageEditor */,
 				AE08F498194B552100E2A260 /* Supporting Files */,
@@ -258,7 +258,7 @@
 			name = ChangeFace;
 			sourceTree = "<group>";
 		};
-		C2FA6A651951F0CB00DCE669 /* MakeFace */ = {
+		C2FA6A651951F0CB00DCE669 /* MakeFace Not Used */ = {
 			isa = PBXGroup;
 			children = (
 				AEE46AA6194F57FA00B1B793 /* MakeFaceViewController.h */,
@@ -266,7 +266,7 @@
 				C29335D7194FC5390031688C /* DemoImageEditor.h */,
 				C29335D8194FC5390031688C /* DemoImageEditor.m */,
 			);
-			name = MakeFace;
+			name = "MakeFace Not Used";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
