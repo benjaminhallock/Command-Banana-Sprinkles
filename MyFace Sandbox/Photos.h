@@ -2,7 +2,7 @@
 //  Photos.h
 //  myFaceB
 //
-//  Created by benjaminhallock@gmail.com on 6/26/14.
+//  Created by benjaminhallock@gmail.com on 9/11/14.
 //  Copyright (c) 2014 Mobile Makers Academy. All rights reserved.
 //
 
@@ -12,9 +12,8 @@
 
 @interface Photos : NSManagedObject
 
-@property (nonatomic, retain) NSData * image;
+@property (nonatomic, retain) NSString * imageURL;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * selected;
-@property (nonatomic, retain) NSString * imageURL;
 
 @end

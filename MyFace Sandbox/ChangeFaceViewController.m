@@ -18,6 +18,7 @@
 
 -(IBAction)onAddButtonPressed:(id)sender {
     self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self presentViewController:self.imagePicker animated:YES completion:nil];
 }
 
@@ -175,7 +176,8 @@ static float transform = -0.5;
     imageArray = [NSMutableArray new];
 
     for (Photos *hero in self.fetchedResultsController.fetchedObjects) {
-        NSData *data = [NSData dataWithContentsOfFile:hero.imageURL];
+        NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",hero.imageURL]];
+        NSData *data = [NSData dataWithContentsOfFile:fullPath];
         UIImage *image = [UIImage imageWithData:data];
         Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(32, 41)];
         [imageArray addObject:resizedImage];

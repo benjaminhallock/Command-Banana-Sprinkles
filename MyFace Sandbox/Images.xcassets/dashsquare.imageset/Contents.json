@@ -11,6 +11,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "iconmonstr-square-dashed-rounded-icon-64.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

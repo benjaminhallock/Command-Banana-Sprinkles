@@ -11,6 +11,10 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "grocery10.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

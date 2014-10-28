@@ -35,8 +35,8 @@
 		C29335D9194FC5390031688C /* DemoImageEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335D8194FC5390031688C /* DemoImageEditor.m */; };
 		C294458019509936002486F7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C294457F19509936002486F7 /* CoreData.framework */; };
 		C2944583195099C4002486F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2944581195099C4002486F7 /* Model.xcdatamodeld */; };
-		C2A6FACB195CA26600CAB494 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A6FACA195CA26600CAB494 /* Photos.m */; };
 		C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A958BF194F46D200944955 /* ChangeFaceViewController.m */; };
+		C2D86E6119C2B10D0077F859 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D86E6019C2B10D0077F859 /* Photos.m */; };
 		C2FA6A621951EDEE00DCE669 /* Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6A611951EDEE00DCE669 /* Resize.m */; };
 /* End PBXBuildFile section */
 
@@ -96,10 +96,10 @@
 		C29335D8194FC5390031688C /* DemoImageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoImageEditor.m; sourceTree = "<group>"; };
 		C294457F19509936002486F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C2944582195099C4002486F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		C2A6FAC9195CA26600CAB494 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photos.h; sourceTree = "<group>"; };
-		C2A6FACA195CA26600CAB494 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photos.m; sourceTree = "<group>"; };
 		C2A958BE194F46D200944955 /* ChangeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceViewController.h; sourceTree = "<group>"; };
 		C2A958BF194F46D200944955 /* ChangeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceViewController.m; sourceTree = "<group>"; };
+		C2D86E5F19C2B10D0077F859 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photos.h; path = "MyFace Sandbox/Photos.h"; sourceTree = "<group>"; };
+		C2D86E6019C2B10D0077F859 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photos.m; path = "MyFace Sandbox/Photos.m"; sourceTree = "<group>"; };
 		C2FA6A601951EDED00DCE669 /* Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resize.h; sourceTree = "<group>"; };
 		C2FA6A611951EDEE00DCE669 /* Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resize.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,9 +133,9 @@
 		AE08F485194B552000E2A260 = {
 			isa = PBXGroup;
 			children = (
-				C2A6FAC9195CA26600CAB494 /* Photos.h */,
-				C2A6FACA195CA26600CAB494 /* Photos.m */,
 				C2944581195099C4002486F7 /* Model.xcdatamodeld */,
+				C2D86E5F19C2B10D0077F859 /* Photos.h */,
+				C2D86E6019C2B10D0077F859 /* Photos.m */,
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
@@ -174,9 +174,13 @@
 			children = (
 				AE08F4A6194B552100E2A260 /* MainViewController.h */,
 				AE08F4A7194B552100E2A260 /* MainViewController.m */,
+				C2A958BE194F46D200944955 /* ChangeFaceViewController.h */,
+				C2A958BF194F46D200944955 /* ChangeFaceViewController.m */,
+				C29335D7194FC5390031688C /* DemoImageEditor.h */,
+				C29335D8194FC5390031688C /* DemoImageEditor.m */,
 				C2A958BD194F45E100944955 /* Custom Class Collection myFace */,
-				C2FA6A651951F0CB00DCE669 /* MakeFace Not Used */,
 				C2FA6A641951F0A600DCE669 /* ChangeFace */,
+				C2FA6A651951F0CB00DCE669 /* MakeFace Not Used */,
 				C29335CD194FC5300031688C /* ImageEditor */,
 				AE08F498194B552100E2A260 /* Supporting Files */,
 			);
@@ -252,8 +256,6 @@
 				C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */,
 				C2FA6A601951EDED00DCE669 /* Resize.h */,
 				C2FA6A611951EDEE00DCE669 /* Resize.m */,
-				C2A958BE194F46D200944955 /* ChangeFaceViewController.h */,
-				C2A958BF194F46D200944955 /* ChangeFaceViewController.m */,
 			);
 			name = ChangeFace;
 			sourceTree = "<group>";
@@ -263,8 +265,6 @@
 			children = (
 				AEE46AA6194F57FA00B1B793 /* MakeFaceViewController.h */,
 				AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */,
-				C29335D7194FC5390031688C /* DemoImageEditor.h */,
-				C29335D8194FC5390031688C /* DemoImageEditor.m */,
 			);
 			name = "MakeFace Not Used";
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 				C2A958C0194F46D200944955 /* ChangeFaceViewController.m in Sources */,
 				C29335D4194FC5300031688C /* HFImageEditorFrameView.m in Sources */,
 				AE08F4CB194B55C500E2A260 /* MiddleCollectionView.m in Sources */,
-				C2A6FACB195CA26600CAB494 /* Photos.m in Sources */,
+				C2D86E6119C2B10D0077F859 /* Photos.m in Sources */,
 				C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */,
 				AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */,
 				AE08F4A8194B552100E2A260 /* MainViewController.m in Sources */,
