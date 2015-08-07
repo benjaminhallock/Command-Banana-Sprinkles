@@ -1,4 +1,3 @@
-
 #import "MainViewController.h"
 #import "TopCollectionView.h"
 #import "TopCollectionViewCell.h"
@@ -10,38 +9,67 @@
 #import "Photos.h"
 #import "ChangeFaceViewController.h"
 #import "Resize.h"
-
+#import "AppConstants.h"
+#import "CustomCameraView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 410
 
-@interface MainViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, UIImagePickerControllerDelegate>
+@interface MainViewController () <UIScrollViewDelegate, UIImagePickerControllerDelegate, CustomCameraDelegate>
+
 @property (weak, nonatomic) IBOutlet TopCollectionView *topCollectionView;
 @property (weak, nonatomic) IBOutlet MiddleCollectionView *middleCollectionView;
 @property (weak, nonatomic) IBOutlet BottomCollectionView *bottomCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonShuffle;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property NSMutableArray *splitPhotoArray;
+@property CustomCameraView *cameraView;
+@property UINavigationController *cameraViewNav;
 @end
 
-@implementation MainViewController {
-    SystemSoundID arrows;
+@implementation MainViewController
+
+- (IBAction)didPressBarButtonAdd:(UIBarButtonItem *)sender
+{
+    sender.enabled = 0;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ChangeFaceViewController *changeView = [storyboard instantiateViewControllerWithIdentifier:@"changeFaceView"];
+    [self showViewController:changeView sender:0];
+    sender.enabled = 1;
 }
 
 - (void)viewDidLoad
 {
-    //    [super viewDidLoad];
+    [super viewDidLoad];
     self.navigationItem.titleView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logowhite"]];
     self.managedObjectContext = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     [self loadImagePicker];
     [self ViewDidLoadAnimation];
 
-        UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processLongPress:)];
-        [self.view addGestureRecognizer:longpress];
+    self.cameraView = [[CustomCameraView alloc] initWithPopUp:1];
+    self.cameraView.delegate = self;
+    self.cameraView.picker = self.imagePicker;
 }
 
+-(void)sendBackPicture:(UIImage *)image
+{
+    self.imageEditor.sourceImage = image;
+
+    self.imageEditor.previewImage = image;
+
+    [self.imageEditor reset:NO];
+
+//    self.cameraViewNav.navigationBarHidden = NO;
+    self.cameraViewNav.navigationBar.tintColor = orangeColor;
+    [self.cameraViewNav pushViewController:self.imageEditor animated:1];
+}
+
+/* SCREENSHOT
+
+    UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(processLongPress:)];
+    [self.view addGestureRecognizer:longpress];
 //Take a Screenshot by holding screen.
 -(void)processLongPress:(UILongPressGestureRecognizer *)sender {
     self.editing = !self.editing;
@@ -49,8 +77,34 @@
         [self onScreenShotTook:nil];
     }
 }
+     //Press to hold and take a screenshot.
+     - (IBAction)onScreenShotTook:(id)sender
+     {
+     UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, 0.0);
+     [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
+     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+     UIGraphicsEndImageContext();
+     NSData * data = UIImagePNGRepresentation(image);
+     [data writeToFile:[NSString stringWithFormat:@"%i", arc4random_uniform(100)] atomically:NO];
+     UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
 
--(void)viewWillAppear:(BOOL)animated {
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo Saved to Roll" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+     [alert show];
+
+     [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.0f];
+
+     AudioServicesPlaySystemSound (1108);
+
+     //Not Used Because of Kids Sharing Limitation.
+     //    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
+     //    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+     //    [self presentViewController:activityController animated:YES completion:nil];
+     }
+     */
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:0];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
@@ -66,12 +120,14 @@
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(0, 75, 320, 410)];
         image.image = [UIImage imageNamed:@"template"];
+        image.alpha = .9f;
         self.imagePicker.cameraOverlayView = image;
         self.imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
         self.imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
-        self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeAuto;
-
-    } else {
+        self.imagePicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOn;
+    }
+    else
+    {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
 
@@ -80,61 +136,36 @@
     [self randomizeViews];
 }
 
-//Press to hold and take a screenshot.
-- (IBAction)onScreenShotTook:(id)sender
+
+-(void)dismiss:(UIAlertView *)alert
 {
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 430), NO, 0.0);
-    [self.view.window.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData * data = UIImagePNGRepresentation(image);
-    [data writeToFile:[NSString stringWithFormat:@"%i", arc4random_uniform(100)] atomically:NO];
-    UIImageWriteToSavedPhotosAlbum([UIImage imageWithData:data], 0, 0, 0);
-
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Photo Saved to Roll" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [alert show];
-
-    [self performSelector:@selector(dismiss:) withObject:alert afterDelay:1.0f];
-
-    AudioServicesPlaySystemSound (1108);
-
-    //Not Used Because of Kids Sharing Limitation.
-    //    NSArray *activityItems = [NSArray arrayWithObjects:@"You should totallly try the best app in the world, myFace",[UIImage imageWithData:data], nil];
-    //    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    //    [self presentViewController:activityController animated:YES completion:nil];
-}
-
--(void)dismiss:(UIAlertView *)alert {
     [alert dismissWithClickedButtonIndex:-1 animated:YES];
 }
 
--(IBAction)onCameraButtonPressed:(id)sender {
-    [self presentViewController:self.imagePicker animated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(cameraChanged:)
-                                                 name:@"AVCaptureDeviceDidStartRunningNotification"
-                                               object:nil];
-}
-
-- (void)cameraChanged:(NSNotification *)notification
+//TODO Change to CUSTOM CAMERA
+-(IBAction)onCameraButtonPressed:(id)sender
 {
-    if(_imagePicker.cameraDevice == UIImagePickerControllerCameraDeviceFront)
-    {
-        _imagePicker.cameraViewTransform = CGAffineTransformIdentity;
-        _imagePicker.cameraViewTransform = CGAffineTransformScale(_imagePicker.cameraViewTransform, -1,     1);
-    } else {
-        _imagePicker.cameraViewTransform = CGAffineTransformIdentity;
-    }
+
+    self.cameraViewNav = [[UINavigationController alloc] initWithRootViewController:self.cameraView];
+    self.cameraViewNav.navigationBarHidden = YES;
+    [self presentViewController:self.cameraViewNav animated:YES completion:nil];
 }
 
--(IBAction)shuffleButton:(id)sender {
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(cameraChanged:)
+//                                                 name:@"AVCaptureDeviceDidStartRunningNotification"
+//                                               object:nil];
+
+-(IBAction)shuffleButton:(id)sender
+{
     [self randomizeViews];
-    AudioServicesPlaySystemSound (1105);
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     ChangeFaceViewController *nextView = [segue destinationViewController];
-    if ([segue.identifier isEqualToString:@"showGallery"]) {
+    if ([segue.identifier isEqualToString:@"showGallery"])
+    {
         nextView.imagePicker = self.imagePicker;
         nextView.imageEditor = self.imageEditor;
         nextView.library = self.library;
@@ -144,21 +175,26 @@
 -(void)ViewDidLoadAnimation
 {
     self.buttonShuffle.alpha = 0;
+
     [UIView animateWithDuration:1.0 animations:^{
         self.nameLabel.alpha = 0;
         self.nameLabel.alpha = 1;
     }];
 
-    [UIView animateWithDuration:0.5 animations:^{
-        self.nameLabel.frame = CGRectMake(0, 0, 320, self.nameLabel.frame.size.height);
-        self.nameLabel.frame = CGRectMake(0, 0, 320, 30);
+    [UIView animateWithDuration:0.5 animations:^
+    {
+
+        self.nameLabel.frame = CGRectMake(0, 0, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
+        self.nameLabel.frame = CGRectMake(0, self.view.frame.size.height + 100, self.nameLabel.frame.size.width, self.nameLabel.frame.size.height);
     }];
+
     [UIView animateWithDuration:1.0 delay:2.0 options:0 animations:^{
         self.nameLabel.alpha = 1;
         self.nameLabel.alpha = 0;
         self.buttonShuffle.alpha = 0;
         self.buttonShuffle.alpha = 1;
-    } completion:nil];
+    }
+                     completion:nil];
 
     [NSTimer scheduledTimerWithTimeInterval:1.0f
                                      target:self
@@ -178,11 +214,13 @@
 
 }
 
--(void)loadImagePicker {
+-(void)loadImagePicker
+{
     self.imagePicker = [[UIImagePickerController alloc] init];
     self.imagePicker.allowsEditing = NO;
     self.imagePicker.delegate = self;
-    self.imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext; //fixes snapshot error
+//    self.imagePicker.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //fixes snapshot error
 
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -197,24 +235,40 @@
     }
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    self.library = [[ALAssetsLibrary alloc] init];
     self.imageEditor = [storyboard instantiateViewControllerWithIdentifier:@"DemoImageEditor"];
     self.imageEditor.checkBounds = YES;
     self.imageEditor.rotateEnabled = YES;
-    self.imageEditor.modalPresentationStyle = UIModalPresentationCurrentContext;//Seing if this helps
-    self.library = library;
+//    self.imageEditor.modalPresentationStyle = UIModalPresentationCurrentContext;//Seing if this helps
 
-    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled){
-        if(!canceled && editedImage) {
+    self.imageEditor.doneCallback = ^(UIImage *editedImage, BOOL canceled)
+    {
+        if(!canceled && editedImage)
+        {
+            AudioServicesPlaySystemSound (1114);
+//            AudioServicesPlaySystemSound (1052);
             //[library writeImageToSavedPhotosAlbum:[editedImage CGImage]
-            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+            NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:_managedObjectContext];
             NSString *path = [self writeImage:editedImage withName:@"gallery"];
             [newManagedObject setValue:path forKey:@"imageURL"];
             [newManagedObject setValue:[NSString stringWithFormat:@"%@",[NSDate date]] forKey:@"name"];
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
+            [self.cameraView dismissViewControllerAnimated:1 completion:^{
+            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationFade];
+            }];
         }
     };
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [UIView animateWithDuration:.3f animations:^
+    {
+         picker.navigationBar.alpha = 0;
+    }];
+
+    [picker dismissViewControllerAnimated:1 completion:0];
 }
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -222,10 +276,13 @@
     UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
     NSURL *assetURL = [info objectForKey:UIImagePickerControllerReferenceURL];
 
-    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+    //Did YOU just take a picture????
+    if (self.imagePicker.sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
         [self dismissViewControllerAnimated:YES completion:nil];
-        if (image != nil) {
-            Resize *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(320, 410)];
+        if (image != nil)
+        {
+            UIImage *resizedImage = [Resize imageWithImage:image scaledToSize:CGSizeMake(320, 410)];
             UIImageWriteToSavedPhotosAlbum(resizedImage, 0, 0, 0);
             UIImage *finalImage = resizedImage;
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
@@ -237,6 +294,7 @@
             [self.managedObjectContext save:nil];
         }
     }
+    //DId you just go to CAMERA ROLL??
     else
     {
         [self.library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
@@ -244,12 +302,26 @@
             self.imageEditor.sourceImage = image;
             self.imageEditor.previewImage = preview;
             [self.imageEditor reset:NO];
+//            [picker presentViewController:self.imageEditor animated:1 completion:0];
             [picker pushViewController:self.imageEditor animated:YES];
-            [picker setNavigationBarHidden:YES animated:NO];
-
-        } failureBlock:^(NSError *error) {
+//            [picker setNavigationBarHidden:YES animated:NO];
+        }
+                     failureBlock:^(NSError *error)
+        {
             NSLog(@"Failed to get asset from library");
         }];
+    }
+}
+
+//Change the image picker color header
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController
+                    animated:(BOOL)animated
+{
+    if ([navigationController isKindOfClass:[UIImagePickerController class]])
+    {
+        navigationController.navigationBar.backgroundColor = orangeColor;
+        navigationController.navigationBar.tintColor = orangeColor;
     }
 }
 
@@ -257,7 +329,7 @@
     NSString *fileName = [NSString stringWithFormat:@"%@%u.png",name,arc4random_uniform(1000000)];
 
     NSString *applicationDocumentsDir = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject] stringByAppendingPathComponent:fileName];
-//    NSLog(@"%@", applicationDocumentsDir);
+    //    NSLog(@"%@", applicationDocumentsDir);
     //  NSString *applicationDocumentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     [UIImagePNGRepresentation(image) writeToFile:applicationDocumentsDir atomically:YES];
     return fileName;
@@ -274,7 +346,8 @@
 }
 
 //Fetch Core Data and Reload if empty
-- (void)load {
+- (void)load
+{
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
@@ -284,16 +357,18 @@
     [self.fetchedResultsController performFetch:0];
 
     //////////////////////////////////////////////////////////////
-    if (self.fetchedResultsController.fetchedObjects.count  < 3) {
+    if (self.fetchedResultsController.fetchedObjects.count  < 3)
+    {
         NSLog(@"less than 3 fetched");
         NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"Photos"];
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
         request.sortDescriptors = [NSArray arrayWithObjects:sort,nil];
-        //      request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
+//      request.predicate = [NSPredicate predicateWithFormat:@"selected > 0"];
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Cache"];
         [self.fetchedResultsController performFetch:nil];
 
-        for (NSManagedObject *face in self.fetchedResultsController.fetchedObjects) {
+        for (NSManagedObject *face in self.fetchedResultsController.fetchedObjects)
+        {
             [self.managedObjectContext deleteObject:face];
             [self.managedObjectContext save:nil];
         }
@@ -344,7 +419,8 @@
         photoItem = @{@"name":@"Don2" ,@"photos":[UIImage imageNamed:@"wsample22"]};
         [self.splitPhotoArray addObject:photoItem];
 
-        for (NSDictionary *person in self.splitPhotoArray) {
+        for (NSDictionary *person in self.splitPhotoArray)
+        {
             NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
             NSString *path = [self writeImage:person[@"photos"] withName:@"stock"];
             [newManagedObject setValue:path forKey:@"imageURL"];
@@ -352,6 +428,7 @@
             [newManagedObject setValue:@YES forKey:@"selected"];
             [self.managedObjectContext save:nil];
         }
+
         [self load]; //should have more than 3 now.
     } // End if less than 3 selected images;
 
@@ -359,28 +436,26 @@
 
     for (Photos *face in self.fetchedResultsController.fetchedObjects)
     {
-//        NSLog(@"%@", face.imageURL);
+        //        NSLog(@"%@", face.imageURL);
         NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",face.imageURL]];
-//        NSLog(@"%@",fullPath);
+        //        NSLog(@"%@",fullPath);
         NSData *data = [NSData dataWithContentsOfFile:fullPath];
         UIImage *image = [UIImage imageWithData:data];
         NSArray *photos = [NSArray new];
         photos = [self slicePhotos:image];
         NSDictionary *photoItem = @{@"name":face.name , @"photos":photos};
-//        NSLog(@"%@",photoItem);
+        //        NSLog(@"%@",photoItem);
         [self.splitPhotoArray addObject:photoItem];
     }
 
     [self.bottomCollectionView reloadData];
     [self.topCollectionView reloadData];
     [self.middleCollectionView reloadData];
-
 }
 
 // automatically split the photos into three horizontal sections
 - (NSArray *)slicePhotos:(UIImage *)masterImage
 {
-    NSLog(@"slicing");
     CGRect cropRect;
     CGImageRef imageRef;
 
@@ -415,7 +490,6 @@
 
     // finally return the three (sliced) images
     NSArray *array = [NSArray arrayWithObjects:image0, image1, image2, nil];
-    NSLog(@"%@", array);
     return array;
 }
 
@@ -432,10 +506,20 @@
 // show (animate) the random shuffling of sliced images
 - (void)randomizeViews
 {
+    //This is a hack for checking winner.
+    self.topCollectionView.scrollEnabled = 1;
+    self.topCollectionView.userInteractionEnabled = 1;
+    self.middleCollectionView.scrollEnabled = 1;
+    self.middleCollectionView.userInteractionEnabled = 1;
+    self.bottomCollectionView.scrollEnabled = 1;
+    self.bottomCollectionView.userInteractionEnabled = 1;
+
+    AudioServicesPlaySystemSound (1105);
     // topCollectionView
-    NSUInteger index = arc4random_uniform(self.splitPhotoArray.count);
-    NSUInteger index1 = arc4random_uniform(self.splitPhotoArray.count);
-    NSUInteger index2 = arc4random_uniform(self.splitPhotoArray.count);
+    int index = arc4random_uniform(self.splitPhotoArray.count);
+    int index1 = arc4random_uniform(self.splitPhotoArray.count);
+    int index2 = arc4random_uniform(self.splitPhotoArray.count);
+    
     [self scrollView:self.topCollectionView toIndex:index animated:YES];
     [self scrollView:self.middleCollectionView toIndex:index1 animated:YES];
     [self scrollView:self.bottomCollectionView toIndex:index2 animated:YES];
@@ -444,19 +528,32 @@
 // check if a match has occured, and if so, display the photo name
 - (void)checkForWinner
 {
+    [self infiniteScroll:self.topCollectionView];
+    [self infiniteScroll:self.middleCollectionView];
+    [self infiniteScroll:self.bottomCollectionView];
+
     if([self didWin])
     {
         self.topCollectionView.scrollEnabled = NO;
         self.middleCollectionView.scrollEnabled = NO;
         self.bottomCollectionView.scrollEnabled = NO;
+        self.topCollectionView.userInteractionEnabled = NO;
+        self.middleCollectionView.userInteractionEnabled = NO;
+        self.bottomCollectionView.userInteractionEnabled = NO;
 
-        //        AudioServicesPlaySystemSound (1028);
-        AudioServicesPlaySystemSound (1332);
-        //         AudioServicesPlaySystemSound (1331);
+        int x = arc4random_uniform(5);
+        NSLog(@"%i",x);
+
+        if (x == 0)       AudioServicesPlaySystemSound (1332);
+        else if (x == 1)  AudioServicesPlaySystemSound (1028);
+        else if (x == 2)  AudioServicesPlaySystemSound (1331);
+        else if (x == 3)  AudioServicesPlaySystemSound (1322);
+        else if (x == 4)  AudioServicesPlaySystemSound (1328);
 
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
         view.alpha = 0;
         view.backgroundColor = [UIColor whiteColor];
+
         [self.view insertSubview:view aboveSubview:self.view];
         //        NSDictionary *photo = [self.splitPhotoArray objectAtIndex:[self displayedPhotoIndex:self.topCollectionView]];
         //        NSString *name = [photo objectForKey:@"name"];
@@ -472,9 +569,6 @@
         } completion:^(BOOL finished) {
             if (finished) {
                 [self performSelector:@selector(randomizeViews) withObject:self afterDelay:2.0f];
-                self.topCollectionView.scrollEnabled = 1;
-                self.middleCollectionView.scrollEnabled = 1;
-                self.bottomCollectionView.scrollEnabled = 1;
             }
         }];
         //
@@ -495,6 +589,11 @@
     NSInteger topIndex = [self displayedPhotoIndex:self.topCollectionView];
     NSInteger middleIndex = [self displayedPhotoIndex:self.middleCollectionView];
     NSInteger bottomIndex = [self displayedPhotoIndex:self.bottomCollectionView];
+
+
+    NSIndexPath *index = self.topCollectionView.indexPathsForVisibleItems[0];
+    NSLog(@"AWESOME %ld", (long)index.row);
+    NSLog(@"COOOL %ld", (long)topIndex);
 
     return topIndex == middleIndex && middleIndex == bottomIndex;
 }
@@ -559,7 +658,8 @@
 {
     [self infiniteScroll:scrollView];
 
-    if (!self.topCollectionView.pagingEnabled) {
+    if (!self.topCollectionView.pagingEnabled)
+    {
         [self.topCollectionView scrollToItemAtIndexPath:[self.topCollectionView indexPathsForVisibleItems].firstObject atScrollPosition:UICollectionViewScrollPositionRight animated:YES];
     }
 

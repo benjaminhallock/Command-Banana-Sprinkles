@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCameraView">
+            <connections>
+                <outlet property="cameraRollButton" destination="oqZ-YL-qcI" id="MPT-eQ-f3m"/>
+                <outlet property="cancelButton" destination="5s0-S6-0LZ" id="ARO-ow-Uxf"/>
+                <outlet property="flashButton" destination="4q3-tp-91X" id="s1H-T3-dvW"/>
+                <outlet property="switchCameraButton" destination="qFi-2c-ftl" id="suN-ab-dlx"/>
+                <outlet property="takePictureButton" destination="Q2k-ZW-xiT" id="y8z-Pc-2Ko"/>
+                <outlet property="videoPreviewView" destination="Lfp-60-0qM" id="Jcf-XA-kOJ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="D7H-ND-gWa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-60-0qM" userLabel="View - video preview"/>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFi-2c-ftl" userLabel="SWITCH CAMERA">
+                    <rect key="frame" x="262" y="8" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="z4O-qQ-nkO"/>
+                    </constraints>
+                    <size key="titleShadowOffset" width="-1" height="1"/>
+                    <state key="normal" title="switch" image="switchcamera1">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="switchCameraTapped:" destination="-1" eventType="touchUpInside" id="mZd-ow-Qwt"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqZ-YL-qcI" userLabel="Button - Cameraroll">
+                    <rect key="frame" x="31" y="494" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="m5a-tC-bJN"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonRelease:" destination="-1" eventType="touchDown" id="6w1-Jk-hwS"/>
+                        <action selector="onAlbumPressed:" destination="-1" eventType="touchUpInside" id="cJ8-e0-Rl1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2k-ZW-xiT" userLabel="camera button">
+                    <rect key="frame" x="116" y="459" width="107" height="100"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="74"/>
+                    <color key="tintColor" red="0.24722222220000001" green="0.75686274509999996" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <size key="titleShadowOffset" width="2" height="2"/>
+                    <state key="normal" image="cameraTakePicture2">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonRelease:" destination="-1" eventType="touchDown" id="wn6-6j-QhH"/>
+                        <action selector="onTakePhotoPressed:" destination="-1" eventType="touchUpInside" id="bh3-wS-m5Y"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q3-tp-91X" userLabel="FLASH ">
+                    <rect key="frame" x="8" y="13" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="EYz-YM-Mml"/>
+                        <constraint firstAttribute="height" constant="40" id="Mvn-yi-38f"/>
+                    </constraints>
+                    <size key="titleShadowOffset" width="-1" height="1"/>
+                    <state key="normal" image="flash-auto">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onFlashPressed:" destination="-1" eventType="touchUpInside" id="MUA-SV-U3J"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s0-S6-0LZ" userLabel="CANCEL">
+                    <rect key="frame" x="262" y="499" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="VbL-7Z-X6Z"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="titleShadowOffset" width="-1" height="1"/>
+                    <state key="normal" title="cancel" image="close47">
+                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onCloseCameraPressed:" destination="-1" eventType="touchUpInside" id="C7Z-Gw-fXe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5s0-S6-0LZ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="25D-pO-FIu"/>
+                <constraint firstAttribute="bottom" secondItem="oqZ-YL-qcI" secondAttribute="bottom" constant="14" id="3UM-1z-dKp"/>
+                <constraint firstItem="Lfp-60-0qM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6Zu-AE-DTa"/>
+                <constraint firstAttribute="trailing" secondItem="Lfp-60-0qM" secondAttribute="trailing" constant="320" id="87D-bv-z1c"/>
+                <constraint firstItem="5s0-S6-0LZ" firstAttribute="leading" secondItem="qFi-2c-ftl" secondAttribute="leading" id="CXJ-NA-Bhu"/>
+                <constraint firstItem="4q3-tp-91X" firstAttribute="centerY" secondItem="qFi-2c-ftl" secondAttribute="centerY" id="DeU-SV-YLe"/>
+                <constraint firstAttribute="bottom" secondItem="5s0-S6-0LZ" secondAttribute="bottom" constant="19" id="K4O-gu-h5L"/>
+                <constraint firstItem="4q3-tp-91X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="LMD-P8-YnU"/>
+                <constraint firstItem="Lfp-60-0qM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MIp-4K-g1q"/>
+                <constraint firstItem="Q2k-ZW-xiT" firstAttribute="leading" secondItem="oqZ-YL-qcI" secondAttribute="trailing" constant="25" id="SNT-qk-cIg"/>
+                <constraint firstItem="5s0-S6-0LZ" firstAttribute="trailing" secondItem="qFi-2c-ftl" secondAttribute="trailing" id="Y5u-a8-fbw"/>
+                <constraint firstItem="4q3-tp-91X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="dN6-fD-MMu"/>
+                <constraint firstItem="5s0-S6-0LZ" firstAttribute="leading" secondItem="Q2k-ZW-xiT" secondAttribute="trailing" constant="39" id="hBn-c8-AHf"/>
+                <constraint firstItem="qFi-2c-ftl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="hKo-uw-gQF"/>
+                <constraint firstItem="Q2k-ZW-xiT" firstAttribute="bottom" secondItem="oqZ-YL-qcI" secondAttribute="bottom" constant="5" id="syS-k1-YgA"/>
+                <constraint firstAttribute="bottom" secondItem="Lfp-60-0qM" secondAttribute="bottom" constant="568" id="wUs-Qz-FMM"/>
+                <constraint firstItem="oqZ-YL-qcI" firstAttribute="top" secondItem="5s0-S6-0LZ" secondAttribute="top" constant="-5" id="wlt-j9-bGh"/>
+            </constraints>
+            <point key="canvasLocation" x="243" y="285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="cameraTakePicture2" width="107" height="100"/>
+        <image name="close47" width="512" height="512"/>
+        <image name="flash-auto" width="512" height="512"/>
+        <image name="switchcamera1" width="512" height="512"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
