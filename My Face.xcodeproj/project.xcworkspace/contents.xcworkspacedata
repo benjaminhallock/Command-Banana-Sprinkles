@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:myFaceB.xcodeproj">
+      location = "self:/Users/mrbubbles/Google Drive/AA APPSTORE/MyFace/My Face.xcodeproj">
    </FileRef>
 </Workspace>

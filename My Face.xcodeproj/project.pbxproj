@@ -28,6 +28,7 @@
 		AE08F4D4194B562500E2A260 /* MiddleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D3194B562500E2A260 /* MiddleCollectionViewCell.m */; };
 		AE08F4D7194B563C00E2A260 /* BottomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */; };
 		AEE46AA8194F57FA00B1B793 /* MakeFaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */; };
+		B500F4521C470A0500F72A2B /* -1024.png in Resources */ = {isa = PBXBuildFile; fileRef = B500F44E1C470A0500F72A2B /* -1024.png */; };
 		C20B6BB8194FD48B0080F9AF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20B6BB7194FD48B0080F9AF /* AssetsLibrary.framework */; };
 		C246621D194F567D00BBA57B /* ChangeFaceCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */; };
 		C29335D4194FC5300031688C /* HFImageEditorFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C29335CF194FC5300031688C /* HFImageEditorFrameView.m */; };
@@ -53,21 +54,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AE08F48E194B552000E2A260 /* myFaceB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myFaceB.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE08F48E194B552000E2A260 /* My Face.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Face.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE08F491194B552000E2A260 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AE08F493194B552100E2A260 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AE08F495194B552100E2A260 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		AE08F499194B552100E2A260 /* myFaceB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "myFaceB-Info.plist"; sourceTree = "<group>"; };
+		AE08F499194B552100E2A260 /* My Face-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "My Face-Info.plist"; sourceTree = "<group>"; };
 		AE08F49B194B552100E2A260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE08F49D194B552100E2A260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AE08F49F194B552100E2A260 /* myFaceB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myFaceB-Prefix.pch"; sourceTree = "<group>"; };
+		AE08F49F194B552100E2A260 /* My Face-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "My Face-Prefix.pch"; sourceTree = "<group>"; };
 		AE08F4A0194B552100E2A260 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "MyFace Sandbox/AppDelegate.h"; sourceTree = "<group>"; };
 		AE08F4A1194B552100E2A260 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "MyFace Sandbox/AppDelegate.m"; sourceTree = "<group>"; };
 		AE08F4A4194B552100E2A260 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE08F4A6194B552100E2A260 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AE08F4A7194B552100E2A260 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AE08F4A9194B552100E2A260 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "MyFace Sandbox/Images.xcassets"; sourceTree = "<group>"; };
-		AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myFaceBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE08F4AF194B552100E2A260 /* My FaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My FaceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE08F4B0194B552100E2A260 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AE08F4B8194B552100E2A260 /* MyFace SandboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyFace SandboxTests-Info.plist"; sourceTree = "<group>"; };
 		AE08F4BA194B552100E2A260 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -86,6 +87,8 @@
 		AE08F4D6194B563C00E2A260 /* BottomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomCollectionViewCell.m; sourceTree = "<group>"; };
 		AEE46AA6194F57FA00B1B793 /* MakeFaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeFaceViewController.h; sourceTree = "<group>"; };
 		AEE46AA7194F57FA00B1B793 /* MakeFaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeFaceViewController.m; sourceTree = "<group>"; };
+		B500F44E1C470A0500F72A2B /* -1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "-1024.png"; path = "MyFace Sandbox/-1024.png"; sourceTree = "<group>"; };
+		B500F44F1C470A0500F72A2B /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppConstants.h; path = "MyFace Sandbox/AppConstants.h"; sourceTree = "<group>"; };
 		C20B6BB7194FD48B0080F9AF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C246621B194F567D00BBA57B /* ChangeFaceCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFaceCustomCell.h; sourceTree = "<group>"; };
 		C246621C194F567D00BBA57B /* ChangeFaceCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFaceCustomCell.m; sourceTree = "<group>"; };
@@ -98,7 +101,6 @@
 		C29335D8194FC5390031688C /* DemoImageEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoImageEditor.m; sourceTree = "<group>"; };
 		C294457F19509936002486F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C2944582195099C4002486F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		C2A838D51B56ED4700663EDC /* AppConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 		C2A838DB1B5739B700663EDC /* CustomCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCameraView.h; sourceTree = "<group>"; };
 		C2A838DC1B5739B700663EDC /* CustomCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCameraView.m; sourceTree = "<group>"; };
 		C2A838DD1B5739B700663EDC /* CustomCameraView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCameraView.xib; sourceTree = "<group>"; };
@@ -140,9 +142,10 @@
 			isa = PBXGroup;
 			children = (
 				C2944581195099C4002486F7 /* Model.xcdatamodeld */,
+				B500F44E1C470A0500F72A2B /* -1024.png */,
 				C2D86E5F19C2B10D0077F859 /* Photos.h */,
 				C2D86E6019C2B10D0077F859 /* Photos.m */,
-				C2A838D51B56ED4700663EDC /* AppConstants.h */,
+				B500F44F1C470A0500F72A2B /* AppConstants.h */,
 				AE08F4A0194B552100E2A260 /* AppDelegate.h */,
 				AE08F4A1194B552100E2A260 /* AppDelegate.m */,
 				AE08F4A3194B552100E2A260 /* Main.storyboard */,
@@ -157,8 +160,8 @@
 		AE08F48F194B552000E2A260 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE08F48E194B552000E2A260 /* myFaceB.app */,
-				AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */,
+				AE08F48E194B552000E2A260 /* My Face.app */,
+				AE08F4AF194B552100E2A260 /* My FaceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,10 +204,10 @@
 		AE08F498194B552100E2A260 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AE08F499194B552100E2A260 /* myFaceB-Info.plist */,
+				AE08F499194B552100E2A260 /* My Face-Info.plist */,
 				AE08F49A194B552100E2A260 /* InfoPlist.strings */,
 				AE08F49D194B552100E2A260 /* main.m */,
-				AE08F49F194B552100E2A260 /* myFaceB-Prefix.pch */,
+				AE08F49F194B552100E2A260 /* My Face-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,9 +285,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE08F48D194B552000E2A260 /* myFaceB */ = {
+		AE08F48D194B552000E2A260 /* My Face */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceB" */;
+			buildConfigurationList = AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "My Face" */;
 			buildPhases = (
 				AE08F48A194B552000E2A260 /* Sources */,
 				AE08F48B194B552000E2A260 /* Frameworks */,
@@ -294,14 +297,14 @@
 			);
 			dependencies = (
 			);
-			name = myFaceB;
+			name = "My Face";
 			productName = "MyFace Sandbox";
-			productReference = AE08F48E194B552000E2A260 /* myFaceB.app */;
+			productReference = AE08F48E194B552000E2A260 /* My Face.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AE08F4AE194B552100E2A260 /* myFaceBTests */ = {
+		AE08F4AE194B552100E2A260 /* My FaceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceBTests" */;
+			buildConfigurationList = AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "My FaceTests" */;
 			buildPhases = (
 				AE08F4AB194B552100E2A260 /* Sources */,
 				AE08F4AC194B552100E2A260 /* Frameworks */,
@@ -312,9 +315,9 @@
 			dependencies = (
 				AE08F4B5194B552100E2A260 /* PBXTargetDependency */,
 			);
-			name = myFaceBTests;
+			name = "My FaceTests";
 			productName = "MyFace SandboxTests";
-			productReference = AE08F4AF194B552100E2A260 /* myFaceBTests.xctest */;
+			productReference = AE08F4AF194B552100E2A260 /* My FaceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -323,7 +326,7 @@
 		AE08F486194B552000E2A260 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Mobile Makers Academy";
 				TargetAttributes = {
 					AE08F48D194B552000E2A260 = {
@@ -334,7 +337,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE08F489194B552000E2A260 /* Build configuration list for PBXProject "myFaceB" */;
+			buildConfigurationList = AE08F489194B552000E2A260 /* Build configuration list for PBXProject "My Face" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -347,8 +350,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE08F48D194B552000E2A260 /* myFaceB */,
-				AE08F4AE194B552100E2A260 /* myFaceBTests */,
+				AE08F48D194B552000E2A260 /* My Face */,
+				AE08F4AE194B552100E2A260 /* My FaceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B500F4521C470A0500F72A2B /* -1024.png in Resources */,
 				C2A838DF1B5739B700663EDC /* CustomCameraView.xib in Resources */,
 				AE08F4AA194B552100E2A260 /* Images.xcassets in Resources */,
 				AE08F49C194B552100E2A260 /* InfoPlist.strings in Resources */,
@@ -415,7 +419,7 @@
 /* Begin PBXTargetDependency section */
 		AE08F4B5194B552100E2A260 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AE08F48D194B552000E2A260 /* myFaceB */;
+			target = AE08F48D194B552000E2A260 /* My Face */;
 			targetProxy = AE08F4B4194B552100E2A260 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -467,6 +471,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -527,10 +532,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyFace Sandbox/myFaceB-Prefix.pch";
-				INFOPLIST_FILE = "MyFace Sandbox/myFaceB-Info.plist";
+				GCC_PREFIX_HEADER = "MyFace Sandbox/My Face-Prefix.pch";
+				INFOPLIST_FILE = "MyFace Sandbox/My Face-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = myFaceB;
+				PRODUCT_BUNDLE_IDENTIFIER = myFace;
+				PRODUCT_NAME = "My Face";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -544,10 +550,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyFace Sandbox/myFaceB-Prefix.pch";
-				INFOPLIST_FILE = "MyFace Sandbox/myFaceB-Info.plist";
+				GCC_PREFIX_HEADER = "MyFace Sandbox/My Face-Prefix.pch";
+				INFOPLIST_FILE = "MyFace Sandbox/My Face-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PRODUCT_NAME = myFaceB;
+				PRODUCT_BUNDLE_IDENTIFIER = myFace;
+				PRODUCT_NAME = "My Face";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -569,7 +576,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MyFace SandboxTests/MyFace SandboxTests-Info.plist";
-				PRODUCT_NAME = myFaceBTests;
+				PRODUCT_NAME = "My FaceTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -587,7 +594,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyFace Sandbox/MyFace Sandbox-Prefix.pch";
 				INFOPLIST_FILE = "MyFace SandboxTests/MyFace SandboxTests-Info.plist";
-				PRODUCT_NAME = myFaceBTests;
+				PRODUCT_NAME = "My FaceTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -596,7 +603,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE08F489194B552000E2A260 /* Build configuration list for PBXProject "myFaceB" */ = {
+		AE08F489194B552000E2A260 /* Build configuration list for PBXProject "My Face" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4BE194B552100E2A260 /* Debug */,
@@ -605,7 +612,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceB" */ = {
+		AE08F4C0194B552100E2A260 /* Build configuration list for PBXNativeTarget "My Face" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4C1194B552100E2A260 /* Debug */,
@@ -614,7 +621,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "myFaceBTests" */ = {
+		AE08F4C3194B552100E2A260 /* Build configuration list for PBXNativeTarget "My FaceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE08F4C4194B552100E2A260 /* Debug */,
